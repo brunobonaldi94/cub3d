@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handler.c                                    :+:      :+:    :+:   */
+/*   game_events.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 22:19:44 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/21 16:01:05 by bbonaldi         ###   ########.fr       */
+/*   Created: 2023/04/21 15:30:19 by bbonaldi          #+#    #+#             */
+/*   Updated: 2023/04/21 16:01:59 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	print_error(char *message)
+int	deal_key_press(int key, t_cub3D *cub3D);
+
+void	game_loop_events(t_cub3D *cub3D)
 {
-	ft_printf("%s\n%s\n", "Error", message);
+	mlx_hook(cub3D->win_ptr, KEY_PRESS_EVENT, (1L << 0), &deal_key_press,
+		cub3D);
+	mlx_hook(cub3D->win_ptr, DESTROY_NOTIFY_EVENT, (1L << 17), &game_exit,
+		cub3D);
 }
 
-int	exit_with_message(int status_code, char *message)
+int	deal_key_press(int key, t_cub3D *cub3D)
 {
-	print_error(message);
-	exit(status_code);
-}
-
-int	has_valid_args(int argc)
-{
-	if (argc != 2)
-		return (FALSE);
-	return (TRUE);
+	if (key == KEY_SCAPE)
+		game_exit(cub3D);
+	return (SUCCESS_CODE);
 }

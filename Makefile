@@ -9,24 +9,26 @@ LIBFT_FULL_PATH = $(LIBFT_PATH)/libft.a
 
 GAME_INIT		:= $(MANDATORY)/game_init
 ERROR_HANDLER	:= $(MANDATORY)/error_handler
-
+GAME_EVENTS		:= $(MANDATORY)/game_events
+GAME_EXIT		:= $(MANDATORY)/game_exit
 # ==============================================================================
 # VARIABLES
 # ==============================================================================
-NAME			:=	cub3d
+NAME			:=	cub3D
 CC				:=	cc
 CFLAGS			:=	-g3 -Wall -Werror -Wextra
-
 
 INCLUDES_USR = -I./usr/include
 INCLUDES = -I$(LIBFT_PATH)/includes -I$(MANDATORY)/includes
 
-LIBRARY_MLX_PATH = -L/usr/lib -lmlx -lXext -lX11 -lm -lz 
+LIBRARY_MLX_PATH = -L/usr/lib -lmlx -lXext -lX11 -lm -lz
 
-SRCS	:=	$(MANDATORY)/cub3d.c \
-			$(GAME_INIT)/init_mlx.c \
-			$(ERROR_HANDLER)/error_handler.c
-			
+SRCS	:=	$(MANDATORY)/cub3D.c \
+			$(GAME_INIT)/game_init.c \
+			$(ERROR_HANDLER)/error_handler.c \
+			$(GAME_EVENTS)/game_events.c \
+			$(GAME_EXIT)/game_exit.c
+
 OBJS	:=	$(SRCS:.c=.o)
 
 # ==============================================================================
@@ -44,7 +46,7 @@ EOC			:=	\033[1;0m
 
 
 define COMPILE_DONE
- ____ ____ ____ ____ ____ 
+ ____ ____ ____ ____ ____
 ||C |||U |||B |||3 |||D ||
 ||__|||__|||__|||__|||__||
 |/__\|/__\|/__\|/__\|/__\|
@@ -56,13 +58,13 @@ all:		$(NAME)
 %.o:		%.c
 			@$(CC) $(CFLAGS) $(INCLUDES_USR) $(INCLUDES) -c $< -o $@
 
-$(NAME):	$(LIBFT_FULL_PATH) $(OBJS) 
+$(NAME):	$(LIBFT_FULL_PATH) $(OBJS)
 			@echo "$(WHT)Compiling Cub3D...$(EOC)"
-			$(CC) $(CFLAGS) $(OBJS) $(LIBRARY_MLX_PATH) -Llibft -lft -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJS) $(LIBRARY_MLX_PATH) -Llibft -lft -o $(NAME)
 			@echo "$(GREEN)Cub3D build completed.$(EOC)"
 			@tput setaf 5
 			@echo "$$COMPILE_DONE"
-			
+
 $(LIBFT_FULL_PATH):
 			@make -C libft
 

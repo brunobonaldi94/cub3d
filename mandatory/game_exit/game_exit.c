@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handler.c                                    :+:      :+:    :+:   */
+/*   game_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 22:19:44 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/21 16:01:05 by bbonaldi         ###   ########.fr       */
+/*   Created: 2023/04/21 15:32:36 by bbonaldi          #+#    #+#             */
+/*   Updated: 2023/04/21 16:00:12 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	print_error(char *message)
+void	destroy_window(t_cub3D *cub3D);
+void	destroy_display(t_cub3D *cub3D);
+
+int	game_exit(t_cub3D *cub3D)
 {
-	ft_printf("%s\n%s\n", "Error", message);
+	destroy_window(cub3D);
+	destroy_display(cub3D);
+	exit(SUCCESS_CODE);
 }
 
-int	exit_with_message(int status_code, char *message)
+void	destroy_window(t_cub3D *cub3D)
 {
-	print_error(message);
-	exit(status_code);
+	mlx_destroy_window(cub3D->mlx_ptr, cub3D->win_ptr);
+	cub3D->win_ptr = NULL;
 }
 
-int	has_valid_args(int argc)
+void	destroy_display(t_cub3D *cub3D)
 {
-	if (argc != 2)
-		return (FALSE);
-	return (TRUE);
+	mlx_destroy_display(cub3D->mlx_ptr);
+	free(cub3D->mlx_ptr);
 }
+

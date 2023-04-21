@@ -3,6 +3,9 @@
 *.pdf
 *.o
 *cub3d
+*cub3D
 *.a
 /mlx_linux
 *.txt
+*.editorconfig
+*.log

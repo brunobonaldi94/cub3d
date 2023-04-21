@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/19 22:14:47 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:49:35 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define ERROR_CODE 1
 # define MLX_ERROR 1
 # define MLX_ERROR_MESSAGE "MLX Error: There was an error in Minilibx Library!"
+# define INVALID_ARGS_MESSAGE ""
 
 //TERMINAL COLORS
 # define RED "\033[0;31m"
@@ -52,5 +53,6 @@
 //
 # define TILE_SIZE 32
 # define GAME_NAME "Cub3D - bbonaldi & sjhony-x"
+# define MINIMAP_SCALE 1
 
 #endif

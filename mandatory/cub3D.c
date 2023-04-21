@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handler.c                                    :+:      :+:    :+:   */
+/*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 22:19:44 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/21 16:01:05 by bbonaldi         ###   ########.fr       */
+/*   Created: 2023/04/19 20:41:30 by bbonaldi          #+#    #+#             */
+/*   Updated: 2023/04/21 15:59:48 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	print_error(char *message)
+int	main(int argc, char *argv[])
 {
-	ft_printf("%s\n%s\n", "Error", message);
-}
+	t_cub3D	cub3D;
 
-int	exit_with_message(int status_code, char *message)
-{
-	print_error(message);
-	exit(status_code);
-}
-
-int	has_valid_args(int argc)
-{
-	if (argc != 2)
-		return (FALSE);
-	return (TRUE);
+	cub3D.map.columns = 20;
+	cub3D.map.rows = 20;
+	if (!has_valid_args(argc))
+		exit_with_message(ERROR_CODE, INVALID_ARGS_MESSAGE);
+	init_game(&cub3D, argv);
+	game_loop_events(&cub3D);
+	mlx_loop(cub3D.mlx_ptr);
+	return (SUCCESS_CODE);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:52:34 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/19 20:39:05 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:00:43 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	render_back(t_data *mlx)
 {
 	t_img	*img;
 
-	mlx->img.mlx_img = mlx_new_image(mlx->mlx_ptr, 
+	mlx->img.mlx_img = mlx_new_image(mlx->mlx_ptr,
 										MLX_WINDOW_WIDTH, MLX_WINDOW_HEIGHT);
 	mlx->img.addr = mlx_get_data_addr(mlx->img.mlx_img, &mlx->img.bits_per_pixel,
 										&mlx->img.line_length, &mlx->img.endian);
@@ -136,4 +136,3 @@ int	render_back(t_data *mlx)
 	mlx_destroy_image(mlx->mlx_ptr, img->mlx_img);
 	return (0);
 }
- 
