@@ -11,6 +11,7 @@ GAME_INIT		:= $(MANDATORY)/game_init
 ERROR_HANDLER	:= $(MANDATORY)/error_handler
 GAME_EVENTS		:= $(MANDATORY)/game_events
 GAME_EXIT		:= $(MANDATORY)/game_exit
+MAP_VALIDATION	:= $(MANDATORY)/map_validation
 # ==============================================================================
 # VARIABLES
 # ==============================================================================
@@ -27,7 +28,8 @@ SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(GAME_INIT)/game_init.c \
 			$(ERROR_HANDLER)/error_handler.c \
 			$(GAME_EVENTS)/game_events.c \
-			$(GAME_EXIT)/game_exit.c
+			$(GAME_EXIT)/game_exit.c \
+			$(MAP_VALIDATION)/map_validation.c \
 
 OBJS	:=	$(SRCS:.c=.o)
 

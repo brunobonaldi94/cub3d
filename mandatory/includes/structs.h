@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:16:51 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/21 15:59:04 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:43:04 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,22 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_file
+{
+	char	*name;
+	int		fd;
+}	t_file;
+
 typedef struct s_map
 {
 	int		columns;
 	int		rows;
 	char	**map_matrix;
-	char	*map_file_path;
-	char	*no_file_path;
-	char	*so_file_path;
-	char	*we_file_path;
-	char	*ea_file_path;
+	t_file	map_file;
+	char	*no_file;
+	char	*so_file;
+	char	*we_file;
+	char	*ea_file;
 	char	*floor_color;
 	char	*ceil_color;
 }	t_map;

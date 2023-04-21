@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:32:36 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/21 16:00:12 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:42:35 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 void	destroy_window(t_cub3D *cub3D);
 void	destroy_display(t_cub3D *cub3D);
+
+void	close_fd(int fd)
+{
+	if (fd < 0)
+		return ;
+	close(fd);
+}
 
 int	game_exit(t_cub3D *cub3D)
 {
