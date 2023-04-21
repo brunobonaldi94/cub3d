@@ -1,11 +1,14 @@
 # ==============================================================================
 # PATH
 # ==============================================================================
-MLX_LINUX_PATH	:= ./mlx_linux
-MLX_FULL_PATH	:= $(MLX_LINUX_PATH)/libmlx.a
 
-LIBFT_PATH		:= ./libft
+MANDATORY		:= ./mandatory
+
+LIBFT_PATH		:= $(MANDATORY)/libft
 LIBFT_FULL_PATH = $(LIBFT_PATH)/libft.a
+
+GAME_INIT		:= $(MANDATORY)/game_init
+ERROR_HANDLER	:= $(MANDATORY)/error_handler
 
 # ==============================================================================
 # VARIABLES
@@ -14,14 +17,15 @@ NAME			:=	cub3d
 CC				:=	cc
 CFLAGS			:=	-g3 -Wall -Werror -Wextra
 
-INCLUDES_MLX_LINUX = -Imlx_linux
+
 INCLUDES_USR = -I./usr/include
-INCLUDES = -I$(LIBFT_PATH)/includes -I./includes
+INCLUDES = -I$(LIBFT_PATH)/includes -I$(MANDATORY)/includes
 
-LIBRARY_MLX_PATH = -Lmlx_linux -lmlx_Linux -L/usr/lib
-LIBRARIES_MLX = -lXext -lX11 -lm -lz
+LIBRARY_MLX_PATH = -L/usr/lib -lmlx -lXext -lX11 -lm -lz 
 
-SRCS	:=	cub3d.c
+SRCS	:=	$(MANDATORY)/cub3d.c \
+			$(GAME_INIT)/init_mlx.c \
+			$(ERROR_HANDLER)/error_handler.c
 			
 OBJS	:=	$(SRCS:.c=.o)
 
@@ -50,12 +54,11 @@ export COMPILE_DONE
 all:		$(NAME)
 
 %.o:		%.c
-			@$(CC) $(CFLAGS) $(INCLUDES_MLX_LINUX) $(INCLUDES_USR) $(INCLUDES) -c $< -o $@
+			@$(CC) $(CFLAGS) $(INCLUDES_USR) $(INCLUDES) -c $< -o $@
 
-$(NAME):	$(MLX_FULL_PATH) $(LIBFT_FULL_PATH) $(OBJS) 
+$(NAME):	$(LIBFT_FULL_PATH) $(OBJS) 
 			@echo "$(WHT)Compiling Cub3D...$(EOC)"
-			@$(CC) $(CFLAGS) $(OBJS) $(LIBRARY_MLX_PATH) \
-			$(INCLUDES_MLX_LINUX) $(LIBRARIES_MLX) -Llibft -lft -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJS) $(LIBRARY_MLX_PATH) -Llibft -lft -o $(NAME)
 			@echo "$(GREEN)Cub3D build completed.$(EOC)"
 			@tput setaf 5
 			@echo "$$COMPILE_DONE"
@@ -63,15 +66,9 @@ $(NAME):	$(MLX_FULL_PATH) $(LIBFT_FULL_PATH) $(OBJS)
 $(LIBFT_FULL_PATH):
 			@make -C libft
 
-$(MLX_FULL_PATH):
-			@tput setaf 5
-			@echo COMPILING MLX
-			@make -C $(MLX_LINUX_PATH)
-			@cp $(MLX_FULL_PATH) ./
-
 clean:
 			@echo "$(WHT)Removing .o files...$(EOC)"
-			@rm -f $(OBJS)
+			@rm -f $(OBJS) $(MLX_LINUX_LIB)
 			@make -C libft clean
 			@echo "$(GREEN)Clean done.$(EOC)"
 
