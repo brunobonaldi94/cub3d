@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/21 16:44:44 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/21 22:41:09 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 // =============================================================================
 // GAME_INIT
 // =============================================================================
-int		init_mlx(t_cub3D *cub3D);
-int		init_game(t_cub3D *cub3D, char *argv[]);
-void	init_variables(t_cub3D *cub3D);
+int		init_mlx(t_cubd *cub3D);
+int		init_game(t_cubd *cub3D, char *argv[]);
+void	init_variables(t_cubd *cub3D);
 // =============================================================================
 // ERROR HANDLER
 // =============================================================================
@@ -37,17 +37,17 @@ int		has_valid_args(int argc);
 // =============================================================================
 // GAME EVENTS
 // =============================================================================
-void	game_loop_events(t_cub3D *cub3D);
+void	game_loop_events(t_cubd *cub3D);
 // =============================================================================
 // MAP VALIDATION
 // =============================================================================
 int		validate_file_path(char *file_path);
-int		validate_map(t_cub3D *cub3D, char *map_file);
+int		validate_map(t_cubd *cub3D, char *map_file);
 // =============================================================================
 // GAME EXIT
 // =============================================================================
-void	destroy_window(t_cub3D *cub3D);
-void	destroy_display(t_cub3D *cub3D);
-int		game_exit(t_cub3D *cub3D);
+void	destroy_window(t_cubd *cub3D);
+void	destroy_display(t_cubd *cub3D);
+int		game_exit(t_cubd *cub3D);
 void	close_fd(int fd);
 #endif

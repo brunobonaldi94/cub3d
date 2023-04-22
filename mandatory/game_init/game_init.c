@@ -6,16 +6,16 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:16:02 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/21 16:43:42 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/21 22:41:09 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int		init_mlx(t_cub3D *cub3D);
-void	init_variables(t_cub3D *cub3D);
+int		init_mlx(t_cubd *cub3D);
+void	init_variables(t_cubd *cub3D);
 
-int	init_game(t_cub3D *cub3D, char *argv[])
+int	init_game(t_cubd *cub3D, char *argv[])
 {
 	validate_map(cub3D, argv[1]);
 	init_mlx(cub3D);
@@ -23,7 +23,7 @@ int	init_game(t_cub3D *cub3D, char *argv[])
 	return (TRUE);
 }
 
-int	init_mlx(t_cub3D *cub3D)
+int	init_mlx(t_cubd *cub3D)
 {
 	cub3D->mlx_ptr = mlx_init();
 	if (cub3D->mlx_ptr == NULL)
@@ -41,7 +41,7 @@ int	init_mlx(t_cub3D *cub3D)
 	return (SUCCESS_CODE);
 }
 
-void	init_variables(t_cub3D *cub3D)
+void	init_variables(t_cubd *cub3D)
 {
 	cub3D->map.columns = 0;
 	cub3D->map.rows = 0;

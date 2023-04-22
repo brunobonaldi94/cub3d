@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:16:51 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/21 16:43:04 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/21 22:40:29 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ typedef struct s_map
 	char	*ceil_color;
 }	t_map;
 
-typedef struct s_cub3D
+typedef struct s_cubd
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_map	map;
-}	t_cub3D;
+}	t_cubd;
 
 #endif

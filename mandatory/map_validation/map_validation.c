@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:32:59 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/21 16:44:14 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/21 22:41:09 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	set_file(t_file *file, char *file_path)
 	file->name = file_path;
 }
 
-int	validate_map(t_cub3D *cub3D, char *map_file)
+int	validate_map(t_cubd *cub3D, char *map_file)
 {
 	set_file(&cub3D->map.map_file, map_file);
 	close_fd(cub3D->map.map_file.fd);
@@ -39,4 +39,3 @@ int	validate_file_path(char *file_path)
 	}
 	return (fd);
 }
-

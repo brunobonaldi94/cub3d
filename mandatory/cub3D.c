@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:41:30 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/21 16:13:44 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/21 22:41:09 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char *argv[])
 {
-	t_cub3D	cub3D;
+	t_cubd	cub3D;
 
 	cub3D.map.columns = 20;
 	cub3D.map.rows = 20;
