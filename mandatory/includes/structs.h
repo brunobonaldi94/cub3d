@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:16:51 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/21 22:40:29 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/22 17:21:17 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,23 @@ typedef struct s_file
 	int		fd;
 }	t_file;
 
-typedef struct s_map
+typedef struct s_map_dimensions
 {
 	int		columns;
 	int		rows;
-	char	**map_matrix;
-	t_file	map_file;
-	char	*no_file;
-	char	*so_file;
-	char	*we_file;
-	char	*ea_file;
-	char	*floor_color;
-	char	*ceil_color;
+}	t_map_dimensions;
+
+typedef struct s_map
+{
+	t_map_dimensions	dimensions;
+	char				**map_matrix;
+	t_file				map_file;
+	char				*no_file;
+	char				*so_file;
+	char				*we_file;
+	char				*ea_file;
+	char				*floor_color;
+	char				*ceiling_color;
 }	t_map;
 
 typedef struct s_cubd

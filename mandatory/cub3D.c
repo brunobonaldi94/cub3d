@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:41:30 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/21 22:41:09 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/22 17:51:56 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	main(int argc, char *argv[])
 {
-	t_cubd	cub3D;
+	t_cubd	cubd;
 
-	cub3D.map.columns = 20;
-	cub3D.map.rows = 20;
+	cubd.map.dimensions.columns = 20;
+	cubd.map.dimensions.rows = 20;
 	if (!has_valid_args(argc))
 		exit_with_message(ERROR_CODE, INVALID_ARGS_MESSAGE);
-	init_game(&cub3D, argv);
-	game_loop_events(&cub3D);
-	mlx_loop(cub3D.mlx_ptr);
+	init_game(&cubd, argv);
+	game_loop_events(&cubd);
+	mlx_loop(cubd.mlx_ptr);
 	return (SUCCESS_CODE);
 }
