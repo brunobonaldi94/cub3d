@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/22 23:41:40 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:03:46 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,20 @@
 # define MLX_ERROR 1
 # define MLX_ERROR_MESSAGE "MLX Error: There was an error in Minilibx Library!"
 # define INVALID_ARGS_MESSAGE "You must run cub3D with one map!"
-# define WRONG_CUB_EXTESION_MESSSAGE "File must have .cub extension"
+# define MAP_IS_NOT_VALID_MESSAGE "File must have .cub extension \
+or does not exist"
 # define MAP_EMPTY_LINE_MESSAGE "Map must not have empty lines!"
 # define NOT_ALLOW_CHARACTER_MESSAGE "Map can only contain NSEW01 and space"
 # define MAP_PROPERTY_MISSING_MESSAGE "It's missing map property"
 # define WRONG_MAP_DIMENSIONS_MESSAGE "Map dimensions are not correct!"
-
+# define MAP_MUST_START_WITH_PROPERTIES_MESSAGE "Map must start with map \
+properties"
+# define WRONG_TEXTURE_PATH_MESSAGE "Wrong texture file path or invalid \
+extension (it must be .xpm)"
+# define DUPLICATED_PROPERTY_MESSAGE "Duplicated map property!"
+# define NO_COLOR_SET_MESSAGE "No color set for floor or ceiling!"
+# define WRONG_COLOR_SET_MESSAGE "Color must be at RGB format for \
+floor or ceiling!"
 
 //KEY EVENTS
 # define KEY_PRESS_EVENT 2
@@ -57,11 +65,15 @@
 # define WHITE_PIXEL 0xFFFFFF
 
 //GAME PROPERTIES
-# define TILE_SIZE 32
+# define WINDOW_WIDTH 960
+# define WINDOW_HEIGHT 640
+# define TILE_SIZE 64
 # define GAME_NAME "Cub3D - bbonaldi & sjhony-x"
 # define MINIMAP_SCALE 1
 
 //MAP PROPERTIES
+# define CUB_EXTENSION ".cub"
+# define XPM_EXTENSION ".xpm"
 # define UNINITIALIZED_FD -2
 # define WHITE_SPACE " \t\r\n\v"
 # define ALLOWED_MAP_CHARS "01NSEW \t\r\v"
@@ -72,6 +84,5 @@
 # define FLOOR_PROP "F "
 # define CEILING_PROP "C "
 # define WALL_CHAR '1'
-
 
 #endif

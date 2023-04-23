@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:19:44 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/21 16:01:05 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/23 14:46:15 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,11 @@ int	has_valid_args(int argc)
 	if (argc != 2)
 		return (FALSE);
 	return (TRUE);
+}
+
+void	exit_with_message_and_free(t_cubd *cub3d, int status_code,
+			char *message)
+{
+	game_clear(cub3d);
+	exit_with_message(status_code, message);
 }

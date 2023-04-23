@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:16:02 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/22 17:59:49 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:01:30 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	init_mlx(t_cubd *cub3D)
 		return (exit_with_message(ERROR_CODE, MLX_ERROR_MESSAGE));
 	cub3D->win_ptr = mlx_new_window(
 			cub3D->mlx_ptr,
-			cub3D->map.dimensions.columns * TILE_SIZE,
-			cub3D->map.dimensions.rows * TILE_SIZE,
+			WINDOW_WIDTH,
+			WINDOW_HEIGHT,
 			GAME_NAME);
 	if (cub3D->win_ptr == NULL)
 	{
@@ -41,13 +41,25 @@ int	init_mlx(t_cubd *cub3D)
 	return (SUCCESS_CODE);
 }
 
+void	init_colors(t_color *color)
+{
+	color->color_str = NULL;
+	color->r = -1;
+	color->g = -1;
+	color->b = -1;
+	color->alpha = 1;
+}
+
 void	init_variables(t_cubd *cub3D)
 {
+	cub3D->mlx_ptr = NULL;
+	cub3D->win_ptr = NULL;
+	cub3D->map.map_list = NULL;
 	cub3D->map.dimensions.columns = 0;
 	cub3D->map.dimensions.rows = 0;
 	cub3D->map.map_matrix = NULL;
-	cub3D->map.ceiling_color = NULL;
-	cub3D->map.floor_color = NULL;
+	init_colors(&cub3D->map.ceiling_color);
+	init_colors(&cub3D->map.floor_color);
 	cub3D->map.map_file.name = NULL;
 	cub3D->map.map_file.fd = UNINITIALIZED_FD;
 	cub3D->map.so_file = NULL;

@@ -28,9 +28,10 @@ SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(GAME_INIT)/game_init.c \
 			$(ERROR_HANDLER)/error_handler.c \
 			$(GAME_EVENTS)/game_events.c \
-			$(GAME_EXIT)/game_exit.c \
+			$(GAME_EXIT)/game_exit.c $(GAME_EXIT)/game_exit_utils.c \
 			$(MAP_VALIDATION)/map_validation.c $(MAP_VALIDATION)/file_helpers.c \
-			$(MAP_VALIDATION)/map_validation_utils.c
+			$(MAP_VALIDATION)/map_validation_utils.c \
+			$(MAP_VALIDATION)/map_properties_utils.c $(MAP_VALIDATION)/map_content_utils.c
 OBJS	:=	$(SRCS:.c=.o)
 
 # ==============================================================================
