@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/22 15:19:17 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/22 23:20:09 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int		open_file_path(char *file_path);
 void	set_file(t_file *file, char *file_path);
 int		check_file_extension(char *file_path, char *extension);
 int		validate_map(t_cubd *cub3D, char *map_file);
+void	advance_ptr_while_white_space(char **line);
 // =============================================================================
 // GAME EXIT
 // =============================================================================

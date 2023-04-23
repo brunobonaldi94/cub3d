@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/22 18:01:30 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/22 23:41:40 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,18 @@
 # define TILE_SIZE 32
 # define GAME_NAME "Cub3D - bbonaldi & sjhony-x"
 # define MINIMAP_SCALE 1
-# define WHITE_SPACE " \t\r\n\v"
 
 //MAP PROPERTIES
 # define UNINITIALIZED_FD -2
-# define ALLOWED_MAP_CHARS "01NSEW "
+# define WHITE_SPACE " \t\r\n\v"
+# define ALLOWED_MAP_CHARS "01NSEW \t\r\v"
 # define SOUTH_PROP "SO "
 # define NORTH_PROP "NO "
 # define EAST_PROP "EA "
 # define WEST_PROP "WE "
 # define FLOOR_PROP "F "
 # define CEILING_PROP "C "
+# define WALL_CHAR '1'
+
 
 #endif
