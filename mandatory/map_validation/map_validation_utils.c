@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 23:17:17 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/23 15:49:41 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/23 22:59:48 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,9 @@ void	advance_ptr_while_white_space(char **line)
 {
 	while (**line && ft_strchr(WHITE_SPACE, **line))
 		(*line)++;
+}
+
+int	is_new_line(char *line)
+{
+	return (line && ft_strcmp(line, "\n") == 0);
 }

@@ -6,12 +6,16 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/23 17:03:46 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/23 22:48:22 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
+
+
+//DEBUG
+# define DEBUG TRUE
 
 //BOOLEANS
 # define TRUE 1
@@ -33,7 +37,7 @@
 # define INVALID_ARGS_MESSAGE "You must run cub3D with one map!"
 # define MAP_IS_NOT_VALID_MESSAGE "File must have .cub extension \
 or does not exist"
-# define MAP_EMPTY_LINE_MESSAGE "Map must not have empty lines!"
+# define EMPTY_LINE_MESSAGE "Map must not have empty lines!"
 # define NOT_ALLOW_CHARACTER_MESSAGE "Map can only contain NSEW01 and space"
 # define MAP_PROPERTY_MISSING_MESSAGE "It's missing map property"
 # define WRONG_MAP_DIMENSIONS_MESSAGE "Map dimensions are not correct!"

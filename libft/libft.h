@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 21:42:28 by harndt            #+#    #+#             */
-/*   Updated: 2022/12/07 21:37:35 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/23 23:40:10 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -404,7 +404,7 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
 /**
  * @brief Iterates the list 'lst' and applies the funtion 'f' on the content
  * of each node. Creates a new list resultin of the successie applications of
- * the function 'f'. The 'del' function is used to delete the content of a 
+ * the function 'f'. The 'del' function is used to delete the content of a
  * node if needed.
  * @param lst Address ofa pointer to a node.
  * @param f Function's address used to iterate on the list.
@@ -415,10 +415,18 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void(*del)(void *));
 
 /**
  * @brief free a pointer of any type.
- * @param ptr void **ptr - pointer to a void pointer 
+ * @param ptr void **ptr - pointer to a void pointer
  * @return void
 **/
 void		ft_free_ptr(void **ptr);
+
+/**
+ * @brief check each char in a string if meets a requirement
+ * @param str string to check
+ * @param ft_check_each_char function to check each char
+ * @return boolean
+**/
+int			ft_is_all_something(char *str, int (*f)(int));
 
 // =============================================================================
 // GNL Functions
@@ -549,7 +557,7 @@ void		ft_putstr(char *str);
 
 /**
  * @brief Comnputes the absolute calue of the integer argument 'x'.
- * 
+ *
  * @param x The value to compute.
  * @return int The abosulute value of the integer argument.
  */
@@ -566,15 +574,15 @@ typedef int			t_bool;
 
 /**
  * @brief Checks if the str is a number.
- * 
+ *
  * @param str The string to check.
  * @return t_bool If the string only contains numbers TRUE, else FALSE.
  */
-t_bool		ft_isnum(char *str);
+int		ft_isnum(char *str);
 
 /**
  * @brief Checks a condition.
- * 
+ *
  * @param condition Tp be tested.
  * @param a First parameter.
  * @param b Second parameter.
@@ -632,13 +640,13 @@ t_list		*ft_lstfind(t_list *list, void *data, int (*cmp)());
 
 /**
  * @brief free a pointer of any type.
- * @param ptr void **ptr - pointer to a void pointer 
+ * @param ptr void **ptr - pointer to a void pointer
 
 **/
 void		ft_free_ptr(void **ptr);
 
 /**
- * @brief Allocates new String with s1 and s2, free both strings received 
+ * @brief Allocates new String with s1 and s2, free both strings received
  * as args.
  * @param s1 String preffix.
  * @param s2 String preffix.
@@ -686,7 +694,7 @@ int			ft_count_char(char *str, char c);
 
 /**
  * @brief free a matrix of any type.
- * @param matrix void ***matrix - pointer to pointer to a void pointer 
+ * @param matrix void ***matrix - pointer to pointer to a void pointer
  * @return void
 **/
 void		ft_free_matrix(void ***matrix);

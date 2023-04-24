@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:48:42 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/23 17:16:28 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/23 23:41:53 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,20 @@ void	set_texture_path(t_cubd *cub3D, char **texture, char *texture_path)
 int	is_valid_color_rgb(int color_atoi, char *color_str)
 {
 	char	*color_trimmed;
+	int		is_valid;
 
+	is_valid = TRUE;
 	if (color_atoi < 0)
 		return (FALSE);
 	color_trimmed = ft_strtrim(color_str, WHITE_SPACE);
 	if (color_atoi == 0 && ft_strcmp(color_trimmed, "0") != 0)
-	{
-		ft_free_ptr((void **)&color_trimmed);
-		return (FALSE);
-	}
-	if (!(color_atoi >= 0 && color_atoi <= 255))
-	{
-		ft_free_ptr((void **)&color_trimmed);
-		return (FALSE);
-	}
-	return (TRUE);
+		is_valid = FALSE;
+	else if (!(color_atoi >= 0 && color_atoi <= 255))
+		is_valid = FALSE;
+	else if (!ft_is_all_something(color_trimmed, ft_isdigit))
+		is_valid = FALSE;
+	ft_free_ptr((void **)&color_trimmed);
+	return (is_valid);
 }
 
 
@@ -93,7 +92,9 @@ void	set_floor_ceiling_color(t_cubd *cub3D, t_color *color, char *color_str)
 		|| !is_valid_color_rgb(color->g, colors_split[1])
 		|| !is_valid_color_rgb(color->b, colors_split[2]))
 	{
+		ft_free_matrix((void ***)&colors_split);
 		exit_with_message_and_free(cub3D, ERROR_CODE,
 			WRONG_COLOR_SET_MESSAGE);
 	}
+	ft_free_matrix((void ***)&colors_split);
 }

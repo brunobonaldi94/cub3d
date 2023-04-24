@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/23 17:02:21 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/23 23:00:05 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		are_all_map_properties_set(t_cubd *cub3D);
 int		first_last_row_wall_checker(char *line);
 void	advance_ptr_while_white_space(char **line);
 int		is_valid_map_content(char *line, int is_first_or_last_row);
+int		is_new_line(char *line);
 // =============================================================================
 // GAME EXIT
 // =============================================================================
@@ -64,4 +65,8 @@ int		game_exit(t_cubd *cub3D);
 void	close_fd(int fd);
 void	game_clear(t_cubd *cub3D);
 void	clear_map_matrix(t_cubd *cub3D);
+// =============================================================================
+// DEBUG
+// =============================================================================
+void	print_map(t_cubd *cub3D);
 #endif

@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:32:59 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/23 17:57:06 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/23 23:20:42 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,39 @@ int	validate_map(t_cubd *cub3D, char *map_file)
 	return (SUCCESS_CODE);
 }
 
-int	check_reach_end_of_file(t_list *h_list)
+int	check_new_line_in_the_middle(t_list *h_list)
 {
 	char	*line;
 
+	line = (char *)h_list->content;
+	if (!is_new_line(line))
+		return (FALSE);
 	while (h_list)
 	{
 		line = (char *)h_list->content;
 		while (*line)
 		{
-			if (ft_strchr(WHITE_SPACE, *line))
-				return (FALSE);
+			if (!ft_strchr(WHITE_SPACE, *line))
+				return (TRUE);
 			line++;
 		}
 		h_list = h_list->next;
 	}
-	return (TRUE);
+	return (FALSE);
+}
+
+int	ft_lstsize2(t_list *lst)
+{
+	int	size;
+
+	size = 0;
+	while (lst)
+	{
+		if (!is_new_line((char *)lst->content))
+			size++;
+		lst = lst->next;
+	}
+	return (size);
 }
 
 void	set_map_row_colums(t_cubd *cub3D, t_map_dimensions *map_dim,
@@ -50,17 +67,14 @@ void	set_map_row_colums(t_cubd *cub3D, t_map_dimensions *map_dim,
 	int		total_rows;
 
 	map_dim->columns = 0;
-	total_rows = ft_lstsize(h_list);
+	total_rows = ft_lstsize2(h_list);
 	while (h_list)
 	{
 		line = (char *)h_list->content;
-		if (line && ft_strcmp(line, "\n") == 0)
-		{
-			if (!check_reach_end_of_file(h_list))
-				exit_with_message_and_free(cub3D, ERROR_CODE,
-					MAP_EMPTY_LINE_MESSAGE);
-		}
-		if (!is_valid_map_content(line, total_rows == map_dim->rows + 1
+		if (check_new_line_in_the_middle(h_list))
+			exit_with_message_and_free(cub3D, ERROR_CODE, EMPTY_LINE_MESSAGE);
+		if (total_rows != map_dim->rows
+			&& !is_valid_map_content(line, total_rows == map_dim->rows + 1
 				|| map_dim->rows == 0))
 			exit_with_message_and_free(cub3D, ERROR_CODE,
 				NOT_ALLOW_CHARACTER_MESSAGE);
@@ -68,12 +82,13 @@ void	set_map_row_colums(t_cubd *cub3D, t_map_dimensions *map_dim,
 		if (map_dim->columns < map_width)
 			map_dim->columns = map_width;
 		h_list = h_list->next;
-		map_dim->rows = map_dim->rows + 1;
+		if (!is_new_line(line))
+			map_dim->rows = map_dim->rows + 1;
 	}
 	map_dim->columns = map_dim->columns - 1;
 }
 
-int load_map_content(t_cubd *cub3D, t_list	*h_list)
+int	load_map_content(t_cubd *cub3D, t_list	*h_list)
 {
 	int	index;
 
@@ -81,7 +96,7 @@ int load_map_content(t_cubd *cub3D, t_list	*h_list)
 	set_map_row_colums(cub3D, &cub3D->map.dimensions, h_list);
 	cub3D->map.map_matrix = (char **)malloc(sizeof(char *)
 			* cub3D->map.dimensions.rows);
-	while (h_list)
+	while (index < cub3D->map.dimensions.rows)
 	{
 		cub3D->map.map_matrix[index] = (char *)malloc(sizeof(char)
 				* cub3D->map.dimensions.columns + 1);
@@ -122,11 +137,11 @@ int	load_map_properties(t_cubd *cub3D, char *line, int *line_nbr)
 	return (is_map_prop);
 }
 
-int	load_map(t_cubd *cub3D, t_list	*h_list)
+int load_each_map_line(t_cubd *cub3D, t_list	*h_list)
 {
-	int		is_map_prop;
-	int		line_nbr;
 	char	*line;
+	int		line_nbr;
+	int		is_map_prop;
 
 	line_nbr = 0;
 	while (h_list)
@@ -143,20 +158,22 @@ int	load_map(t_cubd *cub3D, t_list	*h_list)
 			exit_with_message_and_free(cub3D, ERROR_CODE,
 				MAP_MUST_START_WITH_PROPERTIES_MESSAGE);
 		if (!is_map_prop && are_all_map_properties_set(cub3D))
-		{
-			load_map_content(cub3D, h_list);
-			break ;
-		}
+			return (load_map_content(cub3D, h_list));
 		h_list = h_list->next;
 		line_nbr++;
 	}
+	return (TRUE);
+}
+
+void	load_map(t_cubd *cub3D, t_list	*h_list)
+{
+	load_each_map_line(cub3D, h_list);
 	if (are_all_map_properties_set(cub3D) == FALSE)
 		exit_with_message_and_free(cub3D, ERROR_CODE,
 			MAP_PROPERTY_MISSING_MESSAGE);
 	if (cub3D->map.dimensions.rows == 0 || cub3D->map.dimensions.columns == 0)
 		exit_with_message_and_free(cub3D, ERROR_CODE,
 			WRONG_MAP_DIMENSIONS_MESSAGE);
-	return (is_map_prop);
 }
 
 void	read_map(t_cubd *cub3D, int fd)
@@ -173,10 +190,5 @@ void	read_map(t_cubd *cub3D, int fd)
 		ft_lstadd_back(h_list, ft_lstnew(line));
 	}
 	load_map(cub3D, *h_list);
-	int i = 0;
-	while (i < cub3D->map.dimensions.rows)
-	{
-		ft_printf("%s\n", cub3D->map.map_matrix[i]);
-		i++;
-	}
+	print_map(cub3D);
 }

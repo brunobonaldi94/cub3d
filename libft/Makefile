@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: harndt <humberto.arndt@gmail.com>          +#+  +:+       +#+         #
+#    By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 20:43:56 by harndt            #+#    #+#              #
-#    Updated: 2022/11/30 14:19:36 by harndt           ###   ########.fr        #
+#    Updated: 2023/04/23 23:40:48 by bbonaldi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS	:=	ft_atoi.c		ft_bzero.c		ft_calloc.c		\
 			ft_memset.c		ft_strchr.c		ft_strdup.c		\
 			ft_strlcat.c	ft_strlcpy.c	ft_strlen.c		\
 			ft_strncmp.c	ft_strnstr.c	ft_strrchr.c	\
-			ft_tolower.c	ft_toupper.c	
+			ft_tolower.c	ft_toupper.c
 
 # ==============================================================================
 # LIBFT 2
@@ -39,8 +39,8 @@ SRCS	:=	ft_atoi.c		ft_bzero.c		ft_calloc.c		\
 SRCS	+=	ft_substr.c		ft_strjoin.c	ft_strtrim.c	\
 			ft_split.c		ft_itoa.c		ft_strmapi.c	\
 			ft_striteri.c	ft_putchar_fd.c	ft_putstr_fd.c	\
-			ft_putendl_fd.c	ft_putnbr_fd.c	
-			
+			ft_putendl_fd.c	ft_putnbr_fd.c	ft_is_all_something.c
+
 
 # ==============================================================================
 # LIBFT BONUS
@@ -48,8 +48,8 @@ SRCS	+=	ft_substr.c		ft_strjoin.c	ft_strtrim.c	\
 
 SRCS	+=	ft_lstnew.c		ft_lstadd_front.c	ft_lstsize.c	\
 			ft_lstlast.c	ft_lstadd_back.c	ft_lstdelone.c	\
-			ft_lstclear.c	ft_lstiter.c		ft_lstmap.c 
-			
+			ft_lstclear.c	ft_lstiter.c		ft_lstmap.c
+
 
 # ==============================================================================
 # GNL
