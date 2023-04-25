@@ -26,6 +26,7 @@ INCLUDES = -I$(LIBFT_PATH)/includes -I$(MANDATORY)/includes
 LIBRARY_MLX_PATH = -L/usr/lib -lmlx -lXext -lX11 -lm -lz
 
 SRCS	:=	$(MANDATORY)/cub3D.c \
+			$(MANDATORY)/test_minilibx.c \
 			$(GAME_INIT)/game_init.c \
 			$(ERROR_HANDLER)/error_handler.c \
 			$(GAME_EVENTS)/game_events.c \

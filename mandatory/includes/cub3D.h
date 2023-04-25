@@ -69,4 +69,7 @@ void	clear_map_matrix(t_cubd *cub3D);
 // DEBUG
 // =============================================================================
 void	print_map(t_cubd *cub3D);
+
+
+int	game_render(t_cubd *cub3D);
 #endif

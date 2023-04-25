@@ -20,6 +20,7 @@ void	game_loop_events(t_cubd *cub3D)
 		cub3D);
 	mlx_hook(cub3D->win_ptr, DESTROY_NOTIFY_EVENT, (1L << 17), &game_exit,
 		cub3D);
+	mlx_expose_hook(cub3D->win_ptr, &game_render, cub3D);
 }
 
 int	deal_key_press(int key, t_cubd *cub3D)
