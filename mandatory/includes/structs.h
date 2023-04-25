@@ -13,6 +13,37 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+typedef struct s_window
+{
+	void	*win_ptr;
+	int		width;
+	int		height;
+}	t_window;
+
+typedef struct s_image
+{
+	void	*addr;
+	int		width;
+	int		height;
+	int		x;
+	int		y;
+}	t_image;
+
+
+typedef struct s_game
+{
+	void		*mlx_ptr;
+	char		**map;
+	int			moves;
+	int			collectibles;
+	t_window	window;
+	t_image		wall;
+	t_image		space;
+	t_image		tux;
+	t_image		coin;
+	t_image		door;
+}	t_game;
+
 typedef struct s_rectangule
 {
 	int	x;
@@ -71,6 +102,21 @@ typedef struct s_cubd
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_map	map;
+	t_game	*game;
 }	t_cubd;
+
+
+typedef struct s_player
+{
+	float	x;
+	float	y;
+	float	width;
+	float	height;
+	int		turn_direction;
+	int		walk_direction;
+	float	rotation_angle;
+	float	walk_speed;
+	float	turn_speed;
+}	t_player;
 
 #endif

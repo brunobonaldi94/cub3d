@@ -25,13 +25,15 @@ int	init_game(t_cubd *cub3D, char *argv[])
 
 int	init_mlx(t_cubd *cub3D)
 {
+	cub3D->game->map = generate_map(PATH_MAP);
+	cub3D->game->window = get_window_size(cub3D->game->map);
 	cub3D->mlx_ptr = mlx_init();
 	if (cub3D->mlx_ptr == NULL)
 		return (exit_with_message(ERROR_CODE, MLX_ERROR_MESSAGE));
 	cub3D->win_ptr = mlx_new_window(
 			cub3D->mlx_ptr,
-			WINDOW_WIDTH,
-			WINDOW_HEIGHT,
+			cub3D->game->window.width,
+			cub3D->game->window.height,
 			GAME_NAME);
 	if (cub3D->win_ptr == NULL)
 	{

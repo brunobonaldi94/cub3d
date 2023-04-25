@@ -71,7 +71,7 @@ floor or ceiling!"
 //GAME PROPERTIES
 # define WINDOW_WIDTH 960
 # define WINDOW_HEIGHT 640
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 # define GAME_NAME "Cub3D - bbonaldi & sjhony-x"
 # define MINIMAP_SCALE 1
 
@@ -88,5 +88,19 @@ floor or ceiling!"
 # define FLOOR_PROP "F "
 # define CEILING_PROP "C "
 # define WALL_CHAR '1'
+
+// CONSTANTS TO CALCULATIONS
+# define PI 3.14159265
+# define TWO_PI 6.28318530
+# define FOV_ANGLE = (60 * PI / 180)
+
+# define NUM_RAYS WINDOW_WIDTH
+
+# define MAP_NUM_ROWS = 13
+# define MAP_NUM_COLS 20
+
+# define PATH_IMG_WALL "assets/images/wall.xpm"
+# define PATH_IMG_SPACE "assets/images/space.xpm"
+# define PATH_MAP "assets/maps/map.ber"
 
 #endif

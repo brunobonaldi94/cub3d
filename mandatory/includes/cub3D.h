@@ -71,5 +71,13 @@ void	clear_map_matrix(t_cubd *cub3D);
 void	print_map(t_cubd *cub3D);
 
 
-int	game_render(t_cubd *cub3D);
+
+
+
+// IMPLEMENTATION SJHONY-X TESTS
+
+
+int			game_render(t_cubd *cub3D);
+char		**generate_map(char *path);
+t_window	get_window_size(char **map);
 #endif
