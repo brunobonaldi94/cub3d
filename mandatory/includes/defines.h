@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/23 22:48:22 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/24 23:21:02 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ extension (it must be .xpm)"
 # define NO_COLOR_SET_MESSAGE "No color set for floor or ceiling!"
 # define WRONG_COLOR_SET_MESSAGE "Color must be at RGB format for \
 floor or ceiling!"
-
+# define PLAYER_ERROR_MESSAGE "It must have one Player position!"
 //KEY EVENTS
 # define KEY_PRESS_EVENT 2
 # define DESTROY_NOTIFY_EVENT 17
@@ -81,6 +81,7 @@ floor or ceiling!"
 # define UNINITIALIZED_FD -2
 # define WHITE_SPACE " \t\r\n\v"
 # define ALLOWED_MAP_CHARS "01NSEW \t\r\v"
+# define PLAYER_CHAR "NSEW"
 # define SOUTH_PROP "SO "
 # define NORTH_PROP "NO "
 # define EAST_PROP "EA "

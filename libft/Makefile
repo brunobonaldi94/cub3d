@@ -6,7 +6,7 @@
 #    By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 20:43:56 by harndt            #+#    #+#              #
-#    Updated: 2023/04/23 23:40:48 by bbonaldi         ###   ########.fr        #
+#    Updated: 2023/04/24 22:26:17 by bbonaldi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS	:=	ft_atoi.c		ft_bzero.c		ft_calloc.c		\
 			ft_memset.c		ft_strchr.c		ft_strdup.c		\
 			ft_strlcat.c	ft_strlcpy.c	ft_strlen.c		\
 			ft_strncmp.c	ft_strnstr.c	ft_strrchr.c	\
-			ft_tolower.c	ft_toupper.c
+			ft_tolower.c	ft_toupper.c	ft_strlen_no_white_space.c
 
 # ==============================================================================
 # LIBFT 2

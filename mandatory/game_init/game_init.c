@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:16:02 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/23 17:01:30 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/24 23:39:15 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	init_mlx(t_cubd *cub3D)
 		free(cub3D->mlx_ptr);
 		return (exit_with_message(ERROR_CODE, MLX_ERROR_MESSAGE));
 	}
+	ft_printf("Game has started!");
 	return (SUCCESS_CODE);
 }
 
@@ -66,4 +67,5 @@ void	init_variables(t_cubd *cub3D)
 	cub3D->map.no_file = NULL;
 	cub3D->map.we_file = NULL;
 	cub3D->map.ea_file = NULL;
+	cub3D->map.found_player = FALSE;
 }

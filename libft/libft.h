@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 21:42:28 by harndt            #+#    #+#             */
-/*   Updated: 2023/04/23 23:40:10 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/24 22:25:31 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define OCT 8
 # define DEC 10
 # define HEX 16
+# define WHITE_SPACE_CHARS " \t\r\n\v"
 
 // =============================================================================
 // Part 1 - Libc Functions
@@ -139,6 +140,13 @@ void		*ft_memmove(void *dst, const void *src, size_t n);
 **/
 size_t		ft_strlen(const char *str);
 
+/**
+ * @brief Computes the length of the string, not counting white space 
+ *  not including the null character.
+ * @param str String whose length is to be found.
+ * @return Length of string not counting white space .
+**/
+size_t	ft_strlen_no_white_space(const char *str);
 /**
  * @brief Compares the first (at most) n bytes of s1 and s2.
  * @param s1 String to be compared.

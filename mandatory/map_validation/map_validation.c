@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:32:59 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/23 23:20:42 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/24 23:45:13 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,6 @@ int	check_new_line_in_the_middle(t_list *h_list)
 	return (FALSE);
 }
 
-int	ft_lstsize2(t_list *lst)
-{
-	int	size;
-
-	size = 0;
-	while (lst)
-	{
-		if (!is_new_line((char *)lst->content))
-			size++;
-		lst = lst->next;
-	}
-	return (size);
-}
-
 void	set_map_row_colums(t_cubd *cub3D, t_map_dimensions *map_dim,
 			t_list *h_list)
 {
@@ -67,25 +53,24 @@ void	set_map_row_colums(t_cubd *cub3D, t_map_dimensions *map_dim,
 	int		total_rows;
 
 	map_dim->columns = 0;
-	total_rows = ft_lstsize2(h_list);
+	total_rows = ft_lstsize_no_new_line(h_list);
 	while (h_list)
 	{
 		line = (char *)h_list->content;
 		if (check_new_line_in_the_middle(h_list))
 			exit_with_message_and_free(cub3D, ERROR_CODE, EMPTY_LINE_MESSAGE);
 		if (total_rows != map_dim->rows
-			&& !is_valid_map_content(line, total_rows == map_dim->rows + 1
-				|| map_dim->rows == 0))
+			&& !is_valid_map_content(cub3D, line,
+				total_rows == map_dim->rows + 1 || map_dim->rows == 0))
 			exit_with_message_and_free(cub3D, ERROR_CODE,
 				NOT_ALLOW_CHARACTER_MESSAGE);
-		map_width = ft_strlen(line);
+		map_width = ft_strlen_no_white_space(line);
 		if (map_dim->columns < map_width)
 			map_dim->columns = map_width;
 		h_list = h_list->next;
 		if (!is_new_line(line))
 			map_dim->rows = map_dim->rows + 1;
 	}
-	map_dim->columns = map_dim->columns - 1;
 }
 
 int	load_map_content(t_cubd *cub3D, t_list	*h_list)
@@ -174,6 +159,10 @@ void	load_map(t_cubd *cub3D, t_list	*h_list)
 	if (cub3D->map.dimensions.rows == 0 || cub3D->map.dimensions.columns == 0)
 		exit_with_message_and_free(cub3D, ERROR_CODE,
 			WRONG_MAP_DIMENSIONS_MESSAGE);
+	if (cub3D->map.found_player != 1)
+		exit_with_message_and_free(cub3D, ERROR_CODE,
+			PLAYER_ERROR_MESSAGE);
+	//TODO:  check very big map // check map has minimum dimensions // when there is space between letters
 }
 
 void	read_map(t_cubd *cub3D, int fd)

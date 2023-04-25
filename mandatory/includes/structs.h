@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:16:51 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/23 16:43:06 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/24 23:14:00 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_map
 	char				*ea_file;
 	t_color				floor_color;
 	t_color				ceiling_color;
+	int					found_player;
 }	t_map;
 
 typedef struct s_cubd

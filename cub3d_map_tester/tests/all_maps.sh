@@ -17,21 +17,21 @@ FALSE=0
 COUNTER=1
 
 #MAP VARIABLES
-INVALID_DIR=./maps/invalid
-VALID_DIR=./maps/valid
 HEADER_VALID="VALID_MAPS"
 HEADER_INVALID="INVALID_MAPS"
 MAP_TYPE="$1"
 SHOULD_RUN_VALID_MAPS=$FALSE
 SHOULD_RUN_INVALID_MAPS=$FALSE
-SO_LONG_PATH=../
+CUB3D_PATH=../
+VALID_DIR=${CUB3D_PATH}assets/maps/valid
+INVALID_DIR=${CUB3D_PATH}assets/maps/invalid
 BINARY_FILE=cub3D
 
 #CHECK ERRORS/SUCESS VARIABLES
 GAME_START_FLAG="Game has started!"
 MLX_ERROR="MLX Error"
 ERROR="Error"
-VALGRIND="valgrind -s --leak-check=full --show-leak-kinds=all --gen-suppressions=yes --verbose"
+VALGRIND="valgrind -s --leak-check=full --show-leak-kinds=all "
 NO_LEAK_MESSAGE="All heap blocks were freed -- no leaks are possible"
 LOG_DIR="logs"
 FIXED_PWD=""
@@ -107,7 +107,7 @@ run_test() {
 		LOG_FILE="$LOG_DIR/$VALID_INVALID/memcheck_"$BASE_NAME".log"
 		LOG_FILE_FULL_PATH="$FIXED_PWD/$LOG_FILE"
 		print_file_name $(( COUNTER++ )) "$BASE_NAME"
-		WHOLE_OUTPUT=$(cd "$SO_LONG_PATH" && $VALGRIND --log-file="$LOG_FILE_FULL_PATH" ./${BINARY_FILE} "$FIXED_PWD/$file" && cd "$FIXED_PWD")
+		WHOLE_OUTPUT=$(cd "$CUB3D_PATH" && $VALGRIND --log-file="$LOG_FILE_FULL_PATH" ./${BINARY_FILE} "$FIXED_PWD/$file" && cd "$FIXED_PWD")
 		HAS_ERROR=$(echo -e $WHOLE_OUTPUT | grep  "$ERROR" | wc -l)
 		IS_MLX_ERROR=$(echo -e $WHOLE_OUTPUT | grep  "$MLX_ERROR" | wc -l)
 		HAS_NO_LEAK=$(cat "$LOG_FILE_FULL_PATH" | grep "$NO_LEAK_MESSAGE" | wc -l)

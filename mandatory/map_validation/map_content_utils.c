@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:49:59 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/23 23:10:32 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/24 23:21:17 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 #include "cub3D.h"
 
 int	first_last_row_wall_checker(char *line);
-int	is_valid_map_content(char *line, int is_first_or_last_row);
+int	is_valid_map_content(t_cubd *cub3D, char *line, int is_first_or_last_row);
 
-int	is_valid_map_content(char *line, int is_first_or_last_row)
+int	is_valid_map_content(t_cubd *cub3D, char *line, int is_first_or_last_row)
 {
+	char	*start_line;
+
+	start_line = line;
 	if (is_first_or_last_row)
 		return (first_last_row_wall_checker(line));
 	advance_ptr_while_white_space(&line);
@@ -25,11 +28,13 @@ int	is_valid_map_content(char *line, int is_first_or_last_row)
 		return (FALSE);
 	while (*line)
 	{
+		if (ft_strchr(PLAYER_CHAR, *line))
+			cub3D->map.found_player += 1;
 		if (ft_strchr(ALLOWED_MAP_CHARS, *line) == NULL && *line != '\n')
 			return (FALSE);
 		line++;
 	}
-	line = line - 2;
+	go_back_ptr_while_white_space(start_line, &line);
 	if (*line != WALL_CHAR)
 		return (FALSE);
 	return (TRUE);
