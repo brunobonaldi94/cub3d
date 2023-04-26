@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:16:02 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/24 23:39:15 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:40:25 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	init_variables(t_cubd *cub3D)
 	cub3D->map.map_list = NULL;
 	cub3D->map.dimensions.columns = 0;
 	cub3D->map.dimensions.rows = 0;
+	cub3D->map.dimensions.col_offset = 0;
 	cub3D->map.map_matrix = NULL;
 	init_colors(&cub3D->map.ceiling_color);
 	init_colors(&cub3D->map.floor_color);

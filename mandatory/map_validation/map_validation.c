@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:32:59 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/25 21:06:19 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:49:52 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ void	set_map_row_colums(t_cubd *cub3D, t_map_dimensions *map_dim,
 			t_list *h_list)
 {
 	int		map_width;
+	int		first_col_map_char;
 	char	*line;
 	int		total_rows;
 
 	map_dim->columns = 0;
+	map_dim->col_offset = INT_MAX;
 	total_rows = ft_lstsize_no_new_line(h_list);
 	while (h_list)
 	{
@@ -65,8 +67,11 @@ void	set_map_row_colums(t_cubd *cub3D, t_map_dimensions *map_dim,
 			exit_with_message_and_free(cub3D, ERROR_CODE,
 				NOT_ALLOW_CHARACTER_MESSAGE);
 		map_width = ft_strlen_trimmmed_str(line);
+		first_col_map_char = first_column_map_char(line);
 		if (map_dim->columns < map_width)
 			map_dim->columns = map_width;
+		if (map_dim->col_offset > first_col_map_char)
+			map_dim->col_offset = first_col_map_char;
 		h_list = h_list->next;
 		if (!is_new_line(line))
 			map_dim->rows = map_dim->rows + 1;
@@ -81,7 +86,12 @@ size_t	copy_until_new_line(char *dst, const char *src, size_t size)
 	if (size == 0)
 		return (len);
 	while (*src && --size && *src != '\n')
-		*dst++ = (char)*src++;
+		*dst++ = *src++;
+	while (size)
+	{
+		*dst++ = ' ';
+		size--;
+	}
 	*dst = '\0';
 	return (len);
 }
@@ -100,7 +110,7 @@ int	load_map_content(t_cubd *cub3D, t_list	*h_list)
 		cub3D->map.map_matrix[index] = (char *)malloc(sizeof(char)
 				* cub3D->map.dimensions.columns + 1);
 		copy_until_new_line(cub3D->map.map_matrix[index],
-			(char *)h_list->content, cub3D->map.dimensions.columns + 1);
+			((char *)h_list->content) + cub3D->map.dimensions.col_offset, cub3D->map.dimensions.columns + 1);
 		h_list = h_list->next;
 		index++;
 	}

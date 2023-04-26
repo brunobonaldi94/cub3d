@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 23:17:17 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/25 18:32:14 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:51:16 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,19 @@ size_t	ft_strlen_trimmmed_str(char *str)
 	len = ft_strlen(trimmed_str);
 	ft_free_ptr((void **)&trimmed_str);
 	return (len);
+}
+
+size_t	first_column_map_char(char *str)
+{
+	size_t	first_col;
+
+	first_col = 0;
+	while (*str)
+	{
+		if (ft_strchr(ALLOWED_MAP_CHARS_NO_WHT_SPC, *str))
+			break ;
+		str++;
+		first_col++;
+	}
+	return (first_col);
 }

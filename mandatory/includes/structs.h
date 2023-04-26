@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:16:51 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/25 19:10:49 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:40:02 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_map_dimensions
 {
 	int		columns;
 	int		rows;
+	int		col_offset;
 }	t_map_dimensions;
 
 typedef struct s_color

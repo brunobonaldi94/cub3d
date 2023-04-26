@@ -62,7 +62,7 @@ print_file_name() {
 
 print_output() {
 	printf "%.1s" -{1..70} $'\n'
-	OUTPUT=$(echo $1 | sed 's/Error /Error \n  /g')
+	OUTPUT=$(echo "$1" | sed 's/Error /Error \n  /g')
  	printf "  %-40s\n" "$OUTPUT"
 	printf "%.1s" -{1..70} $'\n'
 }

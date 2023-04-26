@@ -6,12 +6,16 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/25 19:27:07 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:51:43 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
+
+//LIMITS
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
 //DEBUG
 # define DEBUG TRUE
@@ -51,6 +55,7 @@ floor or ceiling!"
 # define PLAYER_ERROR_MESSAGE "It must have one Player position!"
 # define MAP_TOO_BIG_MESSAGE "Map is too big!"
 # define PLAYER_MUST_BE_INSIDE_MAP_MESSAGE "Player must be inside map!"
+
 //KEY EVENTS
 # define KEY_PRESS_EVENT 2
 # define DESTROY_NOTIFY_EVENT 17
@@ -82,6 +87,7 @@ floor or ceiling!"
 # define UNINITIALIZED_FD -2
 # define WHITE_SPACE " \t\r\n\v"
 # define ALLOWED_MAP_CHARS "01NSEW \t\r\v"
+# define ALLOWED_MAP_CHARS_NO_WHT_SPC "01NSEW"
 # define PLAYER_CHAR "NSEW"
 # define SOUTH_PROP "SO "
 # define NORTH_PROP "NO "
