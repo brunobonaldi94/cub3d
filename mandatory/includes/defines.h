@@ -6,13 +6,12 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/24 23:21:02 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:27:07 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
-
 
 //DEBUG
 # define DEBUG TRUE
@@ -50,6 +49,8 @@ extension (it must be .xpm)"
 # define WRONG_COLOR_SET_MESSAGE "Color must be at RGB format for \
 floor or ceiling!"
 # define PLAYER_ERROR_MESSAGE "It must have one Player position!"
+# define MAP_TOO_BIG_MESSAGE "Map is too big!"
+# define PLAYER_MUST_BE_INSIDE_MAP_MESSAGE "Player must be inside map!"
 //KEY EVENTS
 # define KEY_PRESS_EVENT 2
 # define DESTROY_NOTIFY_EVENT 17
@@ -71,7 +72,7 @@ floor or ceiling!"
 //GAME PROPERTIES
 # define WINDOW_WIDTH 960
 # define WINDOW_HEIGHT 640
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 # define GAME_NAME "Cub3D - bbonaldi & sjhony-x"
 # define MINIMAP_SCALE 1
 
@@ -89,5 +90,6 @@ floor or ceiling!"
 # define FLOOR_PROP "F "
 # define CEILING_PROP "C "
 # define WALL_CHAR '1'
+# define EMPTY_CHAR '0'
 
 #endif

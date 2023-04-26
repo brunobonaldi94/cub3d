@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:48:42 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/24 23:26:04 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:40:52 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	set_texture_path(t_cubd *cub3D, char **texture, char *texture_path)
 		exit_with_message_and_free(cub3D, ERROR_CODE,
 			DUPLICATED_PROPERTY_MESSAGE);
 	*texture = get_texture_path(cub3D, texture_path);
-
 }
 
 int	is_valid_color_rgb(int color_atoi, char *color_str)
@@ -73,6 +72,20 @@ int	is_valid_color_rgb(int color_atoi, char *color_str)
 	return (is_valid);
 }
 
+int	is_valid_set_of_colors(t_color *color, char **colors_split)
+{
+	return (is_valid_color_rgb(color->r, colors_split[0])
+		&& is_valid_color_rgb(color->g, colors_split[1])
+		&& is_valid_color_rgb(color->b, colors_split[2]));
+}
+
+int	set_color_rgb(char **colors_split, t_color *color)
+{
+	color->r = ft_atoi(colors_split[0]);
+	color->g = ft_atoi(colors_split[1]);
+	color->b = ft_atoi(colors_split[2]);
+	return (is_valid_set_of_colors(color, colors_split));
+}
 
 void	set_floor_ceiling_color(t_cubd *cub3D, t_color *color, char *color_str)
 {
@@ -95,12 +108,7 @@ void	set_floor_ceiling_color(t_cubd *cub3D, t_color *color, char *color_str)
 		ft_free_matrix((void ***)&colors_split);
 		exit_with_message_and_free(cub3D, ERROR_CODE, WRONG_COLOR_SET_MESSAGE);
 	}
-	color->r = ft_atoi(colors_split[0]);
-	color->g = ft_atoi(colors_split[1]);
-	color->b = ft_atoi(colors_split[2]);
-	if (!is_valid_color_rgb(color->r, colors_split[0])
-		|| !is_valid_color_rgb(color->g, colors_split[1])
-		|| !is_valid_color_rgb(color->b, colors_split[2]))
+	if (!set_color_rgb(colors_split, color))
 	{
 		ft_free_matrix((void ***)&colors_split);
 		exit_with_message_and_free(cub3D, ERROR_CODE, WRONG_COLOR_SET_MESSAGE);

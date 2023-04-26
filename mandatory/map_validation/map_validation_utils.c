@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 23:17:17 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/24 23:25:11 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:32:14 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,17 @@ int	ft_lstsize_no_new_line(t_list *lst)
 		lst = lst->next;
 	}
 	return (size);
+}
+
+size_t	ft_strlen_trimmmed_str(char *str)
+{
+	char	*trimmed_str;
+	size_t	len;
+
+	if (!str)
+		return (0);
+	trimmed_str = ft_strtrim(str, WHITE_SPACE);
+	len = ft_strlen(trimmed_str);
+	ft_free_ptr((void **)&trimmed_str);
+	return (len);
 }

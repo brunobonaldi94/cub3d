@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 21:42:28 by harndt            #+#    #+#             */
-/*   Updated: 2023/04/24 22:25:31 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:27:24 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ size_t		ft_strlen(const char *str);
  * @param str String whose length is to be found.
  * @return Length of string not counting white space .
 **/
-size_t	ft_strlen_no_white_space(const char *str);
+size_t		ft_strlen_no_white_space(const char *str);
 /**
  * @brief Compares the first (at most) n bytes of s1 and s2.
  * @param s1 String to be compared.
@@ -586,7 +586,7 @@ typedef int			t_bool;
  * @param str The string to check.
  * @return t_bool If the string only contains numbers TRUE, else FALSE.
  */
-int		ft_isnum(char *str);
+int			ft_isnum(char *str);
 
 /**
  * @brief Checks a condition.

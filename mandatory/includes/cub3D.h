@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/24 23:22:11 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:32:00 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int		is_valid_map_content(t_cubd *cub3D, char *line,
 int		is_new_line(char *line);
 int		is_map_content(char *line);
 int		ft_lstsize_no_new_line(t_list *lst);
+int		is_player_inside_map(char **map, t_map_dimensions *dim);
+size_t	ft_strlen_trimmmed_str(char *str);
 // =============================================================================
 // GAME EXIT
 // =============================================================================

@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:32:59 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/24 23:45:13 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:06:19 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	set_map_row_colums(t_cubd *cub3D, t_map_dimensions *map_dim,
 				total_rows == map_dim->rows + 1 || map_dim->rows == 0))
 			exit_with_message_and_free(cub3D, ERROR_CODE,
 				NOT_ALLOW_CHARACTER_MESSAGE);
-		map_width = ft_strlen_no_white_space(line);
+		map_width = ft_strlen_trimmmed_str(line);
 		if (map_dim->columns < map_width)
 			map_dim->columns = map_width;
 		h_list = h_list->next;
@@ -72,6 +72,20 @@ void	set_map_row_colums(t_cubd *cub3D, t_map_dimensions *map_dim,
 			map_dim->rows = map_dim->rows + 1;
 	}
 }
+
+size_t	copy_until_new_line(char *dst, const char *src, size_t size)
+{
+	size_t	len;
+
+	len = ft_strlen(src);
+	if (size == 0)
+		return (len);
+	while (*src && --size && *src != '\n')
+		*dst++ = (char)*src++;
+	*dst = '\0';
+	return (len);
+}
+
 
 int	load_map_content(t_cubd *cub3D, t_list	*h_list)
 {
@@ -85,8 +99,8 @@ int	load_map_content(t_cubd *cub3D, t_list	*h_list)
 	{
 		cub3D->map.map_matrix[index] = (char *)malloc(sizeof(char)
 				* cub3D->map.dimensions.columns + 1);
-		ft_strlcpy(cub3D->map.map_matrix[index], (char *)h_list->content,
-			cub3D->map.dimensions.columns + 1);
+		copy_until_new_line(cub3D->map.map_matrix[index],
+			(char *)h_list->content, cub3D->map.dimensions.columns + 1);
 		h_list = h_list->next;
 		index++;
 	}
@@ -156,16 +170,18 @@ void	load_map(t_cubd *cub3D, t_list	*h_list)
 	if (are_all_map_properties_set(cub3D) == FALSE)
 		exit_with_message_and_free(cub3D, ERROR_CODE,
 			MAP_PROPERTY_MISSING_MESSAGE);
-	if (cub3D->map.dimensions.rows == 0 || cub3D->map.dimensions.columns == 0)
+	if (cub3D->map.dimensions.rows <= 2 || cub3D->map.dimensions.columns <= 2)
 		exit_with_message_and_free(cub3D, ERROR_CODE,
 			WRONG_MAP_DIMENSIONS_MESSAGE);
 	if (cub3D->map.found_player != 1)
 		exit_with_message_and_free(cub3D, ERROR_CODE,
 			PLAYER_ERROR_MESSAGE);
-	//TODO:  check very big map // check map has minimum dimensions // when there is space between letters
+	if (!is_player_inside_map(cub3D->map.map_matrix, &cub3D->map.dimensions))
+		exit_with_message_and_free(cub3D, ERROR_CODE,
+			PLAYER_MUST_BE_INSIDE_MAP_MESSAGE);
 }
 
-void	read_map(t_cubd *cub3D, int fd)
+void	read_map(t_cubd *cub3D, int fd) 
 {
 	char	*line;
 	t_list	**h_list;

@@ -20,7 +20,7 @@ FALSE=0
 
 SO_LONG_PATH=../
 HAS_NORM_ERROR=$FALSE
-NORMINETTES_PATH=$(find "$SO_LONG_PATH" -maxdepth 1 -type d ! -path "$SO_LONG_PATH" -type d ! -path '*so_long_tester*' -type d ! -path '*.git*' | tr '\n' ' ')
+NORMINETTES_PATH=$(find "$SO_LONG_PATH" -maxdepth 1 -type d ! -path "$SO_LONG_PATH" -type d ! -path '*cub3d_map_tester*' -type d ! -path '*.git*' | tr '\n' ' ')
 NORMINETTES_FILES_C=$(find "$SO_LONG_PATH" -maxdepth 1 -type f -wholename "$SO_LONG_PATH*.c" | tr '\n' ' ')
 NORMINETTES_PATH+="$NORMINETTES_FILES_C"
 OUTPUT=$(norminette $NORMINETTES_PATH | grep -v "$NORMINETTE_OK")

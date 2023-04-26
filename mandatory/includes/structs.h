@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:16:51 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/24 23:14:00 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:10:49 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ typedef struct s_file
 	char	*name;
 	int		fd;
 }	t_file;
+
+typedef struct s_cord
+{
+	int	x;
+	int	y;
+}	t_cord;
 
 typedef struct s_map_dimensions
 {
