@@ -46,16 +46,66 @@ int render(t_game *game)
     return 0;
 }
 
-/* void	render_map()
+void	create_rect(t_rectangule *rect, int x, int y, int color)
 {
-
+	rect->x = x;
+	rect->y = y;
+	rect->width = TILE_SIZE;
+	rect->height = TILE_SIZE;
+	rect->color = color;
 }
- */
+
+int render_rects(t_cubd *cub3d)
+{
+    int x;
+	int y;
+	t_rectangule rect;
+
+	x = 0;
+	while (cub3d->game->map[x])
+	{
+		y = 0;
+		while (cub3d->game->map[x][y])
+		{
+			if (cub3d->game->map[x][y] == '0')
+			{
+				create_rect(&rect, 0, 0, BLACK_PIXEL);
+				render_rect(cub3d, &rect, y * TILE_SIZE, x * TILE_SIZE);
+			}
+			if (cub3d->game->map[x][y] == '1')
+			{
+				create_rect(&rect, 0, 0, WHITE_PIXEL);
+				render_rect(cub3d, &rect, y * TILE_SIZE, x * TILE_SIZE);
+			}
+			y++;
+		}
+		x++;
+	}
+    return 0;
+}
+
 int game_render(t_cubd *cub3D)
 {
     cub3D->game->window.win_ptr = cub3D->win_ptr; 
     cub3D->game->mlx_ptr = cub3D->mlx_ptr;
-    //render(cub3D->game);
-	draw_squares(cub3D);
+    render(cub3D->game);
+	render_rects(cub3D);
+
+	/* t_rectangule	rect;
+	
+
+	int y;
+	int x = 0;
+	while (x < cub3D->game->window.width)
+	{
+		y = 0;
+		while (y < cub3D->game->window.height)
+		{
+			create_rect(&rect, 0, 0, WHITE_PIXEL);
+			render_rect(cub3D, &rect, x * TILE_SIZE, y * TILE_SIZE);
+			y++;
+		}
+		x++;
+	} */
 	return (0);
 }
