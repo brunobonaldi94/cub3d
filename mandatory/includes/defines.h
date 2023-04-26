@@ -72,11 +72,11 @@ floor or ceiling!"
 # define BLUE_PIXEL 0X0000FF
 
 //GAME PROPERTIES
-# define WINDOW_WIDTH 960
+# define WINDOW_WIDTH 700
 # define WINDOW_HEIGHT 640
 # define TILE_SIZE 32
 # define GAME_NAME "Cub3D - bbonaldi & sjhony-x"
-# define MINIMAP_SCALE 1
+# define MINIMAP_SCALE 0.5
 
 //MAP PROPERTIES
 # define CUB_EXTENSION ".cub"
