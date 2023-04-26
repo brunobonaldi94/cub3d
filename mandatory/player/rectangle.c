@@ -7,7 +7,7 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
-int draw_rect(t_img *img, t_rectangule *rect)
+int draw_rect(t_img *img, t_rectangle *rect)
 {
 	int	i;
 	int	j;
@@ -21,6 +21,23 @@ int draw_rect(t_img *img, t_rectangule *rect)
 		i++;
 	}
 	return (0);
+}
+
+t_rectangle	*create_rect(int x, int y, int width, int height)
+{
+	t_rectangle *rect;
+
+	rect = malloc(sizeof(t_rectangle *));
+	rect->x = x;
+	rect->y = y;
+	rect->width = width;
+	rect->height = height;
+	return (rect);
+}
+
+void	set_color_rect(t_rectangle *rect, int color)
+{
+	rect->color = color;
 }
 
 void	create_image(t_cubd *cub3d)
@@ -42,7 +59,7 @@ void	render_image_to_window(t_cubd *cub3d, int x, int y)
 		x, y);
 }
 
-int	render_rect(t_cubd *cub3d, t_rectangule *rect, int x, int y)
+int	render_rect(t_cubd *cub3d, t_rectangle *rect, int x, int y)
 {
 	create_image(cub3d);
 	draw_rect(&cub3d->game->img, rect);

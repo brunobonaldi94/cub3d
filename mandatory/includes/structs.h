@@ -31,14 +31,14 @@ typedef struct s_image
 
 
 
-typedef struct s_rectangule
+typedef struct s_rectangle
 {
 	int	x;
 	int	y;
 	int	width;
 	int	height;
 	int	color;
-}	t_rectangule;
+}	t_rectangle;
 
 typedef struct s_img
 {

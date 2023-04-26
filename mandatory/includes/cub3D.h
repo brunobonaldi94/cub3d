@@ -80,6 +80,10 @@ void	print_map(t_cubd *cub3D);
 int			game_render(t_cubd *cub3D);
 char		**generate_map(char *path);
 t_window	get_window_size(char **map);
-int			render_rect(t_cubd *cub3d, t_rectangule *rect, int x, int y);
+int			render_rect(t_cubd *cub3d, t_rectangle *rect, int x, int y);
+void    	render_player(t_cubd *cub3d, t_player *player);
+void    	init_player(t_cubd *cub3d, t_player *player);
+t_rectangle	*create_rect(int x, int y, int width, int height);
+void		set_color_rect(t_rectangle *rect, int color);
 
 #endif
