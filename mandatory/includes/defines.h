@@ -67,6 +67,9 @@ floor or ceiling!"
 # define RED_PIXEL 0xFF0000
 # define GREEN_PIXEL 0xFF00
 # define WHITE_PIXEL 0xFFFFFF
+# define BLACK_PIXEL 0x000000
+# define YELLOW_PIXEL 0xFFFF00
+# define BLUE_PIXEL 0X0000FF
 
 //GAME PROPERTIES
 # define WINDOW_WIDTH 960

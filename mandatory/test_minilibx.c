@@ -55,6 +55,7 @@ int game_render(t_cubd *cub3D)
 {
     cub3D->game->window.win_ptr = cub3D->win_ptr; 
     cub3D->game->mlx_ptr = cub3D->mlx_ptr;
-    render(cub3D->game);
+    //render(cub3D->game);
+	draw_squares(cub3D);
 	return (0);
 }

@@ -80,4 +80,5 @@ void	print_map(t_cubd *cub3D);
 int			game_render(t_cubd *cub3D);
 char		**generate_map(char *path);
 t_window	get_window_size(char **map);
+int			draw_squares(t_cubd *cub3d);
 #endif

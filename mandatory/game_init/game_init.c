@@ -17,8 +17,9 @@ void	init_variables(t_cubd *cub3D);
 
 int	init_game(t_cubd *cub3D, char *argv[])
 {
+	(void) argv;
 	init_variables(cub3D);
-	validate_map(cub3D, argv[1]);
+	//validate_map(cub3D, argv[1]);
 	init_mlx(cub3D);
 	return (TRUE);
 }

@@ -30,19 +30,6 @@ typedef struct s_image
 }	t_image;
 
 
-typedef struct s_game
-{
-	void		*mlx_ptr;
-	char		**map;
-	int			moves;
-	int			collectibles;
-	t_window	window;
-	t_image		wall;
-	t_image		space;
-	t_image		tux;
-	t_image		coin;
-	t_image		door;
-}	t_game;
 
 typedef struct s_rectangule
 {
@@ -61,6 +48,21 @@ typedef struct s_img
 	int		line_length;
 	int		endian;
 }	t_img;
+
+typedef struct s_game
+{
+	void		*mlx_ptr;
+	char		**map;
+	int			moves;
+	int			collectibles;
+	t_window	window;
+	t_image		wall;
+	t_image		space;
+	t_image		tux;
+	t_image		coin;
+	t_image		door;
+	t_img		img;
+}	t_game;
 
 typedef struct s_file
 {
