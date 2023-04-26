@@ -74,7 +74,7 @@ floor or ceiling!"
 //GAME PROPERTIES
 # define WINDOW_WIDTH 700
 # define WINDOW_HEIGHT 640
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define GAME_NAME "Cub3D - bbonaldi & sjhony-x"
 # define MINIMAP_SCALE 0.5
 
