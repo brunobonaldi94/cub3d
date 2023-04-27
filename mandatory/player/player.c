@@ -6,8 +6,8 @@ void    init_player(t_cubd *cub3d, t_player *player)
 {
     player->x = cub3d->game->window.width / 2;
     player->y = cub3d->game->window.height / 2;
-    player->width = 5;
-    player->height = 5;
+    player->width = 2;
+    player->height = 2;
     player->turn_direction = 1;
     player->walk_direction = 1;
     player->rotation_angle = PI / 2;
@@ -34,7 +34,7 @@ void    render_player(t_cubd *cub3d, t_player *player)
 		&cub3d->game->img2.bits_per_pixel,
 		&cub3d->game->img2.line_length, 
 		&cub3d->game->img2.endian);
-    set_color_rect(player_rect, RED_PIXEL);
+    set_color_rect(player_rect, WHITE_PIXEL);
     draw_rect(&cub3d->game->img2, player_rect);
     mlx_put_image_to_window(
         cub3d->mlx_ptr, 
@@ -43,10 +43,10 @@ void    render_player(t_cubd *cub3d, t_player *player)
         player->x * MINIMAP_SCALE, player->y * MINIMAP_SCALE);
     
     t_line line;
-    line.begin_x = cub3d->game->window.width;
-    line.begin_y = cub3d->game->window.height;
-    line.end_x = 0;
-    line.end_y = 0;
+    line.begin_x = MINIMAP_SCALE * player->x;
+    line.begin_y = MINIMAP_SCALE * player->y;
+    line.end_x = MINIMAP_SCALE * (player->x + cos(player->rotation_angle) * 40);
+    line.end_y = MINIMAP_SCALE * (player->y + sin(player->rotation_angle) * 40);
     line.color = WHITE_PIXEL;
     draw_line(cub3d, &line);
     free(player_rect);
