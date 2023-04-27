@@ -62,6 +62,7 @@ typedef struct s_game
 	t_image		coin;
 	t_image		door;
 	t_img		img;
+	t_img		img2;
 }	t_game;
 
 typedef struct s_file

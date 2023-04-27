@@ -85,5 +85,6 @@ void    	render_player(t_cubd *cub3d, t_player *player);
 void    	init_player(t_cubd *cub3d, t_player *player);
 t_rectangle	*create_rect(int x, int y, int width, int height);
 void		set_color_rect(t_rectangle *rect, int color);
+int 		draw_rect(t_img *img, t_rectangle *rect);
 
 #endif

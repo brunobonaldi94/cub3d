@@ -61,13 +61,13 @@ int render_rects(t_cubd *cub3d)
 
 int game_render(t_cubd *cub3D)
 {
-	//st_player player;
+	t_player player;
 
+	init_player(cub3D, &player);
     cub3D->game->window.win_ptr = cub3D->win_ptr; 
     cub3D->game->mlx_ptr = cub3D->mlx_ptr;
 	render_rects(cub3D);
+	render_player(cub3D, &player);
 
-	//init_player(cub3D, &player);
-	//render_player(cub3D, &player);
 	return (0);
 }
