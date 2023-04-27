@@ -40,6 +40,20 @@ typedef struct s_rectangle
 	int	color;
 }	t_rectangle;
 
+typedef struct s_line
+{
+    int     begin_x;
+    int     begin_y;
+    int     end_x;
+    int     end_y;
+    int     color;
+    int     pixels;
+    float   delta_x;
+    float   delta_y;
+    float   pixel_x;
+    float   pixel_y;
+}   t_line;
+
 typedef struct s_img
 {
 	void	*mlx_img;

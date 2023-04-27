@@ -41,6 +41,13 @@ void    render_player(t_cubd *cub3d, t_player *player)
         cub3d->win_ptr, 
         cub3d->game->img2.mlx_img, 
         player->x * MINIMAP_SCALE, player->y * MINIMAP_SCALE);
-    //render_rect(cub3d, player_rect, player_rect->x, player_rect->y);
+    
+    t_line line;
+    line.begin_x = cub3d->game->window.width;
+    line.begin_y = cub3d->game->window.height;
+    line.end_x = 0;
+    line.end_y = 0;
+    line.color = WHITE_PIXEL;
+    draw_line(cub3d, &line);
     free(player_rect);
 }

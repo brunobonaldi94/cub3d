@@ -36,6 +36,7 @@ SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(MAP_VALIDATION)/map_validation_utils.c \
 			$(MAP_VALIDATION)/map_properties_utils.c $(MAP_VALIDATION)/map_content_utils.c \
 			$(PLAYER)/map.c $(PLAYER)/map_utils.c $(PLAYER)/rectangle.c $(PLAYER)/player.c \
+			$(PLAYER)/line.c \
 			$(DEBUG)/debug.c
 
 OBJS	:=	$(SRCS:.c=.o)
