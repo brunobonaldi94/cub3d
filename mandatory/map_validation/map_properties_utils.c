@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_properties_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:48:42 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/25 19:40:52 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:12:43 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-int	are_all_map_properties_set(t_cubd *cub3D)
-{
-	return (cub3D->map.so_file && cub3D->map.no_file && cub3D->map.ea_file
-		&& cub3D->map.we_file && cub3D->map.floor_color.color_str
-		&& cub3D->map.ceiling_color.color_str);
-}
 
 char	*get_texture_path(t_cubd *cub3D, char *texture_path)
 {
@@ -51,40 +44,6 @@ void	set_texture_path(t_cubd *cub3D, char **texture, char *texture_path)
 		exit_with_message_and_free(cub3D, ERROR_CODE,
 			DUPLICATED_PROPERTY_MESSAGE);
 	*texture = get_texture_path(cub3D, texture_path);
-}
-
-int	is_valid_color_rgb(int color_atoi, char *color_str)
-{
-	char	*color_trimmed;
-	int		is_valid;
-
-	is_valid = TRUE;
-	if (color_atoi < 0)
-		return (FALSE);
-	color_trimmed = ft_strtrim(color_str, WHITE_SPACE);
-	if (color_atoi == 0 && ft_strcmp(color_trimmed, "0") != 0)
-		is_valid = FALSE;
-	else if (!(color_atoi >= 0 && color_atoi <= 255))
-		is_valid = FALSE;
-	else if (!ft_is_all_something(color_trimmed, ft_isdigit))
-		is_valid = FALSE;
-	ft_free_ptr((void **)&color_trimmed);
-	return (is_valid);
-}
-
-int	is_valid_set_of_colors(t_color *color, char **colors_split)
-{
-	return (is_valid_color_rgb(color->r, colors_split[0])
-		&& is_valid_color_rgb(color->g, colors_split[1])
-		&& is_valid_color_rgb(color->b, colors_split[2]));
-}
-
-int	set_color_rgb(char **colors_split, t_color *color)
-{
-	color->r = ft_atoi(colors_split[0]);
-	color->g = ft_atoi(colors_split[1]);
-	color->b = ft_atoi(colors_split[2]);
-	return (is_valid_set_of_colors(color, colors_split));
 }
 
 void	set_floor_ceiling_color(t_cubd *cub3D, t_color *color, char *color_str)

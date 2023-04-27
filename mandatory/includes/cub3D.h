@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/25 22:44:00 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/26 22:41:28 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,16 @@ int		ft_lstsize_no_new_line(t_list *lst);
 int		is_player_inside_map(char **map, t_map_dimensions *dim);
 size_t	ft_strlen_trimmmed_str(char *str);
 size_t	first_column_map_char(char *str);
+size_t	copy_until_new_line(char *dst, const char *src, size_t size);
+int		set_color_rgb(char **colors_split, t_color *color);
+int		check_new_line_in_the_middle(t_list *h_list);
+int		set_max_or_min(int current, int next, int is_max);
+void	set_floor_ceiling_color(t_cubd *cub3D, t_color *color, char *color_str);
+void	load_map(t_cubd *cub3D, t_list	*h_list);
+int		are_all_map_properties_set(t_cubd *cub3D);
+int		is_valid_color_rgb(int color_atoi, char *color_str);
+int		is_valid_set_of_colors(t_color *color, char **colors_split);
+int		set_color_rgb(char **colors_split, t_color *color);
 // =============================================================================
 // GAME EXIT
 // =============================================================================

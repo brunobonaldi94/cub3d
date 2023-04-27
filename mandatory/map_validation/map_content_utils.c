@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   map_content_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:49:59 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/25 19:25:04 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:05:24 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3D.h"
 

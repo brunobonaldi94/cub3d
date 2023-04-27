@@ -1,7 +1,7 @@
-NO /home/brunobonaldi/Desktop/cub3d/cub3d/assets/textures/north_texture.xpm
-SO /home/brunobonaldi/Desktop/cub3d/cub3d/assets/textures/south_texture.xpm
-EA /home/brunobonaldi/Desktop/cub3d/cub3d/assets/textures/east_texture.xpm
-WE /home/brunobonaldi/Desktop/cub3d/cub3d/assets/textures/west_texture.xpm
+NO /nfs/homes/bbonaldi/Desktop/cub3d/cub3d/assets/textures/north_texture.xpm
+SO /nfs/homes/bbonaldi/Desktop/cub3d/cub3d/assets/textures/south_texture.xpm
+EA /nfs/homes/bbonaldi/Desktop/cub3d/cub3d/assets/textures/east_texture.xpm
+WE /nfs/homes/bbonaldi/Desktop/cub3d/cub3d/assets/textures/west_texture.xpm
 F 42,55,57
 C 255,255,255
 
