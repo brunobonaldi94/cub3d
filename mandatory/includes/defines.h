@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/29 18:46:55 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/29 19:31:37 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ floor or ceiling!"
 # define PLAYER_MUST_BE_INSIDE_MAP_MESSAGE "Player must be inside map!"
 
 //KEY EVENTS
-# define KEY_PRESS_EVENT 2
+# define KEY_DOWN_EVENT 2
+# define KEY_UP_EVENT 3
 # define DESTROY_NOTIFY_EVENT 17
 # define KEY_SCAPE 0xff1b
 # define KEY_W 0x0077

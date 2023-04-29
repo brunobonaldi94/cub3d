@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:16:02 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/29 18:38:27 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/29 19:26:56 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ int	init_game(t_cubd *cub3D, char *argv[])
 
 int	init_mlx(t_cubd *cub3D)
 {
-	cub3D->game->map = generate_map(PATH_MAP);
-	cub3D->game->window = get_window_size(cub3D->game->map);
+	cub3D->game->map = cub3D->map.map_matrix;
+	cub3D->game->window = get_window(&cub3D->map);
 	cub3D->mlx_ptr = mlx_init();
 	if (cub3D->mlx_ptr == NULL)
 		return (exit_with_message(ERROR_CODE, MLX_ERROR_MESSAGE));
 	cub3D->win_ptr = mlx_new_window(
 			cub3D->mlx_ptr,
-			cub3D->game->window.width,
-			cub3D->game->window.height,
+			WINDOW_WIDTH,
+			WINDOW_HEIGHT,
 			GAME_NAME);
 	if (cub3D->win_ptr == NULL)
 	{
@@ -49,31 +49,9 @@ int	init_mlx(t_cubd *cub3D)
 	return (SUCCESS_CODE);
 }
 
-void	init_colors(t_color *color)
-{
-	color->color_str = NULL;
-	color->r = -1;
-	color->g = -1;
-	color->b = -1;
-	color->alpha = 1;
-}
-
 void	init_variables(t_cubd *cub3D)
 {
 	cub3D->mlx_ptr = NULL;
 	cub3D->win_ptr = NULL;
-	cub3D->map.map_list = NULL;
-	cub3D->map.dimensions.columns = 0;
-	cub3D->map.dimensions.rows = 0;
-	cub3D->map.dimensions.col_offset = 0;
-	cub3D->map.map_matrix = NULL;
-	init_colors(&cub3D->map.ceiling_color);
-	init_colors(&cub3D->map.floor_color);
-	cub3D->map.map_file.name = NULL;
-	cub3D->map.map_file.fd = UNINITIALIZED_FD;
-	cub3D->map.so_file = NULL;
-	cub3D->map.no_file = NULL;
-	cub3D->map.we_file = NULL;
-	cub3D->map.ea_file = NULL;
-	cub3D->map.found_player = FALSE;
+	init_map(&cub3D->map);
 }

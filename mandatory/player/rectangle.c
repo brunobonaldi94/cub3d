@@ -53,9 +53,9 @@ void	create_image(t_cubd *cub3d)
 void	render_image_to_window(t_cubd *cub3d, int x, int y)
 {
 	mlx_put_image_to_window(
-		cub3d->mlx_ptr, 
-		cub3d->win_ptr, 
-		cub3d->game->img.mlx_img, 
+		cub3d->mlx_ptr,
+		cub3d->win_ptr,
+		cub3d->game->img.mlx_img,
 		x, y);
 }
 

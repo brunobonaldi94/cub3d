@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 06:57:51 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/12 16:48:30 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2023/04/29 19:19:40 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,15 @@ t_window	get_window_size(char **map)
 	}
 	window.width = ft_strlen(map[0]) * TILE_SIZE;
 	window.height = num_rows(map) * TILE_SIZE;
+	return (window);
+}
+
+t_window	get_window(t_map *map)
+{
+	t_window	window;
+
+	window.width = map->dimensions.columns * TILE_SIZE;
+	window.height = map->dimensions.rows * TILE_SIZE;
 	return (window);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/29 18:43:00 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/29 19:25:14 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 int			init_mlx(t_cubd *cub3D);
 int			init_game(t_cubd *cub3D, char *argv[]);
 void		init_variables(t_cubd *cub3D);
+void		init_map(t_map	*map);
+void		init_colors(t_color *color);
 // =============================================================================
 // ERROR HANDLER
 // =============================================================================
@@ -91,6 +93,7 @@ void		print_map(t_cubd *cub3D);
 int			game_render(t_cubd *cub3D);
 char		**generate_map(char *path);
 t_window	get_window_size(char **map);
+t_window	get_window(t_map *map);
 int			render_rect(t_cubd *cub3d, t_rectangle *rect, int x, int y);
 void		render_player(t_cubd *cub3d, t_player *player);
 void		init_player(t_cubd *cub3d, t_player *player);

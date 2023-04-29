@@ -20,6 +20,7 @@ DEBUG			:= $(MANDATORY)/debug
 NAME			:=	cub3D
 CC				:=	cc
 CFLAGS			:=	-g3 -Wall -Werror -Wextra
+MAKE			:=	make --no-print-directory
 
 INCLUDES_USR = -I./usr/include
 INCLUDES = -I$(LIBFT_PATH)/includes -I$(MANDATORY)/includes
@@ -28,7 +29,7 @@ LIBRARY_MLX_PATH = -L/usr/lib -lmlx -lXext -lX11 -lm -lz
 
 SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(MANDATORY)/test_minilibx.c \
-			$(GAME_INIT)/game_init.c \
+			$(GAME_INIT)/game_init.c $(GAME_INIT)/game_init_utils.c \
 			$(ERROR_HANDLER)/error_handler.c \
 			$(GAME_EVENTS)/game_events.c \
 			$(GAME_EXIT)/game_exit.c $(GAME_EXIT)/game_exit_utils.c \
@@ -77,28 +78,24 @@ $(NAME):	$(LIBFT_FULL_PATH) $(OBJS)
 			@echo "$$COMPILE_DONE"
 
 $(LIBFT_FULL_PATH):
-			@make -C libft
+			@$(MAKE) -C libft
 
 clean:
 			@echo "$(WHT)Removing .o files...$(EOC)"
 			@rm -f $(OBJS) $(MLX_LINUX_LIB)
-			@make -C libft clean
+			@$(MAKE) -C libft clean
 			@echo "$(GREEN)Clean done.$(EOC)"
 
 fclean:		clean
 			@echo "$(WHT)Removing object- and binary -files...$(EOC)"
 			@rm -f $(NAME)
-			@make -C libft fclean
+			@$(MAKE) -C libft fclean
 			@echo "$(GREEN)Fclean done.$(EOC)"
 
 re:			fclean all
 
 valgrind:
 			@valgrind -s --leak-check=full --show-leak-kinds=all \
-			--track-origins=yes --trace-children=yes --log-fd=9 ./$(NAME) 9>memcheck.log
-
-valgrind_track:
-			@valgrind -s --leak-check=full --show-leak-kinds=all \
-			   --trace-children=yes --track-fds=yes --log-fd=9 ./$(NAME) 9>memcheck.log
+			--track-origins=yes --trace-children=yes --log-fd=9 ./$(NAME) $(MAP) 9>memcheck.log
 
 .PHONY:		all clean fclean re
