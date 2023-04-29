@@ -21,6 +21,10 @@ int	init_game(t_cubd *cub3D, char *argv[])
 	init_variables(cub3D);
 	//validate_map(cub3D, argv[1]);
 	init_mlx(cub3D);
+	cub3D->player = malloc(sizeof(t_player));
+	init_player(cub3D, cub3D->player);
+    cub3D->game->window.win_ptr = cub3D->win_ptr; 
+    cub3D->game->mlx_ptr = cub3D->mlx_ptr;
 	return (TRUE);
 }
 

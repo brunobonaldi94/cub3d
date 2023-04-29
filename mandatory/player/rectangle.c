@@ -27,7 +27,7 @@ t_rectangle	*create_rect(int x, int y, int width, int height)
 {
 	t_rectangle *rect;
 
-	rect = malloc(sizeof(t_rectangle *));
+	rect = malloc(sizeof(t_rectangle));
 	rect->x = x;
 	rect->y = y;
 	rect->width = width;

@@ -48,10 +48,10 @@ typedef struct s_line
     int     end_y;
     int     color;
     int     pixels;
-    float   delta_x;
-    float   delta_y;
-    float   pixel_x;
-    float   pixel_y;
+    double   delta_x;
+    double   delta_y;
+    double   pixel_x;
+    double   pixel_y;
 }   t_line;
 
 typedef struct s_img
@@ -114,26 +114,26 @@ typedef struct s_map
 	t_color				ceiling_color;
 }	t_map;
 
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	double	width;
+	double	height;
+	int		turn_direction;
+	int		walk_direction;
+	double	rotation_angle;
+	double	walk_speed;
+	double	turn_speed;
+}	t_player;
+
 typedef struct s_cubd
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_map	map;
 	t_game	*game;
+	t_player *player;
 }	t_cubd;
-
-
-typedef struct s_player
-{
-	float	x;
-	float	y;
-	float	width;
-	float	height;
-	int		turn_direction;
-	int		walk_direction;
-	float	rotation_angle;
-	float	walk_speed;
-	float	turn_speed;
-}	t_player;
 
 #endif
