@@ -35,12 +35,9 @@ SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(MAP_VALIDATION)/map_validation.c $(MAP_VALIDATION)/file_helpers.c \
 			$(MAP_VALIDATION)/map_validation_utils.c $(MAP_VALIDATION)/map_validation_utils_II.c \
 			$(MAP_VALIDATION)/map_properties_utils.c $(MAP_VALIDATION)/map_content_utils.c \
-<<<<<<< HEAD
 			$(MAP_VALIDATION)/map_properties_utils_II.c $(MAP_VALIDATION)/map_loaders.c \
-=======
 			$(PLAYER)/map.c $(PLAYER)/map_utils.c $(PLAYER)/rectangle.c $(PLAYER)/player.c \
 			$(PLAYER)/line.c \
->>>>>>> remember_minilibx
 			$(DEBUG)/debug.c
 
 OBJS	:=	$(SRCS:.c=.o)
