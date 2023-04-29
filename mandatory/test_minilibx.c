@@ -30,6 +30,10 @@ int render_rects(t_cubd *cub3d)
 	t_rectangle rect;
 
 	x = 0;
+	rect.x = 0;
+	rect.y = 0;
+	rect.width = TILE_SIZE * MINIMAP_SCALE;
+	rect.height = TILE_SIZE * MINIMAP_SCALE;
 	while (cub3d->game->map[x])
 	{
 		y = 0;
@@ -37,25 +41,17 @@ int render_rects(t_cubd *cub3d)
 		{
 			if (cub3d->game->map[x][y] == '0')
 			{
-				rect.x = 0;
-				rect.y = 0;
-				rect.width = TILE_SIZE * MINIMAP_SCALE;
-				rect.height = TILE_SIZE * MINIMAP_SCALE;
 				set_color_rect(&rect, BLACK_PIXEL);
 				render_rect(cub3d, &rect, 
-				(y * TILE_SIZE) * MINIMAP_SCALE, 
-				(x * TILE_SIZE) * MINIMAP_SCALE);
+					(y * TILE_SIZE) * MINIMAP_SCALE, 
+					(x * TILE_SIZE) * MINIMAP_SCALE);
 			}
 			if (cub3d->game->map[x][y] == '1')
 			{
-				rect.x = 0;
-				rect.y = 0;
-				rect.width = TILE_SIZE * MINIMAP_SCALE;
-				rect.height = TILE_SIZE * MINIMAP_SCALE;
 				set_color_rect(&rect, WHITE_PIXEL);
 				render_rect(cub3d, &rect, 
-				(y * TILE_SIZE) * MINIMAP_SCALE, 
-				(x * TILE_SIZE) * MINIMAP_SCALE);
+					(y * TILE_SIZE) * MINIMAP_SCALE, 
+					(x * TILE_SIZE) * MINIMAP_SCALE);
 			}
 			y++;
 		}
@@ -68,6 +64,5 @@ int game_render(t_cubd *cub3D)
 {
 	render_rects(cub3D);
 	render_player(cub3D, cub3D->player);
-	move_player(cub3D->player);
 	return (0);
 }

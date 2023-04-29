@@ -76,6 +76,33 @@ void    move_player(t_player *player)
     }
 }
 
+
+void    clear_player_rect(t_cubd *cub3d)
+{
+    double *x = &cub3d->player->x;
+    double *y = &cub3d->player->y;
+    t_rectangle player_rect;
+
+    player_rect.x = 0;
+    player_rect.y = 0;
+    player_rect.width = cub3d->player->width * MINIMAP_SCALE;
+    player_rect.height = cub3d->player->height * MINIMAP_SCALE;
+
+    cub3d->game->img2.mlx_img = mlx_new_image(cub3d->mlx_ptr, cub3d->player->width, cub3d->player->height);
+	cub3d->game->img2.addr = mlx_get_data_addr(
+		cub3d->game->img2.mlx_img, 
+		&cub3d->game->img2.bits_per_pixel,
+		&cub3d->game->img2.line_length, 
+		&cub3d->game->img2.endian);
+    set_color_rect(&player_rect, BLACK_PIXEL);
+    draw_rect(&cub3d->game->img2, &player_rect);
+    mlx_put_image_to_window(
+        cub3d->mlx_ptr, 
+        cub3d->win_ptr, 
+        cub3d->game->img2.mlx_img, 
+        *x * MINIMAP_SCALE, *y * MINIMAP_SCALE);
+}
+
 int	key_down(int key, t_cubd *cub3d)
 {
     if (key == KEY_SCAPE)
@@ -88,7 +115,9 @@ int	key_down(int key, t_cubd *cub3d)
 		cub3d->player->turn_direction = +1;
 	if (key == KEY_LEFT)
 		cub3d->player->turn_direction = -1;
-    game_render(cub3d);
+    clear_player_rect(cub3d);
+    move_player(cub3d->player);
+    render_player(cub3d, cub3d->player);
 	return (0);
 }
 
@@ -99,7 +128,6 @@ int	key_up(int key, t_cubd *cub3d)
 	if (key == KEY_DOWN)
 		cub3d->player->walk_direction = 0;
 	if (key == KEY_RIGHT)
-
 		cub3d->player->turn_direction = 0;
 	if (key == KEY_LEFT)
 		cub3d->player->turn_direction = 0;
