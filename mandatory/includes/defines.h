@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/26 22:30:29 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/29 18:46:55 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,16 @@ floor or ceiling!"
 # define RED_PIXEL 0xFF0000
 # define GREEN_PIXEL 0xFF00
 # define WHITE_PIXEL 0xFFFFFF
+# define BLACK_PIXEL 0x000000
+# define YELLOW_PIXEL 0xFFFF00
+# define BLUE_PIXEL 0X0000FF
 
 //GAME PROPERTIES
-# define WINDOW_WIDTH 960
+# define WINDOW_WIDTH 700
 # define WINDOW_HEIGHT 640
 # define TILE_SIZE 32
 # define GAME_NAME "Cub3D - bbonaldi & sjhony-x"
-# define MINIMAP_SCALE 1
+# define MINIMAP_SCALE 0.3
 
 //MAP PROPERTIES
 # define CUB_EXTENSION ".cub"
@@ -97,5 +100,19 @@ floor or ceiling!"
 # define CEILING_PROP "C "
 # define WALL_CHAR '1'
 # define EMPTY_CHAR '0'
+
+// CONSTANTS TO CALCULATIONS
+# define PI 3.14159265
+# define TWO_PI 6.28318530
+# define FOV_ANGLE (60 * PI / 180)
+
+# define NUM_RAYS WINDOW_WIDTH
+
+# define MAP_NUM_ROWS = 13
+# define MAP_NUM_COLS 20
+
+# define PATH_IMG_WALL "assets/images/wall.xpm"
+# define PATH_IMG_SPACE "assets/images/space.xpm"
+# define PATH_MAP "assets/maps/map.ber"
 
 #endif

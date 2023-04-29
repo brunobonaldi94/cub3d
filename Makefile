@@ -12,6 +12,7 @@ ERROR_HANDLER	:= $(MANDATORY)/error_handler
 GAME_EVENTS		:= $(MANDATORY)/game_events
 GAME_EXIT		:= $(MANDATORY)/game_exit
 MAP_VALIDATION	:= $(MANDATORY)/map_validation
+PLAYER			:= $(MANDATORY)/player
 DEBUG			:= $(MANDATORY)/debug
 # ==============================================================================
 # VARIABLES
@@ -26,6 +27,7 @@ INCLUDES = -I$(LIBFT_PATH)/includes -I$(MANDATORY)/includes
 LIBRARY_MLX_PATH = -L/usr/lib -lmlx -lXext -lX11 -lm -lz
 
 SRCS	:=	$(MANDATORY)/cub3D.c \
+			$(MANDATORY)/test_minilibx.c \
 			$(GAME_INIT)/game_init.c \
 			$(ERROR_HANDLER)/error_handler.c \
 			$(GAME_EVENTS)/game_events.c \
@@ -33,7 +35,12 @@ SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(MAP_VALIDATION)/map_validation.c $(MAP_VALIDATION)/file_helpers.c \
 			$(MAP_VALIDATION)/map_validation_utils.c $(MAP_VALIDATION)/map_validation_utils_II.c \
 			$(MAP_VALIDATION)/map_properties_utils.c $(MAP_VALIDATION)/map_content_utils.c \
+<<<<<<< HEAD
 			$(MAP_VALIDATION)/map_properties_utils_II.c $(MAP_VALIDATION)/map_loaders.c \
+=======
+			$(PLAYER)/map.c $(PLAYER)/map_utils.c $(PLAYER)/rectangle.c $(PLAYER)/player.c \
+			$(PLAYER)/line.c \
+>>>>>>> remember_minilibx
 			$(DEBUG)/debug.c
 
 OBJS	:=	$(SRCS:.c=.o)

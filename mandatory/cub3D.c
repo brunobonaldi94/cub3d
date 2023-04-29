@@ -15,7 +15,9 @@
 int	main(int argc, char *argv[])
 {
 	t_cubd	cubd;
+	t_game game;
 
+	cubd.game = &game;
 	if (!has_valid_args(argc))
 		exit_with_message(ERROR_CODE, INVALID_ARGS_MESSAGE);
 	init_game(&cubd, argv);

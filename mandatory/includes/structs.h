@@ -6,21 +6,53 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:16:51 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/25 22:40:02 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/29 18:47:54 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef struct s_rectangule
+typedef struct s_window
+{
+	void	*win_ptr;
+	int		width;
+	int		height;
+}	t_window;
+
+typedef struct s_image
+{
+	void	*addr;
+	int		width;
+	int		height;
+	int		x;
+	int		y;
+}	t_image;
+
+
+
+typedef struct s_rectangle
 {
 	int	x;
 	int	y;
 	int	width;
 	int	height;
 	int	color;
-}	t_rectangule;
+}	t_rectangle;
+
+typedef struct s_line
+{
+	int		begin_x;
+	int		begin_y;
+	int		end_x;
+	int		end_y;
+	int		color;
+	int		pixels;
+	double	delta_x;
+	double	delta_y;
+	double	pixel_x;
+	double	pixel_y;
+}	t_line;
 
 typedef struct s_img
 {
@@ -30,6 +62,22 @@ typedef struct s_img
 	int		line_length;
 	int		endian;
 }	t_img;
+
+typedef struct s_game
+{
+	void		*mlx_ptr;
+	char		**map;
+	int			moves;
+	int			collectibles;
+	t_window	window;
+	t_image		wall;
+	t_image		space;
+	t_image		tux;
+	t_image		coin;
+	t_image		door;
+	t_img		img;
+	t_img		img2;
+}	t_game;
 
 typedef struct s_file
 {
@@ -74,11 +122,26 @@ typedef struct s_map
 	int					found_player;
 }	t_map;
 
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	double	width;
+	double	height;
+	int		turn_direction;
+	int		walk_direction;
+	double	rotation_angle;
+	double	walk_speed;
+	double	turn_speed;
+}	t_player;
+
 typedef struct s_cubd
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_map	map;
+	t_game	*game;
+	t_player *player;
 }	t_cubd;
 
 #endif
