@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:49:59 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/30 14:06:35 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/30 20:02:38 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	set_player_position(t_player *player, t_cord cord);
 
 void	set_player_position(t_player *player, t_cord cord)
 {
-	player->x = (double)cord.x * TILE_SIZE;
-	player->y = (double)cord.y * TILE_SIZE;
+	player->x = (double)(cord.x * TILE_SIZE);
+	player->y = (double)(cord.y * TILE_SIZE);
 }
 
 int	is_player_inside_map(t_cord cord)

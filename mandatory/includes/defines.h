@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/30 14:58:23 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/30 19:51:56 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ floor or ceiling!"
 # define BLUE_PIXEL 0X0000FF
 
 //GAME PROPERTIES
-# define WINDOW_WIDTH 700
-# define WINDOW_HEIGHT 640
-# define TILE_SIZE 32
+# define WINDOW_WIDTH 1280
+# define WINDOW_HEIGHT 720
+# define TILE_SIZE 64
 # define GAME_NAME "Cub3D - bbonaldi & sjhony-x"
 # define MINIMAP_SCALE 0.3
 

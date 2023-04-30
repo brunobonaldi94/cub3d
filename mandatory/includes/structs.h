@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:16:51 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/30 14:18:57 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/30 19:47:56 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct s_line
 	int		end_y;
 	int		color;
 	int		pixels;
-	double	delta_x;
-	double	delta_y;
+	int		delta_x;
+	int		delta_y;
 	double	pixel_x;
 	double	pixel_y;
 }	t_line;
@@ -133,15 +133,16 @@ typedef struct s_player
 	double	rotation_angle;
 	double	walk_speed;
 	double	turn_speed;
+	t_line	*line;
 }	t_player;
 
 typedef struct s_cubd
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_map	map;
-	t_game	*game;
-	t_player *player;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_map		map;
+	t_game		*game;
+	t_player	*player;
 }	t_cubd;
 
 #endif

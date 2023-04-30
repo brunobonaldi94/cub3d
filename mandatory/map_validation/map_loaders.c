@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 22:36:53 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/30 14:00:01 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/30 20:04:01 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,4 @@ void	load_map(t_cubd *cub3D, t_list	*h_list)
 		exit_with_message_and_free(cub3D, ERROR_CODE,
 			PLAYER_MUST_BE_INSIDE_MAP_MESSAGE);
 	set_player_position(cub3D->player,  cord);
-	ft_printf("Map loaded successfully, player x: %d, y: %d\n", cub3D->player->x, cub3D->player->y);
 }

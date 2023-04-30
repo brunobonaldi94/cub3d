@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/30 14:20:26 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/30 19:48:33 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,8 @@ void		set_color_rect(t_rectangle *rect, int color);
 int			draw_rect(t_img *img, t_rectangle *rect);
 int			draw_line(t_cubd *cub3d, t_line *line);
 void		move_player_events(t_cubd *cub3d, t_player *player, int key);
-void		move_player(t_game *game, t_player *player);
-int			is_inside_map(t_window window, int new_x, int new_y);
-int			has_wall_at(char **map, int new_x, int new_y);
+
+void		move_player(t_cubd *cub3d);
 int			key_up(int key, t_cubd *cub3d);
 int			key_down(int key, t_cubd *cub3d);
 #endif
