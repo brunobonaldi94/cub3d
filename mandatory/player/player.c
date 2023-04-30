@@ -15,6 +15,21 @@ void	init_player(t_cubd *cub3d, t_player *player)
 	player->turn_speed = 20 * (PI / 180);
 }
 
+int	has_wall_at(char **map, int new_x, int new_y)
+{
+	int	x;
+	int	y;
+
+	x = floor((new_x / TILE_SIZE));
+	y = floor((new_y / TILE_SIZE));
+	return (map[y][x] == WALL_CHAR);
+}
+
+int	is_inside_map(t_window window, int new_x, int new_y)
+{
+	return (new_x >= 0 && new_x <= window.width
+		&& new_y >= 0 && new_y <= window.height);
+}
 void	render_player(t_cubd *cub3d, t_player *player)
 {
 	t_rectangle	player_rect;
@@ -54,13 +69,12 @@ void	normalize_angle(double *angle)
 	if (*angle < 0)
 		*angle = TWO_PI + *angle;
 }
-
-void	move_player(t_player *player)
+#include <stdio.h>
+void	move_player(t_game *game, t_player *player)
 {
 	double	move_step;
 	double	new_player_x;
 	double	new_player_y;
-
 	if (player->turn_direction)
 	{
 		player->rotation_angle += player->turn_direction * player->turn_speed;
@@ -72,7 +86,10 @@ void	move_player(t_player *player)
 		move_step = player->walk_direction * player->walk_speed;
 		new_player_x = player->x + cos(player->rotation_angle) * move_step;
 		new_player_y = player->y + sin(player->rotation_angle) * move_step;
-
+		printf("f: %f, y: %f\n", new_player_x, new_player_y);
+		if (has_wall_at(game->map, new_player_x, new_player_y) 
+			&& is_inside_map(game->window, new_player_x, new_player_y))
+		 	return ;
 		player->x = new_player_x;
 		player->y = new_player_y;
 	}
@@ -121,7 +138,7 @@ int	key_down(int key, t_cubd *cub3d)
 	if (key == KEY_LEFT)
 		cub3d->player->turn_direction = -1;
 	clear_player_rect(cub3d);
-	move_player(cub3d->player);
+	move_player(cub3d->game, cub3d->player);
 	render_player(cub3d, cub3d->player);
 	return (0);
 }

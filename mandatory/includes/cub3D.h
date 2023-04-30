@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/29 19:25:14 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:20:26 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		game_loop_events(t_cubd *cub3D);
 // =============================================================================
 // MAP VALIDATION
 // =============================================================================
-int				open_file_path(char *file_path, char *extension);
+int			open_file_path(char *file_path, char *extension);
 void		set_file(t_file *file, char *file_path, char *extension);
 int			check_file_extension(char *file_path, char *extension);
 char		*get_texture_path(t_cubd *cub3D, char *texture_path);
@@ -62,7 +62,7 @@ int			is_valid_map_content(t_cubd *cub3D, char *line,
 int			is_new_line(char *line);
 int			is_map_content(char *line);
 int			ft_lstsize_no_new_line(t_list *lst);
-int			is_player_inside_map(char **map, t_map_dimensions *dim);
+t_cord		find_player_inside_map(char **map, t_map_dimensions *dim);
 size_t		ft_strlen_trimmmed_str(char *str);
 size_t		first_column_map_char(char *str);
 size_t		copy_until_new_line(char *dst, const char *src, size_t size);
@@ -76,6 +76,8 @@ int			are_all_map_properties_set(t_cubd *cub3D);
 int			is_valid_color_rgb(int color_atoi, char *color_str);
 int			is_valid_set_of_colors(t_color *color, char **colors_split);
 int			set_color_rgb(char **colors_split, t_color *color);
+int			is_player_inside_map(t_cord cord);
+void		set_player_position(t_player *player, t_cord cord);
 // =============================================================================
 // GAME EXIT
 // =============================================================================
@@ -102,8 +104,9 @@ void		set_color_rect(t_rectangle *rect, int color);
 int			draw_rect(t_img *img, t_rectangle *rect);
 int			draw_line(t_cubd *cub3d, t_line *line);
 void		move_player_events(t_cubd *cub3d, t_player *player, int key);
-void		move_player(t_player *player);
-
+void		move_player(t_game *game, t_player *player);
+int			is_inside_map(t_window window, int new_x, int new_y);
+int			has_wall_at(char **map, int new_x, int new_y);
 int			key_up(int key, t_cubd *cub3d);
 int			key_down(int key, t_cubd *cub3d);
 #endif

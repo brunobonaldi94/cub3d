@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_content_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:49:59 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/26 21:05:24 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/30 13:54:17 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_cord	find_player_in_map(char **map, t_map_dimensions *dim)
 	return ((t_cord){-1, -1});
 }
 
-int	is_player_inside_map(char **map, t_map_dimensions *dim)
+t_cord	find_player_inside_map(char **map, t_map_dimensions *dim)
 {
 	int		x;
 	int		y;
@@ -86,13 +86,13 @@ int	is_player_inside_map(char **map, t_map_dimensions *dim)
 
 	cord = find_player_in_map(map, dim);
 	if (cord.x == -1 && cord.y == -1)
-		return (FALSE);
+		return ((t_cord){-1, -1});
 	y = cord.y;
 	x = cord.x;
 	if (!is_wall_or_empty(map[y - 1][x])
 		|| !is_wall_or_empty(map[y][x - 1])
 		|| !is_wall_or_empty(map[y][x + 1])
 		|| !is_wall_or_empty(map[y + 1][x]))
-		return (FALSE);
-	return (TRUE);
+		return ((t_cord){-1, -1});
+	return (cord);
 }

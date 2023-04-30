@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:16:02 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/29 19:26:56 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:04:25 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ void	init_variables(t_cubd *cub3D);
 
 int	init_game(t_cubd *cub3D, char *argv[])
 {
-	(void) argv;
 	init_variables(cub3D);
+	cub3D->player = (t_player *)malloc(sizeof(t_player));
+	init_player(cub3D, cub3D->player);
 	validate_map(cub3D, argv[1]);
 	init_mlx(cub3D);
-	cub3D->player = malloc(sizeof(t_player));
-	init_player(cub3D, cub3D->player);
 	cub3D->game->window.win_ptr = cub3D->win_ptr;
 	cub3D->game->mlx_ptr = cub3D->mlx_ptr;
 	return (TRUE);

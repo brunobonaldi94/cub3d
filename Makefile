@@ -4,7 +4,7 @@
 
 MANDATORY		:= ./mandatory
 
-LIBFT_PATH		:= $(MANDATORY)/libft
+LIBFT_PATH		:= ./libft
 LIBFT_FULL_PATH = $(LIBFT_PATH)/libft.a
 
 GAME_INIT		:= $(MANDATORY)/game_init
@@ -20,7 +20,7 @@ DEBUG			:= $(MANDATORY)/debug
 NAME			:=	cub3D
 CC				:=	cc
 CFLAGS			:=	-g3 -Wall -Werror -Wextra
-MAKE			:=	make --no-print-directory
+MAKE			:=	make
 
 INCLUDES_USR = -I./usr/include
 INCLUDES = -I$(LIBFT_PATH)/includes -I$(MANDATORY)/includes
@@ -36,7 +36,8 @@ SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(MAP_VALIDATION)/map_validation.c $(MAP_VALIDATION)/file_helpers.c \
 			$(MAP_VALIDATION)/map_validation_utils.c $(MAP_VALIDATION)/map_validation_utils_II.c \
 			$(MAP_VALIDATION)/map_properties_utils.c $(MAP_VALIDATION)/map_content_utils.c \
-			$(MAP_VALIDATION)/map_properties_utils_II.c $(MAP_VALIDATION)/map_loaders.c \
+			$(MAP_VALIDATION)/map_content_utils_II.c $(MAP_VALIDATION)/map_properties_utils_II.c \
+			$(MAP_VALIDATION)/map_loaders.c \
 			$(PLAYER)/map.c $(PLAYER)/map_utils.c $(PLAYER)/rectangle.c $(PLAYER)/player.c \
 			$(PLAYER)/line.c \
 			$(DEBUG)/debug.c
@@ -72,7 +73,7 @@ all:		$(NAME)
 
 $(NAME):	$(LIBFT_FULL_PATH) $(OBJS)
 			@echo "$(WHT)Compiling Cub3D...$(EOC)"
-			@$(CC) $(CFLAGS) $(OBJS) $(LIBRARY_MLX_PATH) -Llibft -lft -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJS) $(LIBRARY_MLX_PATH) $(LIBFT_FULL_PATH) -o $(NAME)
 			@echo "$(GREEN)Cub3D build completed.$(EOC)"
 			@tput setaf 5
 			@echo "$$COMPILE_DONE"
