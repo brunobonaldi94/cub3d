@@ -48,8 +48,8 @@ typedef struct s_line
     int     end_y;
     int     color;
     int     pixels;
-    double   delta_x;
-    double   delta_y;
+    int   delta_x;
+    int   delta_y;
     double   pixel_x;
     double   pixel_y;
 }   t_line;
@@ -125,6 +125,7 @@ typedef struct s_player
 	double	rotation_angle;
 	double	walk_speed;
 	double	turn_speed;
+	t_line	*line;
 }	t_player;
 
 typedef struct s_cubd

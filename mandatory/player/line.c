@@ -1,21 +1,32 @@
 #include "cub3D.h"
 
+static int get_pixel(t_line *line)
+{
+    if (abs(line->delta_x) >= abs(line->delta_y))
+        return (abs(line->delta_x));
+    return (abs(line->delta_y));
+}
+
 int draw_line(t_cubd *cub3d, t_line *line)
 {
-    line->delta_x = line->end_x - line->begin_x; 
-    line->delta_y = line->end_y - line->begin_y; 
+    double increment_x;
+    double increment_y;
 
-    line->pixels = sqrt((line->delta_x * line->delta_y) + (line->delta_y * line->delta_y));
+    line->delta_x = (line->end_x - line->begin_x); 
+    line->delta_y = (line->end_y - line->begin_y); 
+    line->pixels = get_pixel(line);
     line->pixel_x = line->begin_x;
     line->pixel_y = line->begin_y;
-
-    line->delta_x /= line->pixels; 
-    line->delta_y /= line->pixels;
+    increment_x = line->delta_x / (double) line->pixels; 
+    increment_y = line->delta_y / (double) line->pixels; 
     while (line->pixels)
     {
-        mlx_pixel_put(cub3d->mlx_ptr, cub3d->win_ptr, line->pixel_x, line->pixel_y, line->color);
-        line->pixel_x += line->delta_x;
-        line->pixel_y += line->delta_y;
+        mlx_pixel_put(cub3d->mlx_ptr, cub3d->win_ptr, 
+            round(line->pixel_x), 
+            round(line->pixel_y), 
+            line->color);
+        line->pixel_x += increment_x;
+        line->pixel_y += increment_y;
         line->pixels--;
     }
     return (0);

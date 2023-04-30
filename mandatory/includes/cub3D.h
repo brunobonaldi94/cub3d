@@ -89,7 +89,7 @@ int 		draw_rect(t_img *img, t_rectangle *rect);
 int 		draw_line(t_cubd *cub3d, t_line *line);
 void    	move_player_events(t_cubd *cub3d, t_player *player, int key);
 
-void    move_player(t_player *player);
+void    move_player(t_cubd *cub3d);
 
 
 int	key_up(int key, t_cubd *cub3d);
