@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:16:51 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/30 19:47:56 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/01 11:42:21 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct s_player
 	double	height;
 	int		turn_direction;
 	int		walk_direction;
+	int		walk_side_direction;
 	double	rotation_angle;
 	double	walk_speed;
 	double	turn_speed;

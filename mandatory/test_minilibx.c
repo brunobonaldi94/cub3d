@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 20:12:10 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/30 14:38:54 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/01 12:00:59 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	render_image(t_game *game, t_image *image, int x, int y)
 
 int	render_rects(t_cubd *cub3d)
 {
-	int	x;
-	int	y;
-	t_rectangle rect;
+	int			x;
+	int			y;
+	t_rectangle	rect;
 
 	y = 0;
 	rect.x = 0;
@@ -51,14 +51,14 @@ int	render_rects(t_cubd *cub3d)
 		x = 0;
 		while (x < cub3d->map.dimensions.columns)
 		{
-			if (cub3d->game->map[y][x] == '0')
+			if (cub3d->game->map[y][x] == EMPTY_CHAR)
 			{
 				set_color_rect(&rect, BLACK_PIXEL);
 				render_rect(cub3d, &rect, 
 					(x * TILE_SIZE) * MINIMAP_SCALE, 
 					(y * TILE_SIZE) * MINIMAP_SCALE);
 			}
-			if (cub3d->game->map[y][x] == '1')
+			if (cub3d->game->map[y][x] == WALL_CHAR)
 			{
 				set_color_rect(&rect, WHITE_PIXEL);
 				render_rect(cub3d, &rect, 

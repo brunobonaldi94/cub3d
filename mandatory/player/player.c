@@ -71,30 +71,37 @@ void	normalize_angle(double *angle)
 		*angle = TWO_PI + *angle;
 }
 
-void    move_player(t_cubd *cub3d)
+void	move_player(t_cubd *cub3d)
 
 {
 	double	move_step;
+	double	side_step;
 	double	new_player_x;
 	double	new_player_y;
+
 	if (cub3d->player->turn_direction)
 	{
 		cub3d->player->rotation_angle += cub3d->player->turn_direction * cub3d->player->turn_speed;
 		normalize_angle(&cub3d->player->rotation_angle);
 	}
-	if (cub3d->player->walk_direction)
+	if (cub3d->player->walk_direction || cub3d->player->walk_side_direction)
 	{
 
 		move_step = cub3d->player->walk_direction * cub3d->player->walk_speed;
-		new_player_x = cub3d->player->x + cos(cub3d->player->rotation_angle) * move_step;
-		new_player_y = cub3d->player->y + sin(cub3d->player->rotation_angle) * move_step;
+		side_step = cub3d->player->walk_side_direction * cub3d->player->walk_speed;
+		if (cub3d->player->walk_side_direction && cub3d->player->walk_direction)
+		{
+			move_step /= 2;
+			side_step /= 2;
+		}
+		new_player_x = cub3d->player->x + (cos(cub3d->player->rotation_angle) * move_step) + (cos(cub3d->player->rotation_angle + PI / 2) * side_step);
+		new_player_y = cub3d->player->y + sin(cub3d->player->rotation_angle) * move_step + (sin(cub3d->player->rotation_angle + PI / 2) * side_step);
 		if (has_wall_at(cub3d->game->map, new_player_x, new_player_y))
 			return ;
 		cub3d->player->x = new_player_x;
 		cub3d->player->y = new_player_y;
 	}
 }
-
 
 void	clear_player_rect(t_cubd *cub3d)
 {
@@ -136,14 +143,18 @@ int	key_down(int key, t_cubd *cub3d)
 {
 	if (key == KEY_SCAPE)
 		game_exit(cub3d);
-	if (key == KEY_UP)
+	else if (key == KEY_UP)
 		cub3d->player->walk_direction = +1;
-	if (key == KEY_DOWN)
+	else if (key == KEY_DOWN)
 		cub3d->player->walk_direction = -1;
-	if (key == KEY_RIGHT)
+	else if (key == KEY_RIGHT)
 		cub3d->player->turn_direction = +1;
-	if (key == KEY_LEFT)
+	else if (key == KEY_LEFT)
 		cub3d->player->turn_direction = -1;
+	else if (key == KEY_A)
+		cub3d->player->walk_side_direction = -1;
+	else if (key == KEY_D)
+		cub3d->player->walk_side_direction = +1;
 	clear_player_rect(cub3d);
 	move_player(cub3d);
 	render_player(cub3d, cub3d->player);
@@ -154,11 +165,15 @@ int	key_up(int key, t_cubd *cub3d)
 {
 	if (key == KEY_UP)
 		cub3d->player->walk_direction = 0;
-	if (key == KEY_DOWN)
+	else if (key == KEY_DOWN)
 		cub3d->player->walk_direction = 0;
-	if (key == KEY_RIGHT)
+	else if (key == KEY_RIGHT)
 		cub3d->player->turn_direction = 0;
-	if (key == KEY_LEFT)
+	else if (key == KEY_LEFT)
 		cub3d->player->turn_direction = 0;
+	else if (key == KEY_A)
+		cub3d->player->walk_side_direction = 0;
+	else if (key == KEY_D)
+		cub3d->player->walk_side_direction = 0;
 	return (0);
 }
