@@ -94,4 +94,7 @@ void    move_player(t_cubd *cub3d);
 
 int	key_up(int key, t_cubd *cub3d);
 int	key_down(int key, t_cubd *cub3d);
+
+
+void    cast_all_rays(t_cubd *cub3d, t_player *player, int color);
 #endif

@@ -137,4 +137,6 @@ typedef struct s_cubd
 	t_player *player;
 }	t_cubd;
 
+
+
 #endif

@@ -40,11 +40,13 @@ void    render_player(t_cubd *cub3d, t_player *player)
     t_line *line = malloc(sizeof(t_line));
     line->begin_x = MINIMAP_SCALE * player->x;
     line->begin_y = MINIMAP_SCALE * player->y;
-    line->end_x = MINIMAP_SCALE * (player->x + cos(player->rotation_angle) * 40);
-    line->end_y = MINIMAP_SCALE * (player->y + sin(player->rotation_angle) * 40);
-    line->color = WHITE_PIXEL;
+    line->end_x = MINIMAP_SCALE * (player->x + cos(player->rotation_angle) * RAY_LENGHT);
+    line->end_y = MINIMAP_SCALE * (player->y + sin(player->rotation_angle) * RAY_LENGHT);
+    line->color = RED_PIXEL;
     player->line = line;
     draw_line(cub3d, line);
+
+    cast_all_rays(cub3d, player, RED_PIXEL);
 }
 
 void	normalize_angle(double *angle)
@@ -54,6 +56,18 @@ void	normalize_angle(double *angle)
 		*angle = TWO_PI + *angle;
 }
 
+int has_wall(double x, double y, t_cubd *cub3d)
+{
+    int i;
+    int j;
+
+    if (x < 0 || x > cub3d->game->window.width -1 || 
+        y < 0 || y > cub3d->game->window.height -1)
+        return TRUE;
+    i = floor(x / TILE_SIZE);
+    j = floor(y / TILE_SIZE);
+    return (cub3d->game->map[j][i] != '0');
+}
 
 void    move_player(t_cubd *cub3d)
 {
@@ -73,8 +87,11 @@ void    move_player(t_cubd *cub3d)
         new_player_x = cub3d->player->x + cos(cub3d->player->rotation_angle) * move_step;
         new_player_y = cub3d->player->y + sin(cub3d->player->rotation_angle) * move_step;
 
-        cub3d->player->x = new_player_x;
-        cub3d->player->y = new_player_y;
+        if (!has_wall(new_player_x, new_player_y, cub3d))
+        {
+            cub3d->player->x = new_player_x;
+            cub3d->player->y = new_player_y;
+        }
     }
 }
 
@@ -106,10 +123,11 @@ void    clear_player_rect(t_cubd *cub3d)
     
     cub3d->player->line->begin_x = MINIMAP_SCALE * cub3d->player->x;
     cub3d->player->line->begin_y = MINIMAP_SCALE * cub3d->player->y;
-    cub3d->player->line->end_x = MINIMAP_SCALE * (cub3d->player->x + cos(cub3d->player->rotation_angle) * 40);
-    cub3d->player->line->end_y = MINIMAP_SCALE * (cub3d->player->y + sin(cub3d->player->rotation_angle) * 40);
+    cub3d->player->line->end_x = MINIMAP_SCALE * (cub3d->player->x + cos(cub3d->player->rotation_angle) * RAY_LENGHT);
+    cub3d->player->line->end_y = MINIMAP_SCALE * (cub3d->player->y + sin(cub3d->player->rotation_angle) * RAY_LENGHT);
     cub3d->player->line->color = BLACK_PIXEL;
     draw_line(cub3d, cub3d->player->line);
+    cast_all_rays(cub3d, cub3d->player, BLACK_PIXEL);
 }
 
 int	key_down(int key, t_cubd *cub3d)

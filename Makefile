@@ -13,6 +13,7 @@ GAME_EVENTS		:= $(MANDATORY)/game_events
 GAME_EXIT		:= $(MANDATORY)/game_exit
 MAP_VALIDATION	:= $(MANDATORY)/map_validation
 PLAYER			:= $(MANDATORY)/player
+RAYCASTING		:= $(MANDATORY)/raycasting
 DEBUG			:= $(MANDATORY)/debug
 # ==============================================================================
 # VARIABLES
@@ -37,6 +38,7 @@ SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(MAP_VALIDATION)/map_properties_utils.c $(MAP_VALIDATION)/map_content_utils.c \
 			$(PLAYER)/map.c $(PLAYER)/map_utils.c $(PLAYER)/rectangle.c $(PLAYER)/player.c \
 			$(PLAYER)/line.c \
+			$(RAYCASTING)/raycasting.c\
 			$(DEBUG)/debug.c
 
 OBJS	:=	$(SRCS:.c=.o)
