@@ -110,4 +110,19 @@ int	key_down(int key, t_cubd *cub3d);
 
 
 void    cast_all_rays(t_cubd *cub3d, t_player *player, int color);
+
+// RAY FACING
+int 	is_ray_facing_down(double angle);
+int 	is_ray_facing_up(double angle);
+int 	is_ray_facing_right(double angle);
+int 	is_ray_facing_left(double angle);
+
+//CALCULATE COORDINATES
+double	get_y_intercept(t_player *player);
+double	get_x_intercept(t_player *player, double angle, double y_intercept);
+void	increment_y_intercept(double *y_intercept, double angle);
+
+//CALCULATE STEPS
+void	increment_y_step(double *y_step, double angle);
+void	increment_x_step(double *x_step, double angle);
 #endif

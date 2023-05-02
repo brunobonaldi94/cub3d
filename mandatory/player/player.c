@@ -14,11 +14,13 @@ void	init_player(t_cubd *cub3d, t_player *player)
 	player->turn_speed = 20 * (PI / 180);
 }
 
-int	has_wall_at(char **map, int new_x, int new_y)
+int	has_wall_at(char **map, int new_x, int new_y, t_cubd *cub3d)
 {
 	int	x;
 	int	y;
-
+	if (new_x < 0 || new_x > TILE_SIZE * cub3d->map.dimensions.columns
+			|| new_y < 0 || new_y > TILE_SIZE * cub3d->map.dimensions.rows)
+			return TRUE;
 	x = (int)floor((new_x / TILE_SIZE));
 	y = (int)floor((new_y / TILE_SIZE));
 	return (map[y][x] == WALL_CHAR);
@@ -97,7 +99,7 @@ void	move_player(t_cubd *cub3d)
 		}
 		new_player_x = cub3d->player->x + (cos(cub3d->player->rotation_angle) * move_step) + (cos(cub3d->player->rotation_angle + PI / 2) * side_step);
 		new_player_y = cub3d->player->y + sin(cub3d->player->rotation_angle) * move_step + (sin(cub3d->player->rotation_angle + PI / 2) * side_step);
-		if (has_wall_at(cub3d->game->map, new_player_x, new_player_y))
+		if (has_wall_at(cub3d->game->map, new_player_x, new_player_y, cub3d))
 			return ;
 		cub3d->player->x = new_player_x;
 		cub3d->player->y = new_player_y;

@@ -52,5 +52,29 @@ void    cast_all_rays(t_cubd *cub3d, t_player *player, int color)
     Distance to Wall Hit
     1. The best way is to check for horizontal and vertical
         intersections separately.
-    2. 
+    2. When there is a wall on either a vertical or a 
+        horizontal intersection, the checking stops.
+    3. The distance to both horizontol and vertical intersection
+        points is then compared, and we select the closest one.
+    
+
+    Horizontal intersections
+    1.  Find coordinate of the first horizontal intersection (Point A)
+    2.  Find ystep
+    3.  Find xstep
+    4.  Convert intersection point (x, y) into map index[i,j]
+        -> if (intersection hits a wall)
+                then: store horizontal hit distance
+            else
+                find next horizontal intersection
+	
+	Vertical Intersections
+	1.	Find coordinate of the first vertical intersection (point A)
+	2.	Find xstep
+	3.	Find ystep
+	4.	Convert intersections point (x, y) into map[i,j]
+		-> if (intersection hits a wall)
+                then: store vertical hit distance
+            else
+                find next vertical intersection
 */

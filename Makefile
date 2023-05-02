@@ -41,7 +41,8 @@ SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(MAP_VALIDATION)/map_loaders.c \
 			$(PLAYER)/map.c $(PLAYER)/map_utils.c $(PLAYER)/rectangle.c $(PLAYER)/player.c \
 			$(PLAYER)/line.c \
-			$(RAYCASTING)/raycasting.c $(RAYCASTING)/ray_facing.c\
+			$(RAYCASTING)/raycasting.c $(RAYCASTING)/ray_facing.c $(RAYCASTING)/calculate_coordinates.c \
+			$(RAYCASTING)/calculate_steps.c \
 			$(DEBUG)/debug.c
 
 OBJS	:=	$(SRCS:.c=.o)

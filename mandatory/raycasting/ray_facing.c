@@ -17,5 +17,5 @@ int is_ray_facing_right(double angle)
 
 int is_ray_facing_left(double angle)
 {
-return (!is_ray_facing_right(angle));
+    return (!is_ray_facing_right(angle));
 }
