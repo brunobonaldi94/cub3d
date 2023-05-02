@@ -137,6 +137,16 @@ typedef struct s_player
 	t_line	*line;
 }	t_player;
 
+typedef struct s_ray
+{
+	double	ray_angle;
+	double	wall_hit_x;
+	double	wall_hit_y;
+	double	distance;
+	int		has_hit_vertical;
+	int		texture;
+}	t_ray;
+
 typedef struct s_cubd
 {
 	void		*mlx_ptr;
