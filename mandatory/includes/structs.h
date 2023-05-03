@@ -147,6 +147,18 @@ typedef struct s_ray
 	int		texture;
 }	t_ray;
 
+typedef struct s_intersection
+{
+	double	x_intercept;
+	double	y_intercept;
+	double	x_step;
+	double	y_step;
+	double	next_horz_x;
+	double	next_horz_y;
+	double	wall_hit_x;
+	double	wall_hit_y;
+}	t_intersection;
+
 typedef struct s_cubd
 {
 	void		*mlx_ptr;

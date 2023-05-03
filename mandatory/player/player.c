@@ -18,10 +18,10 @@ int	has_wall_at(char **map, double new_x, double new_y, t_cubd *cub3d)
 {
 	int	x;
 	int	y;
-	// if (new_x >= cub3d->game->window.width / 2)
-	// 	new_x += cub3d->player->width;
-	// if (new_y >= cub3d->game->window.height / 2)
-	// 	new_y += cub3d->player->height;
+	if (new_x >= cub3d->game->window.width / 2)
+		new_x += cub3d->player->width;
+	if (new_y >= cub3d->game->window.height / 2)
+		new_y += cub3d->player->height;
 	if (!is_inside_map(cub3d->game->window, new_x, new_y))
 		return (TRUE);
 	x = (int)floor((new_x / TILE_SIZE));
