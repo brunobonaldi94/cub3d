@@ -20,22 +20,6 @@ void	set_horz_steps(t_intersection *intersec, double ray_angle)
 	intersec->next_horz_y = intersec->y_intercept;
 }
 
-t_line	*draw_ray(t_cubd *cub3d, double end_x, double end_y, int color)
-{
-	t_line	*line;
-
-	line = malloc(sizeof(t_line));
-	if (!line)
-		return (NULL);
-	line->begin_x = MINIMAP_SCALE * cub3d->player->x;
-	line->begin_y = MINIMAP_SCALE * cub3d->player->y;
-	line->end_x = MINIMAP_SCALE * end_x;
-	line->end_y = MINIMAP_SCALE * end_y;
-	line->color = color;
-	draw_line(cub3d, line);
-	return (line);
-}
-
 void	increment_horz_steps(t_intersection *intersec)
 {
 	intersec->next_horz_x += intersec->x_step;

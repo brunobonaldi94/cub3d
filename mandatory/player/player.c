@@ -35,7 +35,7 @@ int	is_inside_map(t_window window, double new_x, double new_y)
 		&& new_y >= 0 && new_y <= window.height);
 }
 
-void	render_player(t_cubd *cub3d, t_player *player)
+void	render_only_player(t_cubd *cub3d, t_player *player)
 {
 	t_rectangle	player_rect;
 
@@ -43,31 +43,31 @@ void	render_player(t_cubd *cub3d, t_player *player)
 	player_rect.y = 0;
 	player_rect.width = player->width * MINIMAP_SCALE;
 	player_rect.height = player->height * MINIMAP_SCALE;
+	create_image(cub3d, &cub3d->game->img2, player->width, player->height);
+	set_color_rect(&player_rect, RED_PIXEL);
+	draw_rect(&cub3d->game->img2, &player_rect);
+	render_image_to_window(
+		cub3d, 
+		&cub3d->game->img2, 
+		player->x * MINIMAP_SCALE, 
+		player->y * MINIMAP_SCALE);
+}
 
-	cub3d->game->img2.mlx_img = mlx_new_image(cub3d->mlx_ptr, player->width,
-			player->height);
-	cub3d->game->img2.addr = mlx_get_data_addr(
-		cub3d->game->img2.mlx_img, 
-		&cub3d->game->img2.bits_per_pixel,
-		&cub3d->game->img2.line_length, 
-		&cub3d->game->img2.endian);
-    set_color_rect(&player_rect, RED_PIXEL);
-    draw_rect(&cub3d->game->img2, &player_rect);
-    mlx_put_image_to_window(
-        cub3d->mlx_ptr, 
-        cub3d->win_ptr, 
-        cub3d->game->img2.mlx_img, 
-        player->x * MINIMAP_SCALE, player->y * MINIMAP_SCALE);
-    t_line *line = malloc(sizeof(t_line));
-    line->begin_x = MINIMAP_SCALE * player->x;
-    line->begin_y = MINIMAP_SCALE * player->y;
-    line->end_x = MINIMAP_SCALE * (player->x + cos(player->rotation_angle) * RAY_LENGHT);
-    line->end_y = MINIMAP_SCALE * (player->y + sin(player->rotation_angle) * RAY_LENGHT);
-    line->color = WHITE_PIXEL;
+void	render_ray_to_play(t_cubd *cub3d, t_player *player, t_line **line)
+{	
+	*line = draw_ray(cub3d, 
+		player->x + cos(player->rotation_angle) * RAY_LENGHT,
+		player->y + sin(player->rotation_angle) * RAY_LENGHT,
+		WHITE_PIXEL);
+}
+
+void	render_player(t_cubd *cub3d, t_player *player)
+{
+	t_line	*line;
+
+	render_only_player(cub3d, player);
+	render_ray_to_play(cub3d, player, &line);
     player->line = line;
-    draw_line(cub3d, line);
-
-    //cast_all_rays(cub3d, player, RED_PIXEL);
 }
 
 void	normalize_angle(double *angle)

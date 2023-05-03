@@ -99,9 +99,14 @@ t_window	get_window(t_map *map);
 int			render_rect(t_cubd *cub3d, t_rectangle *rect, int x, int y);
 void		render_player(t_cubd *cub3d, t_player *player);
 void		init_player(t_cubd *cub3d, t_player *player);
+
+//RECTANGLE
 t_rectangle	*create_rect(int x, int y, int width, int height);
 void		set_color_rect(t_rectangle *rect, int color);
 int			draw_rect(t_img *img, t_rectangle *rect);
+void		create_image(t_cubd *cub3d, t_img *img, int width, int height);
+void		render_image_to_window(t_cubd *cub3d, t_img *img, int x, int y);
+
 int			draw_line(t_cubd *cub3d, t_line *line);
 void		move_player_events(t_cubd *cub3d, t_player *player, int key);
 
@@ -137,5 +142,9 @@ void		invert_y_horizontal_step(double *y_step, double angle);
 void		normalize_angle(double *angle);
 int			is_inside_map(t_window window, double new_x, double new_y);
 int			has_wall_at(char **map, double new_x, double new_y, t_cubd *cub3d);
+
+
+//UTILS RAYS
+t_line		*draw_ray(t_cubd *cub3d, double end_x, double end_y, int color);
 #endif
 

@@ -40,29 +40,29 @@ void	set_color_rect(t_rectangle *rect, int color)
 	rect->color = color;
 }
 
-void	create_image(t_cubd *cub3d)
+void	create_image(t_cubd *cub3d, t_img *img, int width, int height)
 {
-	cub3d->game->img.mlx_img = mlx_new_image(cub3d->mlx_ptr, TILE_SIZE, TILE_SIZE);
-	cub3d->game->img.addr = mlx_get_data_addr(
-		cub3d->game->img.mlx_img, 
-		&cub3d->game->img.bits_per_pixel,
-		&cub3d->game->img.line_length, 
-		&cub3d->game->img.endian);
+	img->mlx_img = mlx_new_image(cub3d->mlx_ptr, width, height);
+	img->addr = mlx_get_data_addr(
+		img->mlx_img, 
+		&img->bits_per_pixel,
+		&img->line_length, 
+		&img->endian);
 }
 
-void	render_image_to_window(t_cubd *cub3d, int x, int y)
+void	render_image_to_window(t_cubd *cub3d, t_img *img, int x, int y)
 {
 	mlx_put_image_to_window(
 		cub3d->mlx_ptr,
 		cub3d->win_ptr,
-		cub3d->game->img.mlx_img,
+		img->mlx_img,
 		x, y);
 }
 
 int	render_rect(t_cubd *cub3d, t_rectangle *rect, int x, int y)
 {
-	create_image(cub3d);
+	create_image(cub3d, &cub3d->game->img, TILE_SIZE, TILE_SIZE);
 	draw_rect(&cub3d->game->img, rect);
-	render_image_to_window(cub3d, x, y);
+	render_image_to_window(cub3d, &cub3d->game->img, x, y);
 	return (0);
 }
