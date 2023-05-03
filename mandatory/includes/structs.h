@@ -155,8 +155,8 @@ typedef struct s_intersection
 	double	y_step;
 	double	next_horz_x;
 	double	next_horz_y;
-	double	wall_hit_x;
-	double	wall_hit_y;
+	double	horz_wall_hit_x;
+	double	horz_wall_hit_y;
 }	t_intersection;
 
 typedef struct s_cubd

@@ -28,14 +28,13 @@ void	increment_horz_steps(t_intersection *intersec)
 
 void	set_horz_found_wall_hit(t_intersection *intersec)
 {
-	intersec->wall_hit_x = intersec->next_horz_x;
-	intersec->wall_hit_y = intersec->next_horz_y;
+	intersec->horz_wall_hit_x = intersec->next_horz_x;
+	intersec->horz_wall_hit_y = intersec->next_horz_y;
 }
 
-void	horizontal_intersection(t_cubd *cub3d, double ray_angle, double column_id)
+void	horizontal_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle, double column_id)
 {
 	(void) column_id;
-	t_intersection *intersec = malloc(sizeof(t_intersection));
 
 	normalize_angle(&ray_angle);
 	set_horz_intersects(cub3d, intersec, ray_angle);
@@ -53,11 +52,38 @@ void	horizontal_intersection(t_cubd *cub3d, double ray_angle, double column_id)
 	}
 }
 
+void	vertical_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle)
+{
+	double	vert_wall_hit_x;
+	double	vert_wall_hit_y;
+	double	next_vert_x;
+	double	next_vert_y;
+
+	vert_wall_hit_x = 0;
+	vert_wall_hit_y = 0;
+
+	intersec->x_intercept = get_x_vertical_intercept(cub3d->player);
+	increment_x_vertical_intercept(&intersec->x_intercept, ray_angle);
+
+	intersec->y_intercept = get_y_vertical_intercept(cub3d->player, ray_angle, intersec->x_intercept);
+	
+	intersec->x_step = TILE_SIZE;
+	invert_x_vertical_step(&intersec->x_step, ray_angle);
+
+	invert_y_vertical_step(&intersec->y_step, ray_angle);
+
+	next_vert_x = intersec->x_intercept;
+	next_vert_y = intersec->y_intercept;
+
+	
+}
+
 void cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
 {
 	(void) column_id;
+	t_intersection	*intersec = malloc(sizeof(t_intersection));
 	
-	horizontal_intersection(cub3d, ray_angle, column_id);
+	horizontal_intersection(cub3d, intersec, ray_angle, column_id);
 
 }
 

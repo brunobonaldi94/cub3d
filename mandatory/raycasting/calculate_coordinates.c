@@ -18,9 +18,9 @@ double	get_y_horizontal_intercept(t_player *player)
 }
 
 double	get_y_vertical_intercept(t_player *player, double angle,
-			double y_intercept)
+			double x_intercept)
 {
-	return (player->y + (y_intercept - player->x) * tan(angle));
+	return (player->y + (x_intercept - player->x) * tan(angle));
 }
 
 double	get_x_horizontal_intercept(t_player *player, double angle,
