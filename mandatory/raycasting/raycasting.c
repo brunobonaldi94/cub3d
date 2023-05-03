@@ -20,6 +20,34 @@ void	set_horz_steps(t_intersection *intersec, double ray_angle)
 	intersec->next_horz_y = intersec->y_intercept;
 }
 
+t_line	*draw_ray(t_cubd *cub3d, double end_x, double end_y, int color)
+{
+	t_line	*line;
+
+	line = malloc(sizeof(t_line));
+	if (!line)
+		return (NULL);
+	line->begin_x = MINIMAP_SCALE * cub3d->player->x;
+	line->begin_y = MINIMAP_SCALE * cub3d->player->y;
+	line->end_x = MINIMAP_SCALE * end_x;
+	line->end_y = MINIMAP_SCALE * end_y;
+	line->color = color;
+	draw_line(cub3d, line);
+	return (line);
+}
+
+void	increment_horz_steps(t_intersection *intersec)
+{
+	intersec->next_horz_x += intersec->x_step;
+	intersec->next_horz_y += intersec->y_step;
+}
+
+void	set_horz_found_wall_hit(t_intersection *intersec)
+{
+	intersec->wall_hit_x = intersec->next_horz_x;
+	intersec->wall_hit_y = intersec->next_horz_y;
+}
+
 void	horizontal_intersection(t_cubd *cub3d, double ray_angle, double column_id)
 {
 	(void) column_id;
@@ -28,30 +56,17 @@ void	horizontal_intersection(t_cubd *cub3d, double ray_angle, double column_id)
 	normalize_angle(&ray_angle);
 	set_horz_intersects(cub3d, intersec, ray_angle);
 	set_horz_steps(intersec, ray_angle);
-	
 	while (is_inside_map(cub3d->game->window, intersec->next_horz_x, intersec->next_horz_y))
 	{
 		if (has_wall_at(cub3d->game->map, intersec->next_horz_x, intersec->next_horz_y, cub3d))
 		{
-			intersec->wall_hit_x = intersec->next_horz_x;
-			intersec->wall_hit_y = intersec->next_horz_y;
-
-			t_line *line = malloc(sizeof(t_line));
-			line->begin_x = MINIMAP_SCALE * cub3d->player->x;
-			line->begin_y = MINIMAP_SCALE * cub3d->player->y;
-			line->end_x = MINIMAP_SCALE * intersec->wall_hit_x;
-			line->end_y = MINIMAP_SCALE * intersec->wall_hit_y;
-			line->color = RED_PIXEL;
-    		draw_line(cub3d, line);
+			set_horz_found_wall_hit(intersec);
+			draw_ray(cub3d, intersec->next_horz_x, intersec->next_horz_y, RED_PIXEL);
 			break;
 		}
 		else
-		{
-			intersec->next_horz_x += intersec->x_step;
-			intersec->next_horz_y += intersec->y_step;
-		}
+			increment_horz_steps(intersec);
 	}
-
 }
 
 void cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
@@ -62,18 +77,6 @@ void cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
 
 }
 
-//test render rays
-
-void    render_ray(t_cubd *cub3d, t_player *player, double ray_angle, int color)
-{
-	t_line *line = malloc(sizeof(t_line));
-	line->begin_x = MINIMAP_SCALE * player->x;
-	line->begin_y = MINIMAP_SCALE * player->y;
-	line->end_x = MINIMAP_SCALE * (player->x + cos(ray_angle) * RAY_LENGHT);
-	line->end_y = MINIMAP_SCALE * (player->y + sin(ray_angle) * RAY_LENGHT);
-	line->color = color;
-	draw_line(cub3d, line);
-}
 void    cast_all_rays(t_cubd *cub3d, t_player *player, int color)
 {
 	(void)color;
@@ -84,7 +87,6 @@ void    cast_all_rays(t_cubd *cub3d, t_player *player, int color)
 	column_id = 0;
 	while (column_id < 1)
 	{
-		//render_ray(cub3d, cub3d->player, ray_angle, color);
 		cast_ray(cub3d, ray_angle, column_id);
 		ray_angle += FOV_ANGLE / NUM_RAYS;
 		column_id++;
