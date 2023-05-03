@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/30 19:48:33 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/02 23:18:10 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,24 +105,37 @@ int			draw_rect(t_img *img, t_rectangle *rect);
 int			draw_line(t_cubd *cub3d, t_line *line);
 void		move_player_events(t_cubd *cub3d, t_player *player, int key);
 
-int	key_up(int key, t_cubd *cub3d);
-int	key_down(int key, t_cubd *cub3d);
+int			key_up(int key, t_cubd *cub3d);
+int			key_down(int key, t_cubd *cub3d);
 
 
-void    cast_all_rays(t_cubd *cub3d, t_player *player, int color);
+void		cast_all_rays(t_cubd *cub3d, t_player *player, int color);
 
 // RAY FACING
-int 	is_ray_facing_down(double angle);
-int 	is_ray_facing_up(double angle);
-int 	is_ray_facing_right(double angle);
-int 	is_ray_facing_left(double angle);
+int 		is_ray_facing_down(double angle);
+int 		is_ray_facing_up(double angle);
+int 		is_ray_facing_right(double angle);
+int 		is_ray_facing_left(double angle);
 
 //CALCULATE COORDINATES
-double	get_y_intercept(t_player *player);
-double	get_x_intercept(t_player *player, double angle, double y_intercept);
-void	increment_y_intercept(double *y_intercept, double angle);
+double		get_y_horizontal_intercept(t_player *player);
+double		get_y_vertical_intercept(t_player *player, double angle,
+				double y_intercept);
+double		get_x_horizontal_intercept(t_player *player, double angle,
+				double y_intercept);
+double		get_x_vertical_intercept(t_player *player);
+void		increment_y_horizontal_intercept(double *y_intercept, double angle);
+void		increment_x_vertical_intercept(double *x_intercept, double angle);
 
 //CALCULATE STEPS
-void	increment_y_step(double *y_step, double angle);
-void	increment_x_step(double *x_step, double angle);
+void		invert_y_vertical_step(double *y_step, double angle);
+void		invert_x_vertical_step(double *x_step, double angle);
+void		invert_x_horizontal_step(double *x_step, double angle);
+void		invert_y_horizontal_step(double *y_step, double angle);
+//UTILS
+
+void		normalize_angle(double *angle);
+int			is_inside_map(t_window window, double new_x, double new_y);
+int			has_wall_at(char **map, double new_x, double new_y, t_cubd *cub3d);
 #endif
+

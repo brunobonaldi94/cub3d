@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/30 19:51:56 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/02 23:28:25 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ floor or ceiling!"
 # define WINDOW_HEIGHT 720
 # define TILE_SIZE 64
 # define GAME_NAME "Cub3D - bbonaldi & sjhony-x"
-# define MINIMAP_SCALE 0.5
+# define MINIMAP_SCALE 1
 
 //MAP PROPERTIES
 # define CUB_EXTENSION ".cub"

@@ -14,19 +14,22 @@ void	init_player(t_cubd *cub3d, t_player *player)
 	player->turn_speed = 20 * (PI / 180);
 }
 
-int	has_wall_at(char **map, int new_x, int new_y, t_cubd *cub3d)
+int	has_wall_at(char **map, double new_x, double new_y, t_cubd *cub3d)
 {
 	int	x;
 	int	y;
-	if (new_x < 0 || new_x > TILE_SIZE * cub3d->map.dimensions.columns
-			|| new_y < 0 || new_y > TILE_SIZE * cub3d->map.dimensions.rows)
-			return TRUE;
+	// if (new_x >= cub3d->game->window.width / 2)
+	// 	new_x += cub3d->player->width;
+	// if (new_y >= cub3d->game->window.height / 2)
+	// 	new_y += cub3d->player->height;
+	if (!is_inside_map(cub3d->game->window, new_x, new_y))
+		return (TRUE);
 	x = (int)floor((new_x / TILE_SIZE));
 	y = (int)floor((new_y / TILE_SIZE));
 	return (map[y][x] == WALL_CHAR);
 }
 
-int	is_inside_map(t_window window, int new_x, int new_y)
+int	is_inside_map(t_window window, double new_x, double new_y)
 {
 	return (new_x >= 0 && new_x <= window.width
 		&& new_y >= 0 && new_y <= window.height);
@@ -60,11 +63,11 @@ void	render_player(t_cubd *cub3d, t_player *player)
     line->begin_y = MINIMAP_SCALE * player->y;
     line->end_x = MINIMAP_SCALE * (player->x + cos(player->rotation_angle) * RAY_LENGHT);
     line->end_y = MINIMAP_SCALE * (player->y + sin(player->rotation_angle) * RAY_LENGHT);
-    line->color = RED_PIXEL;
+    line->color = WHITE_PIXEL;
     player->line = line;
     draw_line(cub3d, line);
 
-    cast_all_rays(cub3d, player, RED_PIXEL);
+    //cast_all_rays(cub3d, player, RED_PIXEL);
 }
 
 void	normalize_angle(double *angle)
@@ -118,7 +121,8 @@ void	clear_player_rect(t_cubd *cub3d)
 	player_rect.y = 0;
 	player_rect.width = cub3d->player->width * MINIMAP_SCALE;
 	player_rect.height = cub3d->player->height * MINIMAP_SCALE;
-
+	if (has_wall_at(cub3d->game->map, *x, *y, cub3d))
+		return ;
 	cub3d->game->img2.mlx_img = mlx_new_image(cub3d->mlx_ptr,
 			cub3d->player->width, cub3d->player->height);
 	cub3d->game->img2.addr = mlx_get_data_addr(
@@ -126,6 +130,7 @@ void	clear_player_rect(t_cubd *cub3d)
 		&cub3d->game->img2.bits_per_pixel,
 		&cub3d->game->img2.line_length, 
 		&cub3d->game->img2.endian);
+
     set_color_rect(&player_rect, BLACK_PIXEL);
     draw_rect(&cub3d->game->img2, &player_rect);
     mlx_put_image_to_window(
@@ -147,9 +152,9 @@ int	key_down(int key, t_cubd *cub3d)
 {
 	if (key == KEY_SCAPE)
 		game_exit(cub3d);
-	else if (key == KEY_UP)
+	else if (key == KEY_W)
 		cub3d->player->walk_direction = +1;
-	else if (key == KEY_DOWN)
+	else if (key == KEY_S)
 		cub3d->player->walk_direction = -1;
 	else if (key == KEY_RIGHT)
 		cub3d->player->turn_direction = +1;
@@ -167,9 +172,9 @@ int	key_down(int key, t_cubd *cub3d)
 
 int	key_up(int key, t_cubd *cub3d)
 {
-	if (key == KEY_UP)
+	if (key == KEY_W)
 		cub3d->player->walk_direction = 0;
-	else if (key == KEY_DOWN)
+	else if (key == KEY_S)
 		cub3d->player->walk_direction = 0;
 	else if (key == KEY_RIGHT)
 		cub3d->player->turn_direction = 0;
