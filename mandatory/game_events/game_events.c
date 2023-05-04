@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:30:19 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/29 19:32:01 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/03 22:09:23 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	game_loop_events(t_cubd *cub3D)
 	/* mlx_hook(cub3D->win_ptr, KEY_PRESS_EVENT, (1L << 0), &deal_key_press,
 		cub3D); */
 	mlx_expose_hook(cub3D->win_ptr, &game_render, cub3D);
-	mlx_hook(cub3D->win_ptr, KEY_DOWN_EVENT, 1l << 0, &key_down, cub3D);
 	mlx_hook(cub3D->win_ptr, KEY_UP_EVENT, 1l << 1, &key_up, cub3D);
+	mlx_hook(cub3D->win_ptr, KEY_DOWN_EVENT, 1l << 0, &key_down, cub3D);
 	mlx_hook(cub3D->win_ptr, DESTROY_NOTIFY_EVENT, 1L << 17, &game_exit,
 		cub3D);
 }

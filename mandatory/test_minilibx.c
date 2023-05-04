@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 20:12:10 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/01 12:00:59 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/03 22:03:04 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@ void	render_image(t_game *game, t_image *image, int x, int y)
 	draw_image(game, image);
 }
 
+int	set_wall_or_empty_color(t_rectangle *rect, char map_char)
+{
+	int	color_set;
+
+	color_set = TRUE;
+	if (map_char == WALL_CHAR)
+		set_color_rect(rect, WHITE_PIXEL);
+	else if (map_char == EMPTY_CHAR)
+		set_color_rect(rect, BLACK_PIXEL);
+	else
+		color_set = FALSE;
+	return (color_set);
+}
+
 int	render_rects(t_cubd *cub3d)
 {
 	int			x;
@@ -42,8 +56,7 @@ int	render_rects(t_cubd *cub3d)
 	t_rectangle	rect;
 
 	y = 0;
-	rect.x = 0;
-	rect.y = 0;
+	rect.color = 0;
 	rect.width = TILE_SIZE * MINIMAP_SCALE;
 	rect.height = TILE_SIZE * MINIMAP_SCALE;
 	while (y < cub3d->map.dimensions.rows)
@@ -51,19 +64,11 @@ int	render_rects(t_cubd *cub3d)
 		x = 0;
 		while (x < cub3d->map.dimensions.columns)
 		{
-			if (cub3d->game->map[y][x] == EMPTY_CHAR)
+			if (set_wall_or_empty_color(&rect, cub3d->game->map[y][x]))
 			{
-				set_color_rect(&rect, BLACK_PIXEL);
-				render_rect(cub3d, &rect, 
-					(x * TILE_SIZE) * MINIMAP_SCALE, 
-					(y * TILE_SIZE) * MINIMAP_SCALE);
-			}
-			if (cub3d->game->map[y][x] == WALL_CHAR)
-			{
-				set_color_rect(&rect, WHITE_PIXEL);
-				render_rect(cub3d, &rect, 
-					(x * TILE_SIZE) * MINIMAP_SCALE, 
-					(y * TILE_SIZE) * MINIMAP_SCALE);
+				rect.x = x * TILE_SIZE * MINIMAP_SCALE;
+				rect.y = y * TILE_SIZE * MINIMAP_SCALE;
+				render_rect(cub3d, &rect);
 			}
 			x++;
 		}
@@ -74,7 +79,10 @@ int	render_rects(t_cubd *cub3d)
 
 int	game_render(t_cubd *cub3D)
 {
+	create_image(cub3D, &cub3D->game->img, WINDOW_WIDTH, WINDOW_HEIGHT);
 	render_rects(cub3D);
 	render_player(cub3D, cub3D->player);
+	render_image_to_window(cub3D, &cub3D->game->img, 0, 0);
+	mlx_destroy_image(cub3D->mlx_ptr, cub3D->game->img.mlx_img);
 	return (TRUE);
 }

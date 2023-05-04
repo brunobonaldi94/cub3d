@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/02 23:18:10 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/03 21:29:28 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int			game_render(t_cubd *cub3D);
 char		**generate_map(char *path);
 t_window	get_window_size(char **map);
 t_window	get_window(t_map *map);
-int			render_rect(t_cubd *cub3d, t_rectangle *rect, int x, int y);
+int			render_rect(t_cubd *cub3d, t_rectangle *rect);
 void		render_player(t_cubd *cub3d, t_player *player);
 void		init_player(t_cubd *cub3d, t_player *player);
 

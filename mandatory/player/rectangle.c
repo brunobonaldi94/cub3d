@@ -59,10 +59,8 @@ void	render_image_to_window(t_cubd *cub3d, t_img *img, int x, int y)
 		x, y);
 }
 
-int	render_rect(t_cubd *cub3d, t_rectangle *rect, int x, int y)
+int	render_rect(t_cubd *cub3d, t_rectangle *rect)
 {
-	create_image(cub3d, &cub3d->game->img, TILE_SIZE, TILE_SIZE);
 	draw_rect(&cub3d->game->img, rect);
-	render_image_to_window(cub3d, &cub3d->game->img, x, y);
 	return (0);
 }
