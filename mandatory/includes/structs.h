@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:16:51 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/01 11:42:21 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/03 22:52:11 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,10 +153,12 @@ typedef struct s_intersection
 	double	y_intercept;
 	double	x_step;
 	double	y_step;
-	double	next_horz_x;
-	double	next_horz_y;
-	double	horz_wall_hit_x;
-	double	horz_wall_hit_y;
+	double	next_x;
+	double	next_y;
+	double	wall_hit_x;
+	double	wall_hit_y;
+	double	distance;
+
 }	t_intersection;
 
 typedef struct s_cubd

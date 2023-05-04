@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 20:12:10 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/03 22:03:04 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/03 22:22:53 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	game_render(t_cubd *cub3D)
 	render_rects(cub3D);
 	render_player(cub3D, cub3D->player);
 	render_image_to_window(cub3D, &cub3D->game->img, 0, 0);
+	cast_all_rays(cub3D, cub3D->player, RED_PIXEL);
 	mlx_destroy_image(cub3D->mlx_ptr, cub3D->game->img.mlx_img);
 	return (TRUE);
 }

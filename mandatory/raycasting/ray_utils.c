@@ -15,3 +15,8 @@ t_line	*draw_ray(t_cubd *cub3d, double end_x, double end_y, int color)
 	draw_line(cub3d, line);
 	return (line);
 }
+
+double	calculate_distance_between_points(double x1, double y1,
+			double x2, double y2) {
+	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
+}

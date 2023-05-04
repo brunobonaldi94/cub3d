@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/03 21:29:28 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/03 22:54:12 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void		render_player(t_cubd *cub3d, t_player *player);
 void		init_player(t_cubd *cub3d, t_player *player);
 
 //RECTANGLE
+void		img_pix_put(t_img *img, int x, int y, int color);
 t_rectangle	*create_rect(int x, int y, int width, int height);
 void		set_color_rect(t_rectangle *rect, int color);
 int			draw_rect(t_img *img, t_rectangle *rect);
@@ -125,7 +126,7 @@ int 		is_ray_facing_left(double angle);
 //CALCULATE COORDINATES
 double		get_y_horizontal_intercept(t_player *player);
 double		get_y_vertical_intercept(t_player *player, double angle,
-				double y_intercept);
+				double x_intercept);
 double		get_x_horizontal_intercept(t_player *player, double angle,
 				double y_intercept);
 double		get_x_vertical_intercept(t_player *player);
@@ -146,5 +147,8 @@ int			has_wall_at(char **map, double new_x, double new_y, t_cubd *cub3d);
 
 //UTILS RAYS
 t_line		*draw_ray(t_cubd *cub3d, double end_x, double end_y, int color);
+double		calculate_distance_between_points(double x1, double y1,
+			double x2, double y2);
+
 #endif
 
