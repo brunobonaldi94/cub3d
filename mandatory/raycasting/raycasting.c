@@ -4,7 +4,7 @@ void	set_vert_intersects(t_cubd *cub3d, t_intersection *intersec,
 			double ray_angle)
 {
 	intersec->x_intercept = get_x_vertical_intercept(cub3d->player);
-	increment_x_vertical_intercept(&intersec->y_intercept, ray_angle);
+	increment_x_vertical_intercept(&intersec->x_intercept, ray_angle);
 	intersec->y_intercept = get_y_vertical_intercept(
 			cub3d->player,
 			ray_angle,
@@ -68,14 +68,38 @@ void	vertical_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_a
 	set_vertical_steps(intersec, ray_angle);
 }
 
-
-void	calculate_wall_hit(t_cubd *cub3d, t_intersection *intersec)
+double	get_to_check(double next, double angle, char check)
 {
+	int	result;
+
+	result = 0;
+	if ((is_ray_facing_up(angle) && check == 'y') ||
+		(is_ray_facing_left(angle) && check == 'x'))
+		result = -1;
+	return (next + result);
+}
+
+void	calculate_wall_hit(t_cubd *cub3d, t_intersection *intersec, double ray_angle, int is_horz)
+{
+	double x_to_check;
+	double y_to_check;
+
 	set_next_start_position(intersec);
 	intersec->distance = INT_MAX;
 	while (is_inside_map(cub3d->game->window, intersec->next_x, intersec->next_y))
 	{
-		if (has_wall_at(cub3d->game->map, intersec->next_x, intersec->next_y, cub3d))
+		if (is_horz)
+		{
+			x_to_check = intersec->next_x;
+			y_to_check = get_to_check(intersec->next_y, ray_angle, 'y');
+		}
+		else
+		{
+			x_to_check = get_to_check(intersec->next_x, ray_angle, 'x');
+        	y_to_check = intersec->next_y;
+		}
+
+		if (has_wall_at(cub3d->game->map, x_to_check, y_to_check, cub3d))
 		{
 			set_found_wall_hit(intersec);
 			intersec->distance = calculate_distance_between_points(
@@ -101,9 +125,9 @@ void cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
 	intersec_vert = malloc(sizeof(t_intersection));
 	normalize_angle(&ray_angle);
 	horizontal_intersection(cub3d, intersec_horz, ray_angle);
-	calculate_wall_hit(cub3d, intersec_horz);
+	calculate_wall_hit(cub3d, intersec_horz, ray_angle, TRUE);
 	vertical_intersection(cub3d, intersec_vert, ray_angle);
-	calculate_wall_hit(cub3d, intersec_vert);
+	calculate_wall_hit(cub3d, intersec_vert, ray_angle, FALSE);
 	if (intersec_horz->distance <= intersec_vert->distance)
 		draw_ray(cub3d, intersec_horz->wall_hit_x, intersec_horz->wall_hit_y, RED_PIXEL);
 	else
