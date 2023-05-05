@@ -83,7 +83,7 @@ floor or ceiling!"
 # define WINDOW_HEIGHT 720
 # define TILE_SIZE 64
 # define GAME_NAME "Cub3D - bbonaldi & sjhony-x"
-# define MINIMAP_SCALE 1
+# define MINIMAP_SCALE 0.4
 
 //MAP PROPERTIES
 # define CUB_EXTENSION ".cub"

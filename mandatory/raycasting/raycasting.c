@@ -148,9 +148,17 @@ void cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
 
 void render_rays(t_cubd *cub3d) 
 {
-    for (int i = 0; i < NUM_RAYS; i += 50) {
-        draw_ray(cub3d, cub3d->rays[i].wall_hit_x, cub3d->rays[i].wall_hit_y, RED_PIXEL);
-    }
+	int	i;
+
+	i = 0;
+   	while (i < NUM_RAYS)
+	{
+        draw_ray(cub3d, 
+			cub3d->rays[i].wall_hit_x, 
+			cub3d->rays[i].wall_hit_y, 
+			RED_PIXEL);
+		i += 50;
+	}
 }
 
 void	cast_all_rays(t_cubd *cub3d, t_player *player, int color)
