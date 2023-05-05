@@ -79,27 +79,28 @@ double	get_to_check(double next, double angle, char check)
 	return (next + result);
 }
 
+void	set_to_check(t_intersection *intersec, double angle, int is_horz)
+{
+	if (is_horz)
+	{
+		intersec->x_to_check = intersec->next_x;
+		intersec->y_to_check = get_to_check(intersec->next_y, angle, 'y');
+	}
+	else
+	{
+		intersec->x_to_check = get_to_check(intersec->next_x, angle, 'x');
+		intersec->y_to_check = intersec->next_y;
+	}
+}
+
 void	calculate_wall_hit(t_cubd *cub3d, t_intersection *intersec, double ray_angle, int is_horz)
 {
-	double x_to_check;
-	double y_to_check;
-
 	set_next_start_position(intersec);
 	intersec->distance = INT_MAX;
 	while (is_inside_map(cub3d->game->window, intersec->next_x, intersec->next_y))
 	{
-		if (is_horz)
-		{
-			x_to_check = intersec->next_x;
-			y_to_check = get_to_check(intersec->next_y, ray_angle, 'y');
-		}
-		else
-		{
-			x_to_check = get_to_check(intersec->next_x, ray_angle, 'x');
-        	y_to_check = intersec->next_y;
-		}
-
-		if (has_wall_at(cub3d->game->map, x_to_check, y_to_check, cub3d))
+		set_to_check(intersec, ray_angle, is_horz);
+		if (has_wall_at(cub3d->game->map, intersec->x_to_check, intersec->y_to_check, cub3d))
 		{
 			set_found_wall_hit(intersec);
 			intersec->distance = calculate_distance_between_points(

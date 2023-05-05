@@ -156,6 +156,8 @@ typedef struct s_intersection
 	double	next_y;
 	double	wall_hit_x;
 	double	wall_hit_y;
+	double	x_to_check;
+	double	y_to_check;
 	double	distance;
 
 }	t_intersection;
