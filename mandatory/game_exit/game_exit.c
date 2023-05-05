@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:32:36 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/23 16:50:43 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:57:07 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	game_exit(t_cubd *cub3D)
 void	game_clear(t_cubd *cub3D)
 {
 	clear_map(cub3D);
+	clear_player(cub3D);
 	destroy_window(cub3D);
 	destroy_display(cub3D);
 }

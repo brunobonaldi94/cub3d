@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/04 20:41:27 by bbonaldi          #+#    #+#             */
+/*   Updated: 2023/05/04 20:41:30 by bbonaldi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 t_line	*draw_ray(t_cubd *cub3d, double end_x, double end_y, int color)
@@ -13,6 +25,7 @@ t_line	*draw_ray(t_cubd *cub3d, double end_x, double end_y, int color)
 	line->end_y = MINIMAP_SCALE * end_y;
 	line->color = color;
 	draw_line(cub3d, line);
+	ft_free_ptr((void **)&line);
 	return (line);
 }
 

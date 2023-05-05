@@ -6,9 +6,9 @@ void	set_vert_intersects(t_cubd *cub3d, t_intersection *intersec,
 	intersec->x_intercept = get_x_vertical_intercept(cub3d->player);
 	increment_x_vertical_intercept(&intersec->y_intercept, ray_angle);
 	intersec->y_intercept = get_y_vertical_intercept(
-		cub3d->player,
-		ray_angle,
-		intersec->x_intercept);
+			cub3d->player,
+			ray_angle,
+			intersec->x_intercept);
 }
 
 void	set_vertical_steps(t_intersection *intersec, double ray_angle)
@@ -25,12 +25,10 @@ void	set_horz_intersects(t_cubd *cub3d, t_intersection *intersec,
 	intersec->y_intercept = get_y_horizontal_intercept(cub3d->player);
 	increment_y_horizontal_intercept(&intersec->y_intercept, ray_angle);
 	intersec->x_intercept = get_x_horizontal_intercept(
-		cub3d->player,
-		ray_angle,
-		intersec->y_intercept);
+			cub3d->player,
+			ray_angle,
+			intersec->y_intercept);
 }
-
-
 
 void	set_horz_steps(t_intersection *intersec, double ray_angle)
 {
@@ -58,40 +56,21 @@ void	set_next_start_position(t_intersection *intersec)
 	intersec->next_y = intersec->y_intercept;
 }
 
-void	horizontal_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle, double column_id)
+void	horizontal_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle)
 {
-	(void) column_id;
-
-	normalize_angle(&ray_angle);
 	set_horz_intersects(cub3d, intersec, ray_angle);
 	set_horz_steps(intersec, ray_angle);
-	set_next_start_position(intersec);
-	intersec->distance = INT_MAX;
-	while (is_inside_map(cub3d->game->window, intersec->next_x, intersec->next_y))
-	{
-		if (has_wall_at(cub3d->game->map, intersec->next_x, intersec->next_y, cub3d))
-		{
-			set_found_wall_hit(intersec);
-			intersec->distance = calculate_distance_between_points(
-					cub3d->player->x,
-					cub3d->player->y,
-					intersec->wall_hit_x,
-					intersec->wall_hit_y
-					);
-			break ;
-		}
-		else
-			increment_steps(intersec);
-	}
 }
 
-void	vertical_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle, double column_id)
+void	vertical_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle)
 {
-	(void) column_id;
-
-	normalize_angle(&ray_angle);
 	set_vert_intersects(cub3d, intersec, ray_angle);
 	set_vertical_steps(intersec, ray_angle);
+}
+
+
+void	calculate_wall_hit(t_cubd *cub3d, t_intersection *intersec)
+{
 	set_next_start_position(intersec);
 	intersec->distance = INT_MAX;
 	while (is_inside_map(cub3d->game->window, intersec->next_x, intersec->next_y))
@@ -120,18 +99,21 @@ void cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
 	(void) column_id;
 	intersec_horz = malloc(sizeof(t_intersection));
 	intersec_vert = malloc(sizeof(t_intersection));
-	horizontal_intersection(cub3d, intersec_horz, ray_angle, column_id);
-	vertical_intersection(cub3d, intersec_vert, ray_angle, column_id);
+	normalize_angle(&ray_angle);
+	horizontal_intersection(cub3d, intersec_horz, ray_angle);
+	calculate_wall_hit(cub3d, intersec_horz);
+	vertical_intersection(cub3d, intersec_vert, ray_angle);
+	calculate_wall_hit(cub3d, intersec_vert);
 	if (intersec_horz->distance <= intersec_vert->distance)
 		draw_ray(cub3d, intersec_horz->wall_hit_x, intersec_horz->wall_hit_y, RED_PIXEL);
 	else
-		draw_ray(cub3d, intersec_vert->wall_hit_x, intersec_vert->wall_hit_y, RED_PIXEL);
+		draw_ray(cub3d, intersec_vert->wall_hit_x, intersec_vert->wall_hit_y, YELLOW_PIXEL);
 	ft_free_ptr((void **)&intersec_horz);
 	ft_free_ptr((void **)&intersec_vert);
 
 }
 
-void    cast_all_rays(t_cubd *cub3d, t_player *player, int color)
+void	cast_all_rays(t_cubd *cub3d, t_player *player, int color)
 {
 	(void)color;
 	double	ray_angle;

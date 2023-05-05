@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_loaders.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 22:36:53 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/30 20:04:01 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/04 20:29:31 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,10 @@ void	load_map(t_cubd *cub3D, t_list	*h_list)
 	if (cub3D->map.found_player != 1)
 		exit_with_message_and_free(cub3D, ERROR_CODE,
 			PLAYER_ERROR_MESSAGE);
-	cord = find_player_inside_map(cub3D->map.map_matrix, &cub3D->map.dimensions);
+	cord = find_player_inside_map(cub3D->map.map_matrix,
+			&cub3D->map.dimensions);
 	if (!is_player_inside_map(cord))
 		exit_with_message_and_free(cub3D, ERROR_CODE,
 			PLAYER_MUST_BE_INSIDE_MAP_MESSAGE);
-	set_player_position(cub3D->player,  cord);
+	set_player_position(cub3D->map.map_matrix, cub3D->player, cord);
 }

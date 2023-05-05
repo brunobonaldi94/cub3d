@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   test_minilibx.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 20:12:10 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/03 22:22:53 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/04 22:01:06 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	load_images(t_game *game)
-{
-	game->wall.addr = mlx_xpm_file_to_image(
-			game->mlx_ptr, PATH_IMG_WALL,
-			&game->wall.width, &game->wall.height);
-	game->space.addr = mlx_xpm_file_to_image(
-			game->mlx_ptr, PATH_IMG_SPACE,
-			&game->space.width, &game->space.height);
-}
 
 void	draw_image(t_game *game, t_image *img)
 {

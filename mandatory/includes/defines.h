@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/03 22:23:20 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/04 22:00:24 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,11 @@ floor or ceiling!"
 // CONSTANTS TO CALCULATIONS
 # define PI 3.14159265
 # define TWO_PI 6.28318530
-# define FOV_ANGLE 60 * (PI / 180)
+// FOV_ANGLE = (60 * (PI / 180))
+# define FOV_ANGLE 1.0471975511965976
 
 # define NUM_RAYS WINDOW_WIDTH
 
-# define MAP_NUM_ROWS = 13
-# define MAP_NUM_COLS 20
-
-#define RAY_LENGHT 60
-
-# define PATH_IMG_WALL "assets/images/wall.xpm"
-# define PATH_IMG_SPACE "assets/images/space.xpm"
-# define PATH_MAP "assets/maps/map.ber"
+# define RAY_LENGHT 60
 
 #endif

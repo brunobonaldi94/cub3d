@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_exit_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 14:46:58 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/23 14:48:03 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:57:26 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,9 @@ void	clear_map_matrix(t_cubd *cub3D)
 		index++;
 	}
 	free(cub3D->map.map_matrix);
+}
+
+void	clear_player(t_cubd *cub3D)
+{
+	ft_free_ptr((void **)&cub3D->player);
 }

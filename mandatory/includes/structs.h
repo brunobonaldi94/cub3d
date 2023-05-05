@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:16:51 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/03 22:52:11 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/04 20:27:57 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ typedef struct s_image
 	int		x;
 	int		y;
 }	t_image;
-
-
 
 typedef struct s_rectangle
 {
@@ -135,6 +133,7 @@ typedef struct s_player
 	double	walk_speed;
 	double	turn_speed;
 	t_line	*line;
+	char	player_char;
 }	t_player;
 
 typedef struct s_ray

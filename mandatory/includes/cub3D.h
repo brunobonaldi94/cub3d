@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/03 22:54:12 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/04 20:35:32 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int			is_valid_color_rgb(int color_atoi, char *color_str);
 int			is_valid_set_of_colors(t_color *color, char **colors_split);
 int			set_color_rgb(char **colors_split, t_color *color);
 int			is_player_inside_map(t_cord cord);
-void		set_player_position(t_player *player, t_cord cord);
+void		set_player_position(char **map, t_player *player, t_cord cord);
 // =============================================================================
 // GAME EXIT
 // =============================================================================
@@ -87,6 +87,7 @@ int			game_exit(t_cubd *cub3D);
 void		close_fd(int fd);
 void		game_clear(t_cubd *cub3D);
 void		clear_map_matrix(t_cubd *cub3D);
+void		clear_player(t_cubd *cub3D);
 // =============================================================================
 // DEBUG
 // =============================================================================

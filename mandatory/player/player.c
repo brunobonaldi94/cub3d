@@ -1,6 +1,5 @@
 #include "cub3D.h"
 
-
 void	init_player(t_cubd *cub3d, t_player *player)
 {
 	player->x = cub3d->game->window.width / 2;
@@ -9,7 +8,8 @@ void	init_player(t_cubd *cub3d, t_player *player)
 	player->height = 15;
 	player->turn_direction = 0;
 	player->walk_direction = 0;
-	player->rotation_angle = PI + (PI / 2);
+	player->walk_side_direction = 0;
+	player->rotation_angle = (PI / 2);
 	player->walk_speed = 7;
 	player->turn_speed = 20 * (PI / 180);
 }
