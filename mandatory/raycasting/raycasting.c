@@ -68,28 +68,20 @@ void	vertical_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_a
 	set_vertical_steps(intersec, ray_angle);
 }
 
-double	get_to_check(double next, double angle, char check)
-{
-	int	result;
-
-	result = 0;
-	if ((is_ray_facing_up(angle) && check == 'y') ||
-		(is_ray_facing_left(angle) && check == 'x'))
-		result = -1;
-	return (next + result);
-}
-
 void	set_to_check(t_intersection *intersec, double angle, int is_horz)
 {
+	intersec->x_to_check = intersec->next_x;
+	intersec->y_to_check = intersec->next_y;
+
 	if (is_horz)
 	{
-		intersec->x_to_check = intersec->next_x;
-		intersec->y_to_check = get_to_check(intersec->next_y, angle, 'y');
+		if (is_ray_facing_up(angle))
+			intersec->y_to_check -= 1;
 	}
 	else
 	{
-		intersec->x_to_check = get_to_check(intersec->next_x, angle, 'x');
-		intersec->y_to_check = intersec->next_y;
+		if (is_ray_facing_left(angle))
+			intersec->x_to_check -= 1;
 	}
 }
 
@@ -116,6 +108,22 @@ void	calculate_wall_hit(t_cubd *cub3d, t_intersection *intersec, double ray_angl
 	}
 }
 
+void	set_rays_horz(t_cubd *cub3d, t_intersection *intersec, int column_id, double angle)
+{
+	cub3d->rays[column_id].distance = intersec->distance;
+	cub3d->rays[column_id].wall_hit_x = intersec->wall_hit_x;
+	cub3d->rays[column_id].wall_hit_y = intersec->wall_hit_y;
+	cub3d->rays[column_id].ray_angle = angle;
+}
+
+void	set_rays_vert(t_cubd *cub3d, t_intersection *intersec, int column_id, double angle)
+{
+	cub3d->rays[column_id].distance = intersec->distance;
+	cub3d->rays[column_id].wall_hit_x = intersec->wall_hit_x;
+	cub3d->rays[column_id].wall_hit_y = intersec->wall_hit_y;	
+	cub3d->rays[column_id].ray_angle = angle;
+}
+
 void cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
 {
 	t_intersection	*intersec_horz;
@@ -130,12 +138,19 @@ void cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
 	vertical_intersection(cub3d, intersec_vert, ray_angle);
 	calculate_wall_hit(cub3d, intersec_vert, ray_angle, FALSE);
 	if (intersec_horz->distance <= intersec_vert->distance)
-		draw_ray(cub3d, intersec_horz->wall_hit_x, intersec_horz->wall_hit_y, RED_PIXEL);
+		set_rays_horz(cub3d, intersec_horz, column_id, ray_angle);
 	else
-		draw_ray(cub3d, intersec_vert->wall_hit_x, intersec_vert->wall_hit_y, YELLOW_PIXEL);
+		set_rays_vert(cub3d, intersec_vert, column_id, ray_angle);
 	ft_free_ptr((void **)&intersec_horz);
 	ft_free_ptr((void **)&intersec_vert);
 
+}
+
+void render_rays(t_cubd *cub3d) 
+{
+    for (int i = 0; i < NUM_RAYS; i += 50) {
+        draw_ray(cub3d, cub3d->rays[i].wall_hit_x, cub3d->rays[i].wall_hit_y, RED_PIXEL);
+    }
 }
 
 void	cast_all_rays(t_cubd *cub3d, t_player *player, int color)
@@ -153,53 +168,3 @@ void	cast_all_rays(t_cubd *cub3d, t_player *player, int color)
 		column_id++;
 	}
 }
-
-
-/*
-	Distance to Wall Hit
-	1. The best way is to check for horizontal and vertical
-		intersections separately.
-	2. When there is a wall on either a vertical or a 
-		horizontal intersection, the checking stops.
-	3. The distance to both horizontol and vertical intersection
-		points is then compared, and we select the closest one.
-	
-
-	Horizontal intersections
-	1.  Find coordinate of the first horizontal intersection (Point A)
-	2.  Find ystep
-	3.  Find xstep
-	4.  Convert intersection point (x, y) into map index[i,j]
-		-> if (intersection hits a wall)
-				then: store horizontal hit distance
-			else
-				find next horizontal intersection
-*/
-/*
-	Notes:
-	Distance between rays: 60 (degrees / FOV) / 320 (rays)
-
-	Steps:
-	1. Subtract 30 degrees from the player rotation angle (FOV/2)
-	2. Start at column 0
-	3. While (column < 320):
-		* Cast a ray
-		* Trace the ray until it intersects with a wall (map[i][j] == 1)
-		* Record the intersection (x,y) and the distance (ray length)
-		* Add the angle increment so the ray moves to the right
-			 -> ray_angle += 60/320
-		*
-
-*/
-
-/*
-	Vertical Intersections
-	1.	Find coordinate of the first vertical intersection (point A)
-	2.	Find xstep
-	3.	Find ystep
-	4.	Convert intersections point (x, y) into map[i,j]
-		-> if (intersection hits a wall)
-				then: store vertical hit distance
-			else
-				find next vertical intersection
-*/

@@ -38,3 +38,8 @@ void	clear_player(t_cubd *cub3D)
 {
 	ft_free_ptr((void **)&cub3D->player);
 }
+
+void	clear_rays(t_cubd *cub3D)
+{
+	ft_free_ptr((void **)&cub3D->rays);
+}

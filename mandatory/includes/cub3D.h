@@ -88,6 +88,7 @@ void		close_fd(int fd);
 void		game_clear(t_cubd *cub3D);
 void		clear_map_matrix(t_cubd *cub3D);
 void		clear_player(t_cubd *cub3D);
+void		clear_rays(t_cubd *cub3D);
 // =============================================================================
 // DEBUG
 // =============================================================================
@@ -150,6 +151,9 @@ int			has_wall_at(char **map, double new_x, double new_y, t_cubd *cub3d);
 t_line		*draw_ray(t_cubd *cub3d, double end_x, double end_y, int color);
 double		calculate_distance_between_points(double x1, double y1,
 			double x2, double y2);
+
+
+void		render_rays(t_cubd *cub3d) ;
 
 #endif
 
