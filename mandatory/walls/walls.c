@@ -43,39 +43,48 @@ void	pixel_put(t_img *img, int x, int y, int color)
 }
 
 
-void    draw_ceil(t_cubd *cub3d, int wall_top_pixel)
+void    draw_ceil(t_cubd *cub3d, int wall_top_pixel, int x)
 {
-    (void) cub3d;
-
-    int x;
     int y;
+
+    y = -1;
+    while (++y < wall_top_pixel)
+    {
+        //pixel_put(cub3d->img_game, x, y, WHITE_PIXEL);
+        mlx_pixel_put(cub3d->mlx_ptr, cub3d->win_ptr, x, y, 0xFF444444);
+    }
+}
+
+void    draw_floor(t_cubd *cub3d, int wall_bottom_pixel, int x)
+{
+
+    int y;
+
+    y = wall_bottom_pixel;
+    while (++y < WINDOW_HEIGHT)
+    {
+        //pixel_put(cub3d->img_game, x, y, WHITE_PIXEL);
+        mlx_pixel_put(cub3d->mlx_ptr, cub3d->win_ptr, x, y, 0xFF888888);
+    }
+}
+
+
+void    render_3D_projected_walls(t_cubd *cub3d)
+{
+    int     x;    
+    int wall_strip_height;
+    int wall_top_pixel;
+    int wall_bottom_pixel;
 
     x = -1;
     while (++x < NUM_RAYS)
     {
-        y = -1;
-        while (++y < wall_top_pixel)
-        {
-           mlx_pixel_put(cub3d->mlx_ptr, cub3d->win_ptr, x, y, 0xFF444444);
-        }
-    }
-}
-
-void    render_3D_projected_walls(t_cubd *cub3d)
-{
-    int     i;    
-    int wall_strip_height;
-    int wall_top_pixel;
-    //int wall_bottom_pixel;
-
-    i = -1;
-    while (++i < NUM_RAYS)
-    {
         wall_strip_height = (int) get_projected_wall_height(
-            get_perp_dist(&cub3d->rays[i], cub3d->player),
+            get_perp_dist(&cub3d->rays[x], cub3d->player),
             get_dis_proj_plane());
         wall_top_pixel = get_wall_top_pixel(wall_strip_height);
-        //wall_bottom_pixel = get_wall_bottom_pixel(wall_strip_height);
-        draw_ceil(cub3d, wall_top_pixel);
+        wall_bottom_pixel = get_wall_bottom_pixel(wall_strip_height);
+        draw_ceil(cub3d, wall_top_pixel, x);
+        draw_floor(cub3d, wall_bottom_pixel, x);
     }
 }
