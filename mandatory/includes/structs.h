@@ -169,7 +169,7 @@ typedef struct s_cubd
 	t_map		map;
 	t_game		*game;
 	t_player	*player;
-	t_ray		*rays;
+	t_ray		rays[NUM_RAYS];
 }	t_cubd;
 
 

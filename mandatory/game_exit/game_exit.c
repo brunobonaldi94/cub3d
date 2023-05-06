@@ -27,7 +27,6 @@ void	game_clear(t_cubd *cub3D)
 {
 	clear_map(cub3D);
 	clear_player(cub3D);
-	clear_rays(cub3D);
 	destroy_window(cub3D);
 	destroy_display(cub3D);
 }

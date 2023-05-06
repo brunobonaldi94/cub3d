@@ -19,7 +19,6 @@ int	init_game(t_cubd *cub3D, char *argv[])
 {
 	init_variables(cub3D);
 	cub3D->player = (t_player *)malloc(sizeof(t_player));
-	cub3D->rays = malloc(sizeof(t_ray) * NUM_RAYS);
 	init_player(cub3D, cub3D->player);
 	validate_map(cub3D, argv[1]);
 	init_mlx(cub3D);

@@ -88,7 +88,6 @@ void		close_fd(int fd);
 void		game_clear(t_cubd *cub3D);
 void		clear_map_matrix(t_cubd *cub3D);
 void		clear_player(t_cubd *cub3D);
-void		clear_rays(t_cubd *cub3D);
 // =============================================================================
 // DEBUG
 // =============================================================================
