@@ -31,9 +31,11 @@ int	set_wall_or_empty_color(t_rectangle *rect, char map_char)
 
 	color_set = TRUE;
 	if (map_char == WALL_CHAR)
-		set_color_rect(rect, WHITE_PIXEL);
-	else if (map_char == EMPTY_CHAR)
-		set_color_rect(rect, BLACK_PIXEL);
+		set_color_rect(rect, DARKGOLDENROD_PIXEL);
+	else if (map_char == EMPTY_CHAR || map_char == SOUTH_PROP[0] ||
+		map_char == NORTH_PROP[0] || map_char == EAST_PROP[0] ||
+		map_char == WEST_PROP[0])
+		set_color_rect(rect, SADDLE_BROW_PIXEL);
 	else
 		color_set = FALSE;
 	return (color_set);

@@ -156,7 +156,7 @@ void render_rays(t_cubd *cub3d)
         draw_ray(cub3d, 
 			cub3d->rays[i].wall_hit_x, 
 			cub3d->rays[i].wall_hit_y, 
-			RED_PIXEL);
+			NAVAJOWHITE_PIXEL);
 		i += 50;
 	}
 }

@@ -4,13 +4,13 @@ void	init_player(t_cubd *cub3d, t_player *player)
 {
 	player->x = cub3d->game->window.width / 2;
 	player->y = cub3d->game->window.height / 2;
-	player->width = 5;
-	player->height = 5;
+	player->width = 1;
+	player->height = 1;
 	player->turn_direction = 0;
 	player->walk_direction = 0;
 	player->walk_side_direction = 0;
 	player->rotation_angle = (PI / 2);
-	player->walk_speed = 7;
+	player->walk_speed = 15;
 	player->turn_speed = 20 * (PI / 180);
 }
 
@@ -22,7 +22,7 @@ int	has_wall_at(char **map, double new_x, double new_y, t_cubd *cub3d)
 	/* if (new_x >= cub3d->game->window.width / 2)
 		new_x += cub3d->player->width; */
 	/* if (new_y >= cub3d->game->window.height / 2)
-		new_y += cub3d->player->height; */
+		new_y += 1; */
 	if (!is_inside_map(cub3d->game->window, new_x, new_y))
 		return (TRUE);
 	x = (int)floor((new_x / TILE_SIZE));
