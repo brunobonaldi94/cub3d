@@ -161,9 +161,8 @@ void render_rays(t_cubd *cub3d)
 	}
 }
 
-void	cast_all_rays(t_cubd *cub3d, t_player *player, int color)
+void	cast_all_rays(t_cubd *cub3d, t_player *player)
 {
-	(void)color;
 	double	ray_angle;
 	int		column_id;
 

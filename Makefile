@@ -14,6 +14,7 @@ GAME_EXIT		:= $(MANDATORY)/game_exit
 MAP_VALIDATION	:= $(MANDATORY)/map_validation
 PLAYER			:= $(MANDATORY)/player
 RAYCASTING		:= $(MANDATORY)/raycasting
+WALLS			:= $(MANDATORY)/walls
 DEBUG			:= $(MANDATORY)/debug
 # ==============================================================================
 # VARIABLES
@@ -43,6 +44,7 @@ SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(PLAYER)/line.c \
 			$(RAYCASTING)/raycasting.c $(RAYCASTING)/ray_facing.c $(RAYCASTING)/calculate_coordinates.c \
 			$(RAYCASTING)/calculate_steps.c $(RAYCASTING)/ray_utils.c\
+			$(WALLS)/walls.c \
 			$(DEBUG)/debug.c
 
 OBJS	:=	$(SRCS:.c=.o)

@@ -84,7 +84,7 @@ floor or ceiling!"
 # define NAVAJOWHITE_PIXEL 0XFFDEAD
 //GAME PROPERTIES
 # define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 720
+# define WINDOW_HEIGHT 645
 # define TILE_SIZE 64
 # define GAME_NAME "Cub3D - bbonaldi & sjhony-x"
 # define MINIMAP_SCALE 0.2

@@ -116,7 +116,7 @@ int			key_up(int key, t_cubd *cub3d);
 int			key_down(int key, t_cubd *cub3d);
 
 
-void		cast_all_rays(t_cubd *cub3d, t_player *player, int color);
+void		cast_all_rays(t_cubd *cub3d, t_player *player);
 
 // RAY FACING
 int 		is_ray_facing_down(double angle);
@@ -154,5 +154,6 @@ double		calculate_distance_between_points(double x1, double y1,
 
 void		render_rays(t_cubd *cub3d) ;
 
+void		render_3D_projected_walls(t_cubd *cub3d);
 #endif
 

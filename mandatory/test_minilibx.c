@@ -75,8 +75,9 @@ int	game_render(t_cubd *cub3D)
 	render_rects(cub3D);
 	render_player(cub3D, cub3D->player);
 	render_image_to_window(cub3D, &cub3D->game->img, 0, 0);
-	cast_all_rays(cub3D, cub3D->player, RED_PIXEL);
-	render_rays(cub3D); 
+	cast_all_rays(cub3D, cub3D->player);
+	render_rays(cub3D);
+	//render_3D_projected_walls(cub3D);
 	mlx_destroy_image(cub3D->mlx_ptr, cub3D->game->img.mlx_img);
 	return (TRUE);
 }
