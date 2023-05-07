@@ -50,8 +50,8 @@ void    draw_ceil(t_cubd *cub3d, int wall_top_pixel, int x)
     y = -1;
     while (++y < wall_top_pixel)
     {
-        //pixel_put(cub3d->img_game, x, y, WHITE_PIXEL);
-        mlx_pixel_put(cub3d->mlx_ptr, cub3d->win_ptr, x, y, 0xFF444444);
+        pixel_put(&cub3d->img_game, x, y, 0xFF444444);
+        //mlx_pixel_put(cub3d->mlx_ptr, cub3d->win_ptr, x, y, 0xFF444444);
     }
 }
 
@@ -63,8 +63,8 @@ void    draw_floor(t_cubd *cub3d, int wall_bottom_pixel, int x)
     y = wall_bottom_pixel;
     while (++y < WINDOW_HEIGHT)
     {
-        //pixel_put(cub3d->img_game, x, y, WHITE_PIXEL);
-        mlx_pixel_put(cub3d->mlx_ptr, cub3d->win_ptr, x, y, 0xFF888888);
+        pixel_put(&cub3d->img_game, x, y, 0xFF888888);
+        //mlx_pixel_put(cub3d->mlx_ptr, cub3d->win_ptr, x, y, 0xFF888888);
     }
 }
 

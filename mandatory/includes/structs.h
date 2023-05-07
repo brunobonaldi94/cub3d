@@ -173,7 +173,7 @@ typedef struct s_cubd
 	t_game		*game;
 	t_player	*player;
 	t_ray		rays[NUM_RAYS];
-	t_img		*img_game;
+	t_img		img_game;
 }	t_cubd;
 
 

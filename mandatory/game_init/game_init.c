@@ -15,6 +15,18 @@
 int		init_mlx(t_cubd *cub3D);
 void	init_variables(t_cubd *cub3D);
 
+void	init_img_game(t_cubd *cub3D)
+{
+	cub3D->img_game.mlx_img = mlx_new_image(cub3D->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
+	cub3D->img_game.height = WINDOW_HEIGHT;
+	cub3D->img_game.width = WINDOW_WIDTH;
+	cub3D->img_game.color_buffer = (int *)
+		mlx_get_data_addr(cub3D->img_game.mlx_img, 
+			&cub3D->img_game.bits_per_pixel, 
+			&cub3D->img_game.line_length, 
+			&cub3D->img_game.endian);
+}
+
 int	init_game(t_cubd *cub3D, char *argv[])
 {
 	init_variables(cub3D);
@@ -24,6 +36,7 @@ int	init_game(t_cubd *cub3D, char *argv[])
 	init_mlx(cub3D);
 	cub3D->game->window.win_ptr = cub3D->win_ptr;
 	cub3D->game->mlx_ptr = cub3D->mlx_ptr;
+	init_img_game(cub3D);
 	return (TRUE);
 }
 
