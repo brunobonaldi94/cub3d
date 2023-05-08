@@ -11,7 +11,7 @@ void	init_player(t_cubd *cub3d, t_player *player)
 	player->walk_side_direction = 0;
 	player->rotation_angle = (PI / 2);
 	player->walk_speed = 15;
-	player->turn_speed = 20 * (PI / 180);
+	player->turn_speed = 10 * (PI / 180);
 }
 
 int	has_wall_at(char **map, double new_x, double new_y, t_cubd *cub3d)
