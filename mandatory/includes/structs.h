@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:16:51 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/04 20:27:57 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/08 18:21:54 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,12 +141,12 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	double	ray_angle;
-	double	wall_hit_x;
-	double	wall_hit_y;
-	double	distance;
-	int		has_hit_vertical;
-	int		texture;
+	double		ray_angle;
+	double		wall_hit_x;
+	double		wall_hit_y;
+	double		distance;
+	int			has_hit_vertical;
+	t_textures	texture;
 }	t_ray;
 
 typedef struct s_intersection
@@ -174,7 +174,7 @@ typedef struct s_cubd
 	t_player	*player;
 	t_ray		rays[NUM_RAYS];
 	t_img		img_game;
-	t_img		*textures;
+	t_img		textures[4];
 }	t_cubd;
 
 

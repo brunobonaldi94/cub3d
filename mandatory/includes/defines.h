@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/04 22:00:24 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:59:26 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,12 @@ floor or ceiling!"
 
 # define RAY_LENGHT 60
 
-enum textures { WOOD, REDBRICK};
-
-# define PATH_TEXTURE_WOOD "assets/images/wood.xpm"
-# define PATH_TEXTURE_REDBRICK "assets/images/redbrick.xpm"
-
+typedef enum e_textures 
+{ 
+	SO,
+	NO,
+	WE,
+	EA,
+}	t_textures;
 
 #endif

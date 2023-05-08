@@ -32,6 +32,7 @@ LIBRARY_MLX_PATH = -L/usr/lib -lmlx -lXext -lX11 -lm -lz
 SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(MANDATORY)/test_minilibx.c \
 			$(GAME_INIT)/game_init.c $(GAME_INIT)/game_init_utils.c \
+			$(GAME_INIT)/images_init.c \
 			$(ERROR_HANDLER)/error_handler.c \
 			$(GAME_EVENTS)/game_events.c \
 			$(GAME_EXIT)/game_exit.c $(GAME_EXIT)/game_exit_utils.c \
