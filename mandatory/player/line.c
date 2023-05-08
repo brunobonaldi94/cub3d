@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   line.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/07 21:28:02 by bbonaldi          #+#    #+#             */
+/*   Updated: 2023/05/07 21:30:47 by bbonaldi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-static int get_pixel(t_line *line)
+static int	get_pixel(t_line *line)
 {
 	if (abs(line->delta_x) >= abs(line->delta_y))
 		return (abs(line->delta_x));
@@ -21,8 +33,13 @@ int	draw_line(t_cubd *cub3d, t_line *line)
 	line->pixel_y = line->begin_y;
 	while (line->pixels)
 	{
-		img_pix_put(
-			&cub3d->game->img,
+		// img_pix_put(
+		// 	&cub3d->game->img,
+		// 	round(line->pixel_x),
+		// 	round(line->pixel_y),
+		// 	line->color);
+			img_pix_put(
+			&cub3d->img_game,
 			round(line->pixel_x),
 			round(line->pixel_y),
 			line->color);

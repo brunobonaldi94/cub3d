@@ -27,6 +27,9 @@ int	has_wall_at(char **map, double new_x, double new_y, t_cubd *cub3d)
 		return (TRUE);
 	x = (int)floor((new_x / TILE_SIZE));
 	y = (int)floor((new_y / TILE_SIZE));
+	if (x >= cub3d->map.dimensions.columns - 1
+		|| y >= cub3d->map.dimensions.rows - 1)
+		return (TRUE);
 	return (map[y][x] == WALL_CHAR);
 }
 
@@ -45,7 +48,7 @@ void	render_only_player(t_cubd *cub3d, t_player *player)
 	player_rect.width = player->width * MINIMAP_SCALE;
 	player_rect.height = player->height * MINIMAP_SCALE;
 	set_color_rect(&player_rect, RED_PIXEL);
-	draw_rect(&cub3d->game->img, &player_rect);
+	draw_rect(&cub3d->img_game, &player_rect);
 }
 
 void	render_ray_to_play(t_cubd *cub3d, t_player *player, t_line **line)

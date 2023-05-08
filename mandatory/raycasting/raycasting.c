@@ -124,7 +124,7 @@ void	set_rays_vert(t_cubd *cub3d, t_intersection *intersec, int column_id, doubl
 	cub3d->rays[column_id].ray_angle = angle;
 }
 
-void cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
+void	cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
 {
 	t_intersection	*intersec_horz;
 	t_intersection	*intersec_vert;
@@ -146,16 +146,16 @@ void cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
 
 }
 
-void render_rays(t_cubd *cub3d) 
+void	render_rays(t_cubd *cub3d) 
 {
 	int	i;
 
 	i = 0;
-   	while (i < NUM_RAYS)
+	while (i < NUM_RAYS)
 	{
-        draw_ray(cub3d, 
-			cub3d->rays[i].wall_hit_x, 
-			cub3d->rays[i].wall_hit_y, 
+		draw_ray(cub3d,
+			cub3d->rays[i].wall_hit_x,
+			cub3d->rays[i].wall_hit_y,
 			NAVAJOWHITE_PIXEL);
 		i += 50;
 	}

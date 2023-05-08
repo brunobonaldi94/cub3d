@@ -64,6 +64,6 @@ void	render_image_to_window(t_cubd *cub3d, t_img *img, int x, int y)
 
 int	render_rect(t_cubd *cub3d, t_rectangle *rect)
 {
-	draw_rect(&cub3d->game->img, rect);
+	draw_rect(&cub3d->img_game, rect);
 	return (0);
 }

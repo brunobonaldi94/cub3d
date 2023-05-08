@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_minilibx.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 20:12:10 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/04 22:01:06 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/07 21:36:15 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	set_wall_or_empty_color(t_rectangle *rect, char map_char)
 	color_set = TRUE;
 	if (map_char == WALL_CHAR)
 		set_color_rect(rect, DARKGOLDENROD_PIXEL);
-	else if (map_char == EMPTY_CHAR || map_char == SOUTH_PROP[0] ||
-		map_char == NORTH_PROP[0] || map_char == EAST_PROP[0] ||
-		map_char == WEST_PROP[0])
+	else if (map_char == EMPTY_CHAR || map_char == SOUTH_PROP[0]
+		|| map_char == NORTH_PROP[0] || map_char == EAST_PROP[0]
+		|| map_char == WEST_PROP[0])
 		set_color_rect(rect, SADDLE_BROW_PIXEL);
 	else
 		color_set = FALSE;
@@ -71,14 +71,16 @@ int	render_rects(t_cubd *cub3d)
 
 int	game_render(t_cubd *cub3D)
 {
-	create_image(cub3D, &cub3D->game->img, WINDOW_WIDTH, WINDOW_HEIGHT);
-	//render_rects(cub3D);
-	//render_player(cub3D, cub3D->player);
-	render_image_to_window(cub3D, &cub3D->game->img, 0, 0);
+	//create_image(cub3D, &cub3D->game->img, WINDOW_WIDTH, WINDOW_HEIGHT);
+	create_image(cub3D, &cub3D->img_game, WINDOW_WIDTH, WINDOW_HEIGHT);
+	render_rects(cub3D);
+	render_player(cub3D, cub3D->player);
 	cast_all_rays(cub3D, cub3D->player);
-	//render_rays(cub3D);
+	render_rays(cub3D);
 	render_3D_projected_walls(cub3D);
-	mlx_put_image_to_window(cub3D->mlx_ptr, cub3D->win_ptr, cub3D->img_game.mlx_img, 0, 0);
-	mlx_destroy_image(cub3D->mlx_ptr, cub3D->game->img.mlx_img);
+	render_image_to_window(cub3D, &cub3D->img_game, 0, 0);
+	//render_image_to_window(cub3D, &cub3D->game->img, 0, 0);
+	//mlx_destroy_image(cub3D->mlx_ptr, cub3D->game->img.mlx_img);
+	mlx_destroy_image(cub3D->mlx_ptr, cub3D->img_game.mlx_img);
 	return (TRUE);
 }

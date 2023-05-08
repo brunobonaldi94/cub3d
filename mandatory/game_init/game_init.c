@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:16:02 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/04/30 14:04:25 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/07 20:16:34 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	init_game(t_cubd *cub3D, char *argv[])
 	init_mlx(cub3D);
 	cub3D->game->window.win_ptr = cub3D->win_ptr;
 	cub3D->game->mlx_ptr = cub3D->mlx_ptr;
-	init_img_game(cub3D);
 	return (TRUE);
 }
 
