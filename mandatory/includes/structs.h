@@ -174,6 +174,7 @@ typedef struct s_cubd
 	t_player	*player;
 	t_ray		rays[NUM_RAYS];
 	t_img		img_game;
+	t_img		*textures;
 }	t_cubd;
 
 

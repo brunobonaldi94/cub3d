@@ -116,4 +116,10 @@ floor or ceiling!"
 
 # define RAY_LENGHT 60
 
+enum textures { WOOD, REDBRICK};
+
+# define PATH_TEXTURE_WOOD "assets/images/wood.xpm"
+# define PATH_TEXTURE_REDBRICK "assets/images/redbrick.xpm"
+
+
 #endif
