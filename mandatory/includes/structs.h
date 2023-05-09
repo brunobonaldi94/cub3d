@@ -178,6 +178,12 @@ typedef struct	s_wall
 
 }	t_wall;
 
+typedef	struct	s_coordinates
+{
+	double	x;
+	double	y;
+}	t_coordinates;
+
 typedef struct s_cubd
 {
 	void		*mlx_ptr;
