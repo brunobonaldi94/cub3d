@@ -165,6 +165,19 @@ typedef struct s_intersection
 
 }	t_intersection;
 
+typedef struct	s_wall
+{
+	int	wall_top_pixel;
+	int	wall_bottom_pixel;
+	int	wall_height;
+	int	text_offset_x;
+	int	text_offset_y;
+	int	dist_from_top;
+	int	color;
+	int	text_num;
+
+}	t_wall;
+
 typedef struct s_cubd
 {
 	void		*mlx_ptr;

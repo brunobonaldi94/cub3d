@@ -97,7 +97,7 @@ int	get_text_offset_x(t_ray *ray)
 	return ((int) ray->wall_hit_x % TILE_SIZE);
 }
 
-/* int	get_wall_facing(t_ray *ray)
+int	get_wall_facing(t_ray *ray)
 {
 	if (ray->has_hit_vertical && is_ray_facing_right(ray->ray_angle))
 		return (EA);
@@ -107,53 +107,47 @@ int	get_text_offset_x(t_ray *ray)
 		return (NO);
 	else  if (!ray->has_hit_vertical && is_ray_facing_right(ray->ray_angle))
 		return (SO);
-} */
+	return (0);
+}
 
-void draw_wall(t_cubd *cub3d, int x, int wall_top_pixel, int wall_bottom_pixel)
+int	get_color_pixel(t_cubd *cub3d, int text_num, int text_offset_x, int text_offset_y)
+{
+	return (cub3d->textures[text_num].color_buffer
+		[cub3d->textures[text_num].width * text_offset_y + text_offset_x]);
+}
+
+void draw_walls(t_cubd *cub3d, int x, t_wall *wall)
 {
 	int	y;
-	int	color;
-	// int	dist_from_top;
-	// int	text_offset_y;
 
-	// y = -1;
-	// while (++y < wall_top_y)
-	// {
-	// 	dist_from_top = y + (wall_height / 2) - (WINDOW_HEIGHT / 2)''
-	// } */
-	y = wall_top_pixel;
-	while (y < wall_bottom_pixel)
+	y = wall->wall_top_pixel;
+	wall->text_num = get_wall_facing(&cub3d->rays[x]);
+	while (y < wall->wall_bottom_pixel)
 	{
-		color = get_pixel_at(&cub3d->textures[EA], x % 64, y % 64);
-		img_pix_put(&cub3d->img_game, x, y, color);
+		wall->dist_from_top = y + (wall->wall_height / 2) - (WINDOW_HEIGHT / 2);
+		wall->text_offset_y = wall->dist_from_top * ((double) cub3d->textures[wall->text_num].height / wall->wall_height);
+		wall->color = get_color_pixel(cub3d, wall->text_num, wall->text_offset_x, wall->text_offset_y);
+		img_pix_put(&cub3d->img_game, x, y, wall->color);
 		y++;
 	}
-	
 }
 
 void	render_3D_projected_walls(t_cubd *cub3d)
 {
-	int	x;
-	int	wall_strip_height;
-	int	wall_top_pixel;
-	int	wall_bottom_pixel;
-	// int	text_offset_x;
-	// int	text_num;
-	// int	text_width;
-	// int	text_height;
-
+	t_wall	wall;
+	int		x;
+	
 	x = -1;
 	while (++x < NUM_RAYS)
 	{
-		wall_strip_height = (int) get_projected_wall_height(
+		wall.wall_height = (int) get_projected_wall_height(
 				get_perp_dist(&cub3d->rays[x], cub3d->player),
 				get_dis_proj_plane());
-		wall_top_pixel = get_wall_top_pixel(wall_strip_height);
-		wall_bottom_pixel = get_wall_bottom_pixel(wall_strip_height);
-		draw_ceil(cub3d, wall_top_pixel, x);
-		//text_offset_x = get_text_offset_x(&cub3d->rays[x]);
-		//text_num = NO;
-		draw_wall(cub3d, x, wall_top_pixel, wall_bottom_pixel);
-		draw_floor(cub3d, wall_bottom_pixel, x);
+		wall.wall_top_pixel = get_wall_top_pixel(wall.wall_height);
+		wall.wall_bottom_pixel = get_wall_bottom_pixel(wall.wall_height);
+		draw_ceil(cub3d, wall.wall_top_pixel, x);
+		wall.text_offset_x = get_text_offset_x(&cub3d->rays[x]);
+		draw_walls(cub3d, x, &wall);
+		draw_floor(cub3d, wall.wall_bottom_pixel, x);
 	}
 }

@@ -16,7 +16,7 @@ void	init_texture(t_cubd *cub3d, t_img *img, char *path)
 {
 	img->mlx_img = mlx_xpm_file_to_image(
 			cub3d->mlx_ptr, path, &img->width, &img->height);
-	img->addr =
+	img->color_buffer = (int *)
 		mlx_get_data_addr(img->mlx_img,
 			&img->bits_per_pixel,
 			&img->line_length,

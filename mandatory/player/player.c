@@ -10,7 +10,7 @@ void	init_player(t_cubd *cub3d, t_player *player)
 	player->walk_direction = 0;
 	player->walk_side_direction = 0;
 	player->rotation_angle = (PI / 2);
-	player->walk_speed = 15;
+	player->walk_speed = 20;
 	player->turn_speed = 10 * (PI / 180);
 }
 
@@ -93,11 +93,11 @@ void	move_player(t_cubd *cub3d)
 
 		move_step = cub3d->player->walk_direction * cub3d->player->walk_speed;
 		side_step = cub3d->player->walk_side_direction * cub3d->player->walk_speed;
-		if (cub3d->player->walk_side_direction && cub3d->player->walk_direction)
+		/* if (cub3d->player->walk_side_direction && cub3d->player->walk_direction)
 		{
 			move_step /= 2;
 			side_step /= 2;
-		}
+		} */
 		new_player_x = cub3d->player->x + (cos(cub3d->player->rotation_angle) * move_step) + (cos(cub3d->player->rotation_angle + PI / 2) * side_step);
 		new_player_y = cub3d->player->y + sin(cub3d->player->rotation_angle) * move_step + (sin(cub3d->player->rotation_angle + PI / 2) * side_step);
 		if (has_wall_at(cub3d->game->map, new_player_x, new_player_y, cub3d))
