@@ -42,7 +42,7 @@ SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(MAP_VALIDATION)/map_properties_utils.c $(MAP_VALIDATION)/map_content_utils.c \
 			$(MAP_VALIDATION)/map_content_utils_II.c $(MAP_VALIDATION)/map_properties_utils_II.c \
 			$(MAP_VALIDATION)/map_loaders.c \
-			$(PLAYER)/map.c $(PLAYER)/map_utils.c $(PLAYER)/rectangle.c $(PLAYER)/player.c \
+			$(PLAYER)/map_utils.c $(PLAYER)/rectangle.c $(PLAYER)/player.c \
 			$(PLAYER)/line.c \
 			$(RAYCASTING)/raycasting.c $(RAYCASTING)/ray_facing.c $(RAYCASTING)/calculate_coordinates.c \
 			$(RAYCASTING)/calculate_steps.c $(RAYCASTING)/ray_utils.c\

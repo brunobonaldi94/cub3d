@@ -33,11 +33,6 @@ int	draw_line(t_cubd *cub3d, t_line *line)
 	line->pixel_y = line->begin_y;
 	while (line->pixels)
 	{
-		// img_pix_put(
-		// 	&cub3d->game->img,
-		// 	round(line->pixel_x),
-		// 	round(line->pixel_y),
-		// 	line->color);
 			img_pix_put(
 			&cub3d->img_game,
 			round(line->pixel_x),
