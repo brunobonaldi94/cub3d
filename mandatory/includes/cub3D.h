@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/08 22:17:13 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/08 22:32:01 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void		close_fd(int fd);
 void		game_clear(t_cubd *cub3D);
 void		clear_map_matrix(t_cubd *cub3D);
 void		clear_player(t_cubd *cub3D);
+void		destroy_textures(t_cubd *cub3D);
 // =============================================================================
 // DEBUG
 // =============================================================================

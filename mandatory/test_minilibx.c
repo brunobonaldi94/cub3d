@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 20:12:10 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/08 22:14:53 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/08 22:32:22 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ int	game_render(t_cubd *cub3D)
 	//render_image_to_window(cub3D, &cub3D->game->img, 0, 0);
 	//mlx_destroy_image(cub3D->mlx_ptr, cub3D->game->img.mlx_img);
 	mlx_destroy_image(cub3D->mlx_ptr, cub3D->img_game.mlx_img);
+	destroy_textures(cub3D);
 	return (TRUE);
 }
