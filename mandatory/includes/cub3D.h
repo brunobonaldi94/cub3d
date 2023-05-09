@@ -167,5 +167,16 @@ void		pixel_put(t_img *img, int x, int y, int color);
 int			rgb_to_hex(t_color color);
 void 		color_intensity(int *color, double factor);
 int			get_color_pixel(t_cubd *cub3d, int text_num, int text_offset_x, int text_offset_y);
+
+//CALC DIST WALLS
+double		get_perp_dist(t_ray *ray, t_player *player);
+double		get_dis_proj_plane(void);
+double		get_projected_wall_height(double perp_dist, double dist_project_plan);
+int			get_wall_top_pixel(int wall_strip_height);
+int			get_wall_bottom_pixel(int wall_strip_height);
+
+//WALL UTILS
+int			get_text_offset_x(t_ray *ray);
+int			get_wall_facing(t_ray *ray);
 #endif
 

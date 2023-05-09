@@ -30,10 +30,14 @@ int	rgb_to_hex(t_color color)
 
 void color_intensity(int *color, double factor)
 {
-    int a = (*color & 0xFF000000);
-    int r = (*color & 0x00FF0000) * factor;
-    int g = (*color & 0x0000FF00) * factor;
-    int b = (*color & 0x000000FF) * factor;
+	int	a;
+    int	r;
+    int	g;
+    int	b;
 
+    a = (*color & 0xFF000000);
+    r = (*color & 0x00FF0000) * factor;
+    g = (*color & 0x0000FF00) * factor;
+    b = (*color & 0x000000FF) * factor;
     *color = a | (r & 0x00FF0000) | (g & 0x0000FF00) | (b & 0x000000FF);
 }

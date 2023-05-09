@@ -47,7 +47,7 @@ SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(PLAYER)/graphics.c $(PLAYER)/images_utils.c \
 			$(RAYCASTING)/raycasting.c $(RAYCASTING)/ray_facing.c $(RAYCASTING)/calculate_coordinates.c \
 			$(RAYCASTING)/calculate_steps.c $(RAYCASTING)/ray_utils.c\
-			$(WALLS)/walls.c \
+			$(WALLS)/walls.c $(WALLS)/wall_utils.c $(WALLS)/calc_dist_wall.c \
 			$(DEBUG)/debug.c
 
 OBJS	:=	$(SRCS:.c=.o)
