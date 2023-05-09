@@ -1,43 +1,5 @@
 #include "cub3D.h"
 
-void	set_vert_intersects(t_cubd *cub3d, t_intersection *intersec,
-			double ray_angle)
-{
-	intersec->x_intercept = get_x_vertical_intercept(cub3d->player);
-	increment_x_vertical_intercept(&intersec->x_intercept, ray_angle);
-	intersec->y_intercept = get_y_vertical_intercept(
-			cub3d->player,
-			ray_angle,
-			intersec->x_intercept);
-}
-
-void	set_vertical_steps(t_intersection *intersec, double ray_angle)
-{
-	intersec->x_step = TILE_SIZE;
-	invert_x_vertical_step(&intersec->x_step, ray_angle);
-	intersec->y_step = TILE_SIZE * tan(ray_angle);
-	invert_y_vertical_step(&intersec->y_step, ray_angle);
-}
-
-void	set_horz_intersects(t_cubd *cub3d, t_intersection *intersec,
-			double ray_angle)
-{
-	intersec->y_intercept = get_y_horizontal_intercept(cub3d->player);
-	increment_y_horizontal_intercept(&intersec->y_intercept, ray_angle);
-	intersec->x_intercept = get_x_horizontal_intercept(
-			cub3d->player,
-			ray_angle,
-			intersec->y_intercept);
-}
-
-void	set_horz_steps(t_intersection *intersec, double ray_angle)
-{
-	intersec->y_step = TILE_SIZE;
-	invert_y_horizontal_step(&intersec->y_step, ray_angle);
-	intersec->x_step = TILE_SIZE / tan(ray_angle);
-	invert_x_horizontal_step(&intersec->x_step, ray_angle);
-}
-
 void	increment_steps(t_intersection *intersec)
 {
 	intersec->next_x += intersec->x_step;
@@ -54,18 +16,6 @@ void	set_next_start_position(t_intersection *intersec)
 {
 	intersec->next_x = intersec->x_intercept;
 	intersec->next_y = intersec->y_intercept;
-}
-
-void	horizontal_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle)
-{
-	set_horz_intersects(cub3d, intersec, ray_angle);
-	set_horz_steps(intersec, ray_angle);
-}
-
-void	vertical_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle)
-{
-	set_vert_intersects(cub3d, intersec, ray_angle);
-	set_vertical_steps(intersec, ray_angle);
 }
 
 void	set_to_check(t_intersection *intersec, double angle, int is_horz)
@@ -106,24 +56,6 @@ void	calculate_wall_hit(t_cubd *cub3d, t_intersection *intersec, double ray_angl
 		else
 			increment_steps(intersec);
 	}
-}
-
-void	set_rays_horz(t_cubd *cub3d, t_intersection *intersec, int column_id, double angle)
-{
-	cub3d->rays[column_id].distance = intersec->distance;
-	cub3d->rays[column_id].wall_hit_x = intersec->wall_hit_x;
-	cub3d->rays[column_id].wall_hit_y = intersec->wall_hit_y;
-	cub3d->rays[column_id].ray_angle = angle;
-	cub3d->rays[column_id].has_hit_vertical = FALSE;
-}
-
-void	set_rays_vert(t_cubd *cub3d, t_intersection *intersec, int column_id, double angle)
-{
-	cub3d->rays[column_id].distance = intersec->distance;
-	cub3d->rays[column_id].wall_hit_x = intersec->wall_hit_x;
-	cub3d->rays[column_id].wall_hit_y = intersec->wall_hit_y;	
-	cub3d->rays[column_id].ray_angle = angle;
-	cub3d->rays[column_id].has_hit_vertical = TRUE;
 }
 
 void	cast_ray(t_cubd *cub3d, double ray_angle, int column_id)

@@ -178,5 +178,20 @@ int			get_wall_bottom_pixel(int wall_strip_height);
 //WALL UTILS
 int			get_text_offset_x(t_ray *ray);
 int			get_wall_facing(t_ray *ray);
+
+//VERTICAL UTILS
+void		set_vert_intersects(t_cubd *cub3d, t_intersection *intersec,
+				double ray_angle);
+void		set_vertical_steps(t_intersection *intersec, double ray_angle);
+void		vertical_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle);
+void		set_rays_vert(t_cubd *cub3d, t_intersection *intersec, int column_id, double angle);
+
+
+//HORIZONTAL UTILS
+void		set_horz_intersects(t_cubd *cub3d, t_intersection *intersec,
+				double ray_angle);
+void		set_horz_steps(t_intersection *intersec, double ray_angle);
+void		horizontal_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle);
+void		set_rays_horz(t_cubd *cub3d, t_intersection *intersec, int column_id, double angle);
 #endif
 
