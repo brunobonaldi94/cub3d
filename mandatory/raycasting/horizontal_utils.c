@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   horizontal_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/09 16:35:31 by sjhony-x          #+#    #+#             */
+/*   Updated: 2023/05/09 16:35:32 by sjhony-x         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 void	set_horz_intersects(t_cubd *cub3d, t_intersection *intersec,
@@ -19,13 +31,15 @@ void	set_horz_steps(t_intersection *intersec, double ray_angle)
 	invert_x_horizontal_step(&intersec->x_step, ray_angle);
 }
 
-void	horizontal_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle)
+void	horizontal_intersection(t_cubd *cub3d,
+		t_intersection *intersec, double ray_angle)
 {
 	set_horz_intersects(cub3d, intersec, ray_angle);
 	set_horz_steps(intersec, ray_angle);
 }
 
-void	set_rays_horz(t_cubd *cub3d, t_intersection *intersec, int column_id, double angle)
+void	set_rays_horz(t_cubd *cub3d,
+		t_intersection *intersec, int column_id, double angle)
 {
 	cub3d->rays[column_id].distance = intersec->distance;
 	cub3d->rays[column_id].wall_hit_x = intersec->wall_hit_x;

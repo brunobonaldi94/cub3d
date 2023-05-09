@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calculate_rays.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/09 16:35:19 by sjhony-x          #+#    #+#             */
+/*   Updated: 2023/05/09 16:35:27 by sjhony-x         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 static void	increment_steps(t_intersection *intersec)
@@ -22,7 +34,6 @@ static void	set_to_check(t_intersection *intersec, double angle, int is_horz)
 {
 	intersec->x_to_check = intersec->next_x;
 	intersec->y_to_check = intersec->next_y;
-
 	if (is_horz)
 	{
 		if (is_ray_facing_up(angle))
@@ -35,14 +46,17 @@ static void	set_to_check(t_intersection *intersec, double angle, int is_horz)
 	}
 }
 
-void	calculate_wall_hit(t_cubd *cub3d, t_intersection *intersec, double ray_angle, int is_horz)
+void	calculate_wall_hit(t_cubd *cub3d, t_intersection *intersec,
+	double ray_angle, int is_horz)
 {
 	set_next_start_position(intersec);
 	intersec->distance = INT_MAX;
-	while (is_inside_map(cub3d->game->window, intersec->next_x, intersec->next_y))
+	while (is_inside_map(cub3d->game->window,
+			intersec->next_x, intersec->next_y))
 	{
 		set_to_check(intersec, ray_angle, is_horz);
-		if (has_wall_at(cub3d->game->map, intersec->x_to_check, intersec->y_to_check, cub3d))
+		if (has_wall_at(cub3d->game->map,
+				intersec->x_to_check, intersec->y_to_check, cub3d))
 		{
 			set_found_wall_hit(intersec);
 			intersec->distance = calculate_distance_between_points(

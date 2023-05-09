@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cast_rays.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/09 16:35:27 by sjhony-x          #+#    #+#             */
+/*   Updated: 2023/05/09 16:35:31 by sjhony-x         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "cub3D.h"
 
-static void cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
+static void	cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
 {
 	t_intersection	*intersec_horz;
 	t_intersection	*intersec_vert;
@@ -19,7 +30,6 @@ static void cast_ray(t_cubd *cub3d, double ray_angle, int column_id)
 		set_rays_vert(cub3d, intersec_vert, column_id, ray_angle);
 	ft_free_ptr((void **)&intersec_horz);
 	ft_free_ptr((void **)&intersec_vert);
-
 }
 
 void	cast_all_rays(t_cubd *cub3d, t_player *player)

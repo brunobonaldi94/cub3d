@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vertical_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/09 16:35:42 by sjhony-x          #+#    #+#             */
+/*   Updated: 2023/05/09 16:35:42 by sjhony-x         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 void	set_vert_intersects(t_cubd *cub3d, t_intersection *intersec,
@@ -19,17 +31,19 @@ void	set_vertical_steps(t_intersection *intersec, double ray_angle)
 	invert_y_vertical_step(&intersec->y_step, ray_angle);
 }
 
-void	vertical_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle)
+void	vertical_intersection(t_cubd *cub3d,
+		t_intersection *intersec, double ray_angle)
 {
 	set_vert_intersects(cub3d, intersec, ray_angle);
 	set_vertical_steps(intersec, ray_angle);
 }
 
-void	set_rays_vert(t_cubd *cub3d, t_intersection *intersec, int column_id, double angle)
+void	set_rays_vert(t_cubd *cub3d,
+		t_intersection *intersec, int column_id, double angle)
 {
 	cub3d->rays[column_id].distance = intersec->distance;
 	cub3d->rays[column_id].wall_hit_x = intersec->wall_hit_x;
-	cub3d->rays[column_id].wall_hit_y = intersec->wall_hit_y;	
+	cub3d->rays[column_id].wall_hit_y = intersec->wall_hit_y;
 	cub3d->rays[column_id].ray_angle = angle;
 	cub3d->rays[column_id].has_hit_vertical = TRUE;
 }

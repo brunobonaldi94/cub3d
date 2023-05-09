@@ -28,7 +28,7 @@ void	invert_y_vertical_step(double *y_step, double angle)
 void	invert_x_horizontal_step(double *x_step, double angle)
 {
 	if ((is_ray_facing_left(angle) && *x_step > 0)
-		|| ( is_ray_facing_right(angle) && *x_step < 0))
+		|| (is_ray_facing_right(angle) && *x_step < 0))
 		*x_step *= -1;
 }
 

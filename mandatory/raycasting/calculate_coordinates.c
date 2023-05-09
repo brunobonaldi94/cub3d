@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_coordinates.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/02 21:26:00 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/02 21:50:33 by bbonaldi         ###   ########.fr       */
+/*   Created: 2023/05/09 16:36:30 by sjhony-x          #+#    #+#             */
+/*   Updated: 2023/05/09 16:36:32 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
