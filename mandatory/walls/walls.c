@@ -131,6 +131,7 @@ void draw_walls(t_cubd *cub3d, int x, t_wall *wall)
 
 	y = wall->wall_top_pixel;
 	wall->text_num = get_wall_facing(&cub3d->rays[x]);
+	wall->text_offset_x = get_text_offset_x(&cub3d->rays[x]);
 	while (y < wall->wall_bottom_pixel)
 	{
 		wall->dist_from_top = y + (wall->wall_height / 2) - (WINDOW_HEIGHT / 2);
@@ -157,7 +158,6 @@ void	render_3D_projected_walls(t_cubd *cub3d)
 		wall.wall_top_pixel = get_wall_top_pixel(wall.wall_height);
 		wall.wall_bottom_pixel = get_wall_bottom_pixel(wall.wall_height);
 		draw_ceil(cub3d, wall.wall_top_pixel, x);
-		wall.text_offset_x = get_text_offset_x(&cub3d->rays[x]);
 		draw_walls(cub3d, x, &wall);
 		draw_floor(cub3d, wall.wall_bottom_pixel, x);
 	}
