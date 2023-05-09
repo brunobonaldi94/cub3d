@@ -116,6 +116,15 @@ int	get_color_pixel(t_cubd *cub3d, int text_num, int text_offset_x, int text_off
 		[cub3d->textures[text_num].width * text_offset_y + text_offset_x]);
 }
 
+void color_intensity(int *color, double factor) {
+    int a = (*color & 0xFF000000);
+    int r = (*color & 0x00FF0000) * factor;
+    int g = (*color & 0x0000FF00) * factor;
+    int b = (*color & 0x000000FF) * factor;
+
+    *color = a | (r & 0x00FF0000) | (g & 0x0000FF00) | (b & 0x000000FF);
+}
+
 void draw_walls(t_cubd *cub3d, int x, t_wall *wall)
 {
 	int	y;
@@ -127,6 +136,8 @@ void draw_walls(t_cubd *cub3d, int x, t_wall *wall)
 		wall->dist_from_top = y + (wall->wall_height / 2) - (WINDOW_HEIGHT / 2);
 		wall->text_offset_y = wall->dist_from_top * ((double) cub3d->textures[wall->text_num].height / wall->wall_height);
 		wall->color = get_color_pixel(cub3d, wall->text_num, wall->text_offset_x, wall->text_offset_y);
+		if (cub3d->rays[x].has_hit_vertical)
+			color_intensity(&wall->color, 0.6);
 		img_pix_put(&cub3d->img_game, x, y, wall->color);
 		y++;
 	}
