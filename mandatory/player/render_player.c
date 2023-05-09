@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_player.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/09 16:01:14 by sjhony-x          #+#    #+#             */
+/*   Updated: 2023/05/09 16:02:04 by sjhony-x         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-static void render_only_player(t_cubd *cub3d, t_player *player)
+static void	render_only_player(t_cubd *cub3d, t_player *player)
 {
 	t_rectangle	player_rect;
 
@@ -12,12 +24,12 @@ static void render_only_player(t_cubd *cub3d, t_player *player)
 	draw_rect(&cub3d->img_game, &player_rect);
 }
 
-static void render_ray_to_play(t_cubd *cub3d, t_player *player, t_line **line)
-{	
-	*line = draw_ray(cub3d, 
-		player->x + cos(player->rotation_angle) * RAY_LENGHT,
-		player->y + sin(player->rotation_angle) * RAY_LENGHT,
-		WHITE_PIXEL);
+static void	render_ray_to_play(t_cubd *cub3d, t_player *player, t_line **line)
+{
+	*line = draw_ray(cub3d,
+			player->x + cos(player->rotation_angle) * RAY_LENGHT,
+			player->y + sin(player->rotation_angle) * RAY_LENGHT,
+			WHITE_PIXEL);
 }
 
 void	render_player(t_cubd *cub3d, t_player *player)
@@ -26,5 +38,5 @@ void	render_player(t_cubd *cub3d, t_player *player)
 
 	render_only_player(cub3d, player);
 	render_ray_to_play(cub3d, player, &line);
-    player->line = line;
+	player->line = line;
 }

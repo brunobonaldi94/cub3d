@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/09 15:58:12 by sjhony-x          #+#    #+#             */
+/*   Updated: 2023/05/09 15:58:13 by sjhony-x         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 void	init_player(t_cubd *cub3d, t_player *player)
@@ -16,11 +28,13 @@ void	init_player(t_cubd *cub3d, t_player *player)
 
 t_coordinates	get_new_pos(t_cubd *cub3d, double move_step, double side_step)
 {
-	t_coordinates coords;
+	t_coordinates	coords;
 
-	coords.x = cub3d->player->x + (cos(cub3d->player->rotation_angle) * move_step) 
+	coords.x = cub3d->player->x
+		+ (cos(cub3d->player->rotation_angle) * move_step)
 		+ (cos(cub3d->player->rotation_angle + PI / 2) * side_step);
-	coords.y = cub3d->player->y + sin(cub3d->player->rotation_angle) * move_step 
+	coords.y = cub3d->player->y
+		+ sin(cub3d->player->rotation_angle) * move_step
 		+ (sin(cub3d->player->rotation_angle + PI / 2) * side_step);
 	return (coords);
 }
@@ -34,15 +48,15 @@ void	move_player(t_cubd *cub3d)
 
 	if (cub3d->player->turn_direction)
 	{
-		cub3d->player->rotation_angle += cub3d->player->turn_direction 
+		cub3d->player->rotation_angle += cub3d->player->turn_direction
 			* cub3d->player->turn_speed;
 		normalize_angle(&cub3d->player->rotation_angle);
 	}
 	if (cub3d->player->walk_direction || cub3d->player->walk_side_direction)
 	{
-
 		move_step = cub3d->player->walk_direction * cub3d->player->walk_speed;
-		side_step = cub3d->player->walk_side_direction * cub3d->player->walk_speed;
+		side_step = cub3d->player->walk_side_direction
+			* cub3d->player->walk_speed;
 		coords.x = get_new_pos(cub3d, move_step, side_step).x;
 		coords.y = get_new_pos(cub3d, move_step, side_step).y;
 		if (has_wall_at(cub3d->game->map, coords.x, coords.y, cub3d))

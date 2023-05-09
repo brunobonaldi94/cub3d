@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rectangle.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/09 16:00:58 by sjhony-x          #+#    #+#             */
+/*   Updated: 2023/05/09 16:01:01 by sjhony-x         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-int draw_rect(t_img *img, t_rectangle *rect)
+int	draw_rect(t_img *img, t_rectangle *rect)
 {
 	int	i;
 	int	j;
@@ -18,7 +30,7 @@ int draw_rect(t_img *img, t_rectangle *rect)
 
 t_rectangle	*create_rect(int x, int y, int width, int height)
 {
-	t_rectangle *rect;
+	t_rectangle	*rect;
 
 	rect = malloc(sizeof(t_rectangle));
 	rect->x = x;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 21:28:02 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/07 21:30:47 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:54:34 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ int	draw_line(t_cubd *cub3d, t_line *line)
 	line->pixel_y = line->begin_y;
 	while (line->pixels)
 	{
-			img_pix_put(
+		img_pix_put(
 			&cub3d->img_game,
 			round(line->pixel_x),
 			round(line->pixel_y),
 			line->color);
-		line->pixel_x += increment_x;
-		line->pixel_y += increment_y;
-		line->pixels--;
+			line->pixel_x += increment_x;
+			line->pixel_y += increment_y;
+			line->pixels--;
 	}
 	return (0);
 }
