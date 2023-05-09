@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:52:18 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/08 18:59:50 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/08 22:29:09 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int	get_text_offset_x(t_ray *ray)
 void draw_wall(t_cubd *cub3d, int x, int wall_top_pixel, int wall_bottom_pixel)
 {
 	int	y;
+	int	color;
 	// int	dist_from_top;
 	// int	text_offset_y;
 
@@ -123,7 +124,9 @@ void draw_wall(t_cubd *cub3d, int x, int wall_top_pixel, int wall_bottom_pixel)
 	y = wall_top_pixel;
 	while (y < wall_bottom_pixel)
 	{
-		img_pix_put(&cub3d->img_game, x, y++, RED_PIXEL);
+		color = get_pixel_at(&cub3d->textures[EA], x % 64, y % 64);
+		img_pix_put(&cub3d->img_game, x, y, color);
+		y++;
 	}
 	
 }

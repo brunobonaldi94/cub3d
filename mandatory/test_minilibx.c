@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 20:12:10 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/08 18:12:29 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/08 22:14:53 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	render_rects(t_cubd *cub3d)
 int	game_render(t_cubd *cub3D)
 {
 	//create_image(cub3D, &cub3D->game->img, WINDOW_WIDTH, WINDOW_HEIGHT);
+	init_textures(cub3D);
 	create_image(cub3D, &cub3D->img_game, WINDOW_WIDTH, WINDOW_HEIGHT);
 	render_rects(cub3D);
 	render_player(cub3D, cub3D->player);

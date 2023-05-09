@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonaldi <bbonaldi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/04 20:35:32 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/08 22:17:13 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ int			init_game(t_cubd *cub3D, char *argv[]);
 void		init_variables(t_cubd *cub3D);
 void		init_map(t_map	*map);
 void		init_colors(t_color *color);
+void		init_textures(t_cubd *cub3d);
+void		init_texture(t_cubd *cub3d, t_img *img, char *path);
+int			get_pixel_at(t_img *img, int x, int y);
 // =============================================================================
 // ERROR HANDLER
 // =============================================================================

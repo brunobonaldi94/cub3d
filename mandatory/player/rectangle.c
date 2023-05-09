@@ -10,6 +10,15 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
+int	get_pixel_at(t_img *img, int x, int y)
+{
+	char	*pixel;
+
+	pixel = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	return (*(unsigned int *)pixel);
+}
+
+
 int draw_rect(t_img *img, t_rectangle *rect)
 {
 	int	i;
