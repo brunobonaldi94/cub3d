@@ -27,7 +27,7 @@ int	get_wall_facing(t_ray *ray)
 		return (WE);
 	else if (!ray->has_hit_vertical && is_ray_facing_up(ray->ray_angle))
 		return (NO);
-	else  if (!ray->has_hit_vertical && is_ray_facing_right(ray->ray_angle))
+	else if (!ray->has_hit_vertical && is_ray_facing_right(ray->ray_angle))
 		return (SO);
 	return (0);
 }

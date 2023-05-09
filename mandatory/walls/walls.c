@@ -21,7 +21,7 @@ void	draw_ceil(t_cubd *cub3d, int wall_top_pixel, int x)
 	color = rgb_to_hex(cub3d->map.ceiling_color);
 	while (++y < wall_top_pixel)
 	{
-		if (x < (cub3d->game->window.width) * MINIMAP_SCALE 
+		if (x < (cub3d->game->window.width) * MINIMAP_SCALE
 			&& y > (cub3d->game->window.height) * MINIMAP_SCALE)
 			img_pix_put(&cub3d->img_game, x, y, color);
 		else if (x > (cub3d->game->window.width) * MINIMAP_SCALE)
@@ -31,7 +31,6 @@ void	draw_ceil(t_cubd *cub3d, int wall_top_pixel, int x)
 
 void	draw_floor(t_cubd *cub3d, int wall_bottom_pixel, int x)
 {
-
 	int	y;
 	int	color;
 
@@ -43,7 +42,7 @@ void	draw_floor(t_cubd *cub3d, int wall_bottom_pixel, int x)
 	}
 }
 
-void draw_walls(t_cubd *cub3d, int x, t_wall *wall)
+void	draw_walls(t_cubd *cub3d, int x, t_wall *wall)
 {
 	int	y;
 
@@ -53,8 +52,11 @@ void draw_walls(t_cubd *cub3d, int x, t_wall *wall)
 	while (y < wall->wall_bottom_pixel)
 	{
 		wall->dist_from_top = y + (wall->wall_height / 2) - (WINDOW_HEIGHT / 2);
-		wall->text_offset_y = wall->dist_from_top * ((double) cub3d->textures[wall->text_num].height / wall->wall_height);
-		wall->color = get_color_pixel(cub3d, wall->text_num, wall->text_offset_x, wall->text_offset_y);
+		wall->text_offset_y = wall->dist_from_top
+			* ((double) cub3d->textures
+			[wall->text_num].height / wall->wall_height);
+		wall->color = get_color_pixel(cub3d,
+				wall->text_num, wall->text_offset_x, wall->text_offset_y);
 		if (cub3d->rays[x].has_hit_vertical)
 			color_intensity(&wall->color, 0.6);
 		img_pix_put(&cub3d->img_game, x, y, wall->color);
@@ -62,11 +64,11 @@ void draw_walls(t_cubd *cub3d, int x, t_wall *wall)
 	}
 }
 
-void	render_3D_projected_walls(t_cubd *cub3d)
+void	render_3d_projected_walls(t_cubd *cub3d)
 {
 	t_wall	wall;
 	int		x;
-	
+
 	x = -1;
 	while (++x < NUM_RAYS)
 	{
