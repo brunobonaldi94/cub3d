@@ -155,9 +155,11 @@ t_line		*draw_ray(t_cubd *cub3d, double end_x, double end_y, int color);
 double		calculate_distance_between_points(double x1, double y1,
 			double x2, double y2);
 
-
+//RENDER
 void		render_rays(t_cubd *cub3d) ;
-
 void		render_3D_projected_walls(t_cubd *cub3d);
+
+//MINIMAP
+int			render_minimap(t_cubd *cub3d);
 #endif
 

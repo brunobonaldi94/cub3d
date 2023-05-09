@@ -15,6 +15,7 @@ MAP_VALIDATION	:= $(MANDATORY)/map_validation
 PLAYER			:= $(MANDATORY)/player
 RAYCASTING		:= $(MANDATORY)/raycasting
 WALLS			:= $(MANDATORY)/walls
+GAME			:= $(MANDATORY)/game
 DEBUG			:= $(MANDATORY)/debug
 # ==============================================================================
 # VARIABLES
@@ -30,7 +31,7 @@ INCLUDES = -I$(LIBFT_PATH)/includes -I$(MANDATORY)/includes
 LIBRARY_MLX_PATH = -L/usr/lib -lmlx -lXext -lX11 -lm -lz
 
 SRCS	:=	$(MANDATORY)/cub3D.c \
-			$(MANDATORY)/test_minilibx.c \
+			$(GAME)/game.c $(GAME)/minimap.c \
 			$(GAME_INIT)/game_init.c $(GAME_INIT)/game_init_utils.c \
 			$(GAME_INIT)/images_init.c \
 			$(ERROR_HANDLER)/error_handler.c \
