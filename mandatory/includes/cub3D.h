@@ -161,5 +161,11 @@ void		render_3D_projected_walls(t_cubd *cub3d);
 
 //MINIMAP
 int			render_minimap(t_cubd *cub3d);
+
+//GRAPHICS
+void		pixel_put(t_img *img, int x, int y, int color);
+int			rgb_to_hex(t_color color);
+void 		color_intensity(int *color, double factor);
+int			get_color_pixel(t_cubd *cub3d, int text_num, int text_offset_x, int text_offset_y);
 #endif
 
