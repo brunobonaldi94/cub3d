@@ -45,9 +45,9 @@ SRCS	:=	$(MANDATORY)/cub3D.c \
 			$(PLAYER)/map_utils.c $(PLAYER)/rectangle.c $(PLAYER)/player.c \
 			$(PLAYER)/line.c $(PLAYER)/render_player.c $(PLAYER)/player_utils.c\
 			$(PLAYER)/graphics.c $(PLAYER)/images_utils.c \
-			$(RAYCASTING)/raycasting.c $(RAYCASTING)/ray_facing.c $(RAYCASTING)/calculate_coordinates.c \
-			$(RAYCASTING)/calculate_steps.c $(RAYCASTING)/ray_utils.c\
-			$(RAYCASTING)/vertical_utils.c $(RAYCASTING)/horizontal_utils.c \
+			$(RAYCASTING)/calculate_rays.c $(RAYCASTING)/ray_facing.c $(RAYCASTING)/calculate_coordinates.c \
+			$(RAYCASTING)/calculate_steps.c $(RAYCASTING)/ray_utils.c $(RAYCASTING)/render_rays.c \
+			$(RAYCASTING)/vertical_utils.c $(RAYCASTING)/horizontal_utils.c  $(RAYCASTING)/cast_rays.c\
 			$(WALLS)/walls.c $(WALLS)/wall_utils.c $(WALLS)/calc_dist_wall.c \
 			$(DEBUG)/debug.c
 

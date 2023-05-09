@@ -156,7 +156,7 @@ double		calculate_distance_between_points(double x1, double y1,
 			double x2, double y2);
 
 //RENDER
-void		render_rays(t_cubd *cub3d) ;
+void		render_rays(t_cubd *cub3d);
 void		render_3D_projected_walls(t_cubd *cub3d);
 
 //MINIMAP
@@ -193,5 +193,12 @@ void		set_horz_intersects(t_cubd *cub3d, t_intersection *intersec,
 void		set_horz_steps(t_intersection *intersec, double ray_angle);
 void		horizontal_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle);
 void		set_rays_horz(t_cubd *cub3d, t_intersection *intersec, int column_id, double angle);
+
+//CAST RAYS
+void		cast_all_rays(t_cubd *cub3d, t_player *player);
+
+//CALCULATE RAYS
+void		calculate_wall_hit(t_cubd *cub3d, t_intersection *intersec, double ray_angle, int is_horz);
+void		cast_all_rays(t_cubd *cub3d, t_player *player);
 #endif
 
