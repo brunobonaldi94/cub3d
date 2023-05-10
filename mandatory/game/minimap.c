@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/09 21:01:26 by bbonaldi          #+#    #+#             */
+/*   Updated: 2023/05/09 21:28:20 by bbonaldi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-static int  set_wall_or_empty_color(t_rectangle *rect, char map_char)
+static void	draw_wall_or_empty_minimap(t_cubd *cub3d, t_rectangle *rect,
+				char map_char, t_cord cord)
 {
 	int	color_set;
 
@@ -13,7 +26,11 @@ static int  set_wall_or_empty_color(t_rectangle *rect, char map_char)
 		set_color_rect(rect, SADDLE_BROW_PIXEL);
 	else
 		color_set = FALSE;
-	return (color_set);
+	if (!color_set)
+		return ;
+	rect->x = cord.x * TILE_SIZE * MINIMAP_SCALE;
+	rect->y = cord.y * TILE_SIZE * MINIMAP_SCALE;
+	render_rect(cub3d, rect);
 }
 
 int	render_minimap(t_cubd *cub3d)
@@ -31,12 +48,8 @@ int	render_minimap(t_cubd *cub3d)
 		x = 0;
 		while (x < cub3d->map.dimensions.columns)
 		{
-			if (set_wall_or_empty_color(&rect, cub3d->game->map[y][x]))
-			{
-				rect.x = x * TILE_SIZE * MINIMAP_SCALE;
-				rect.y = y * TILE_SIZE * MINIMAP_SCALE;
-				render_rect(cub3d, &rect);
-			}
+			draw_wall_or_empty_minimap(cub3d, &rect, cub3d->game->map[y][x],
+				(t_cord){x, y});
 			x++;
 		}
 		y++;

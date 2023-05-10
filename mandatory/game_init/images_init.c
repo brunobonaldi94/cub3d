@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:52:37 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/08 22:15:09 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/09 22:05:57 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,17 @@ void	init_textures(t_cubd *cub3d)
 	init_texture(cub3d, &cub3d->textures[NO], cub3d->map.no_file);
 	init_texture(cub3d, &cub3d->textures[WE], cub3d->map.we_file);
 	init_texture(cub3d, &cub3d->textures[EA], cub3d->map.ea_file);
+}
+
+void	init_img_game(t_cubd *cub3D)
+{
+	cub3D->img_game.mlx_img = mlx_new_image(cub3D->mlx_ptr, WINDOW_WIDTH,
+			WINDOW_HEIGHT);
+	cub3D->img_game.height = WINDOW_HEIGHT;
+	cub3D->img_game.width = WINDOW_WIDTH;
+	cub3D->img_game.color_buffer = (int *)
+		mlx_get_data_addr(cub3D->img_game.mlx_img,
+			&cub3D->img_game.bits_per_pixel,
+			&cub3D->img_game.line_length,
+			&cub3D->img_game.endian);
 }

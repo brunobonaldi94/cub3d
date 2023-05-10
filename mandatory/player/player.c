@@ -3,27 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:58:12 by sjhony-x          #+#    #+#             */
-/*   Updated: 2023/05/09 15:58:13 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2023/05/09 21:34:57 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_player(t_cubd *cub3d, t_player *player)
+void	init_player(t_cubd *cub3d)
 {
-	player->x = cub3d->game->window.width / 2;
-	player->y = cub3d->game->window.height / 2;
-	player->width = 1;
-	player->height = 1;
-	player->turn_direction = 0;
-	player->walk_direction = 0;
-	player->walk_side_direction = 0;
-	player->rotation_angle = (PI / 2);
-	player->walk_speed = 20;
-	player->turn_speed = 10 * (PI / 180);
+	cub3d->player = (t_player *)malloc(sizeof(t_player));
+	cub3d->player->x = cub3d->game->window.width / 2;
+	cub3d->player->y = cub3d->game->window.height / 2;
+	cub3d->player->width = 1;
+	cub3d->player->height = 1;
+	cub3d->player->turn_direction = 0;
+	cub3d->player->walk_direction = 0;
+	cub3d->player->walk_side_direction = 0;
+	cub3d->player->rotation_angle = (PI / 2);
+	cub3d->player->walk_speed = 20;
+	cub3d->player->turn_speed = 10 * (PI / 180);
 }
 
 t_coordinates	get_new_pos(t_cubd *cub3d, double move_step, double side_step)

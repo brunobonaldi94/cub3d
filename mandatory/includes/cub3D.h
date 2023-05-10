@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:31:49 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/08 22:32:01 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/09 21:40:02 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,10 @@
 // =============================================================================
 int			init_mlx(t_cubd *cub3D);
 int			init_game(t_cubd *cub3D, char *argv[]);
-void		init_variables(t_cubd *cub3D);
 void		init_map(t_map	*map);
 void		init_colors(t_color *color);
 void		init_textures(t_cubd *cub3d);
 void		init_texture(t_cubd *cub3d, t_img *img, char *path);
-int			get_pixel_at(t_img *img, int x, int y);
 // =============================================================================
 // ERROR HANDLER
 // =============================================================================
@@ -103,7 +101,7 @@ t_window	get_window_size(char **map);
 t_window	get_window(t_map *map);
 int			render_rect(t_cubd *cub3d, t_rectangle *rect);
 void		render_player(t_cubd *cub3d, t_player *player);
-void		init_player(t_cubd *cub3d, t_player *player);
+void		init_player(t_cubd *cub3d);
 
 //RECTANGLE
 void		img_pix_put(t_img *img, int x, int y, int color);
@@ -115,20 +113,19 @@ void		render_image_to_window(t_cubd *cub3d, t_img *img, int x, int y);
 
 int			draw_line(t_cubd *cub3d, t_line *line);
 void		move_player_events(t_cubd *cub3d, t_player *player, int key);
-
 int			key_up(int key, t_cubd *cub3d);
 int			key_down(int key, t_cubd *cub3d);
-
-
 void		cast_all_rays(t_cubd *cub3d, t_player *player);
-
-// RAY FACING
-int 		is_ray_facing_down(double angle);
-int 		is_ray_facing_up(double angle);
-int 		is_ray_facing_right(double angle);
-int 		is_ray_facing_left(double angle);
-
-//CALCULATE COORDINATES
+// =============================================================================
+// RAY_FACING
+// =============================================================================
+int			is_ray_facing_down(double angle);
+int			is_ray_facing_up(double angle);
+int			is_ray_facing_right(double angle);
+int			is_ray_facing_left(double angle);
+// =============================================================================
+// CALCULATE_COORDINATES
+// =============================================================================
 double		get_y_horizontal_intercept(t_player *player);
 double		get_y_vertical_intercept(t_player *player, double angle,
 				double x_intercept);
@@ -137,68 +134,84 @@ double		get_x_horizontal_intercept(t_player *player, double angle,
 double		get_x_vertical_intercept(t_player *player);
 void		increment_y_horizontal_intercept(double *y_intercept, double angle);
 void		increment_x_vertical_intercept(double *x_intercept, double angle);
-
-//CALCULATE STEPS
+// =============================================================================
+// CALCULATE_STEPS
+// =============================================================================
 void		invert_y_vertical_step(double *y_step, double angle);
 void		invert_x_vertical_step(double *x_step, double angle);
 void		invert_x_horizontal_step(double *x_step, double angle);
 void		invert_y_horizontal_step(double *y_step, double angle);
-//UTILS
-
+// =============================================================================
+// UTILS
+// =============================================================================
 void		normalize_angle(double *angle);
 int			is_inside_map(t_window window, double new_x, double new_y);
 int			has_wall_at(char **map, double new_x, double new_y, t_cubd *cub3d);
-
-
-//UTILS RAYS
+// =============================================================================
+// RAY_UTILS
+// =============================================================================
 t_line		*draw_ray(t_cubd *cub3d, double end_x, double end_y, int color);
 double		calculate_distance_between_points(double x1, double y1,
-			double x2, double y2);
-
-//RENDER
+				double x2, double y2);
+// =============================================================================
+// RENDER
+// =============================================================================
 void		render_rays(t_cubd *cub3d);
 void		render_3d_projected_walls(t_cubd *cub3d);
-
-//MINIMAP
+// =============================================================================
+// MINI_MAP
+// =============================================================================
 int			render_minimap(t_cubd *cub3d);
-
-//GRAPHICS
+// =============================================================================
+// GRAPHICS
+// =============================================================================
 void		pixel_put(t_img *img, int x, int y, int color);
 int			rgb_to_hex(t_color color);
-void 		color_intensity(int *color, double factor);
-int			get_color_pixel(t_cubd *cub3d, int text_num, int text_offset_x, int text_offset_y);
-
-//CALC DIST WALLS
+void		color_intensity(int *color, double factor);
+int			get_color_pixel(t_cubd *cub3d, int text_num,
+				int text_offset_x, int text_offset_y);
+// =============================================================================
+// CALCULATE_WALL_DISTANCE
+// =============================================================================
 double		get_perp_dist(t_ray *ray, t_player *player);
 double		get_dis_proj_plane(void);
-double		get_projected_wall_height(double perp_dist, double dist_project_plan);
+double		get_projected_wall_height(double perp_dist,
+				double dist_project_plan);
 int			get_wall_top_pixel(int wall_strip_height);
 int			get_wall_bottom_pixel(int wall_strip_height);
-
-//WALL UTILS
+// =============================================================================
+// WALL_UTILS
+// =============================================================================
 int			get_text_offset_x(t_ray *ray);
 int			get_wall_facing(t_ray *ray);
-
-//VERTICAL UTILS
+// =============================================================================
+// VERTICAL_UTILS
+// =============================================================================
 void		set_vert_intersects(t_cubd *cub3d, t_intersection *intersec,
 				double ray_angle);
 void		set_vertical_steps(t_intersection *intersec, double ray_angle);
-void		vertical_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle);
-void		set_rays_vert(t_cubd *cub3d, t_intersection *intersec, int column_id, double angle);
-
-
-//HORIZONTAL UTILS
+void		vertical_intersection(t_cubd *cub3d,
+				t_intersection *intersec, double ray_angle);
+void		set_rays_vert(t_cubd *cub3d, t_intersection *intersec,
+				int column_id, double angle);
+// =============================================================================
+// HORIZONTAL_UTILS
+// =============================================================================
 void		set_horz_intersects(t_cubd *cub3d, t_intersection *intersec,
 				double ray_angle);
 void		set_horz_steps(t_intersection *intersec, double ray_angle);
-void		horizontal_intersection(t_cubd *cub3d, t_intersection *intersec, double ray_angle);
-void		set_rays_horz(t_cubd *cub3d, t_intersection *intersec, int column_id, double angle);
-
-//CAST RAYS
+void		horizontal_intersection(t_cubd *cub3d, t_intersection *intersec,
+				double ray_angle);
+void		set_rays_horz(t_cubd *cub3d, t_intersection *intersec,
+				int column_id, double angle);
+// =============================================================================
+// CAST_RAYS
+// =============================================================================
 void		cast_all_rays(t_cubd *cub3d, t_player *player);
-
-//CALCULATE RAYS
-void		calculate_wall_hit(t_cubd *cub3d, t_intersection *intersec, double ray_angle, int is_horz);
+// =============================================================================
+// CALCULATE_RAYS
+// =============================================================================
+void		calculate_wall_hit(t_cubd *cub3d, t_intersection *intersec,
+				double ray_angle, int is_horz);
 void		cast_all_rays(t_cubd *cub3d, t_player *player);
 #endif
-

@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:07:35 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/08 17:59:26 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/09 21:30:05 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,9 @@ floor or ceiling!"
 # define BLACK_PIXEL 0x000000
 # define YELLOW_PIXEL 0xFFFF00
 # define BLUE_PIXEL 0X0000FF
-# define SADDLE_BROW_PIXEL 0X8B4513	
+# define SADDLE_BROW_PIXEL 0X8B4513
 # define GOLDENROD_PIXEL 0XDAA520
 # define DARKGOLDENROD_PIXEL 0XB8860B
-# define CHOCOLATE_PIXEL 0XD2691E
 # define NAVAJOWHITE_PIXEL 0XFFDEAD
 //GAME PROPERTIES
 # define WINDOW_WIDTH 1280
@@ -115,13 +114,5 @@ floor or ceiling!"
 # define NUM_RAYS WINDOW_WIDTH
 
 # define RAY_LENGHT 60
-
-typedef enum e_textures 
-{ 
-	SO,
-	NO,
-	WE,
-	EA,
-}	t_textures;
 
 #endif
