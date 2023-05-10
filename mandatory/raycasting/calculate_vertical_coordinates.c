@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_events.c                                      :+:      :+:    :+:   */
+/*   calculate_vertical_coordinates .c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 15:30:19 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/09 21:32:45 by bbonaldi         ###   ########.fr       */
+/*   Created: 2023/05/09 16:36:30 by sjhony-x          #+#    #+#             */
+/*   Updated: 2023/05/09 20:46:57 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	deal_key_press(int key, t_cubd *cub3D);
-
-void	game_loop_events(t_cubd *cub3D)
+double	get_y_vertical_intercept(t_player *player, double angle,
+			double x_intercept)
 {
-	mlx_expose_hook(cub3D->win_ptr, &game_render, cub3D);
-	mlx_hook(cub3D->win_ptr, KEY_UP_EVENT, 1l << 1, &key_up, cub3D);
-	mlx_hook(cub3D->win_ptr, KEY_DOWN_EVENT, 1l << 0, &key_down, cub3D);
-	mlx_hook(cub3D->win_ptr, DESTROY_NOTIFY_EVENT, 1L << 17, &game_exit,
-		cub3D);
+	return (player->y + (x_intercept - player->x) * tan(angle));
+}
+
+double	get_x_vertical_intercept(t_player *player)
+{
+	return (floor(player->x / TILE_SIZE) * TILE_SIZE);
+}
+
+void	increment_x_vertical_intercept(double *x_intercept, double angle)
+{
+	if (is_ray_facing_right(angle))
+		*x_intercept += TILE_SIZE;
 }

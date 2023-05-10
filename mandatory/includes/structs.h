@@ -6,12 +6,20 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:16:51 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/08 18:21:54 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/09 21:31:24 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+typedef enum e_textures
+{
+	SO,
+	NO,
+	WE,
+	EA,
+}	t_textures;
 
 typedef struct s_window
 {
@@ -165,7 +173,7 @@ typedef struct s_intersection
 
 }	t_intersection;
 
-typedef struct	s_wall
+typedef struct s_wall
 {
 	int	wall_top_pixel;
 	int	wall_bottom_pixel;
@@ -178,7 +186,7 @@ typedef struct	s_wall
 
 }	t_wall;
 
-typedef	struct	s_coordinates
+typedef struct s_coordinates
 {
 	double	x;
 	double	y;
@@ -195,7 +203,5 @@ typedef struct s_cubd
 	t_img		img_game;
 	t_img		textures[4];
 }	t_cubd;
-
-
 
 #endif
