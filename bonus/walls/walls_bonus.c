@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   walls.c                                            :+:      :+:    :+:   */
+/*   walls_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:52:18 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/11 21:36:33 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/10 23:15:44 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 void	draw_ceil(t_cubd *cub3d, int wall_top_pixel, int x)
 {
@@ -20,7 +20,13 @@ void	draw_ceil(t_cubd *cub3d, int wall_top_pixel, int x)
 	y = -1;
 	color = rgb_to_hex(cub3d->map.ceiling_color);
 	while (++y < wall_top_pixel)
-		img_pix_put(&cub3d->img_game, x, y, color);
+	{
+		if (x < (cub3d->game->window.width) * MINIMAP_SCALE
+			&& y > (cub3d->game->window.height) * MINIMAP_SCALE)
+			img_pix_put(&cub3d->img_game, x, y, color);
+		else if (x > (cub3d->game->window.width) * MINIMAP_SCALE)
+			img_pix_put(&cub3d->img_game, x, y, color);
+	}
 }
 
 void	draw_floor(t_cubd *cub3d, int wall_bottom_pixel, int x)

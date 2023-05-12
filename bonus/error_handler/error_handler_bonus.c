@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   error_handler_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 20:12:10 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/11 21:38:16 by bbonaldi         ###   ########.fr       */
+/*   Created: 2023/04/20 22:19:44 by bbonaldi          #+#    #+#             */
+/*   Updated: 2023/05/10 23:13:34 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
-int	game_render(t_cubd *cub3D)
+void	print_error(char *message)
 {
-	init_textures(cub3D);
-	create_image(cub3D, &cub3D->img_game, WINDOW_WIDTH, WINDOW_HEIGHT);
-	cast_all_rays(cub3D, cub3D->player);
-	render_3d_projected_walls(cub3D);
-	render_image_to_window(cub3D, &cub3D->img_game, 0, 0);
-	mlx_destroy_image(cub3D->mlx_ptr, cub3D->img_game.mlx_img);
-	destroy_textures(cub3D);
+	ft_printf("%s\n%s\n", "Error", message);
+}
+
+int	exit_with_message(int status_code, char *message)
+{
+	print_error(message);
+	exit(status_code);
+}
+
+int	has_valid_args(int argc)
+{
+	if (argc != 2)
+		return (FALSE);
 	return (TRUE);
+}
+
+void	exit_with_message_and_free(t_cubd *cub3d, int status_code,
+			char *message)
+{
+	game_clear(cub3d);
+	exit_with_message(status_code, message);
 }

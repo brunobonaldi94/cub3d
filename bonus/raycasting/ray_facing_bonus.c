@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   ray_facing_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 20:12:10 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/11 21:38:16 by bbonaldi         ###   ########.fr       */
+/*   Created: 2023/05/04 20:40:55 by bbonaldi          #+#    #+#             */
+/*   Updated: 2023/05/10 23:15:12 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
-int	game_render(t_cubd *cub3D)
+int	is_ray_facing_down(double angle)
 {
-	init_textures(cub3D);
-	create_image(cub3D, &cub3D->img_game, WINDOW_WIDTH, WINDOW_HEIGHT);
-	cast_all_rays(cub3D, cub3D->player);
-	render_3d_projected_walls(cub3D);
-	render_image_to_window(cub3D, &cub3D->img_game, 0, 0);
-	mlx_destroy_image(cub3D->mlx_ptr, cub3D->img_game.mlx_img);
-	destroy_textures(cub3D);
-	return (TRUE);
+	return (angle > 0 && angle < PI);
+}
+
+int	is_ray_facing_up(double angle)
+{
+	return (!is_ray_facing_down(angle));
+}
+
+int	is_ray_facing_right(double angle)
+{
+	return (angle < 0.5 * PI || angle > 1.5 * PI);
+}
+
+int	is_ray_facing_left(double angle)
+{
+	return (!is_ray_facing_right(angle));
 }

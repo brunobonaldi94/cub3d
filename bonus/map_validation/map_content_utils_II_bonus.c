@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_content_utils_II.c                             :+:      :+:    :+:   */
+/*   map_content_utils_II_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:49:59 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/11 22:22:15 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/11 22:18:33 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 void	set_starting_rotation_angle(t_player *player)
 {
