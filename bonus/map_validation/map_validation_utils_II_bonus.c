@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 23:17:17 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/10 23:14:25 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/12 09:32:02 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,28 @@ size_t	first_column_map_char(char *str)
 
 size_t	copy_until_new_line(char *dst, const char *src, size_t size)
 {
-	size_t	len;
+	size_t	src_len;
+	size_t	qty_copied;
+	size_t	original_size;
 
-	len = ft_strlen(src);
+	src_len = ft_strlen(src);
+	original_size = size;
 	if (size == 0)
-		return (len);
-	while (*src && --size && *src != '\n')
-		*dst++ = *src++;
-	while (size)
+		return (src_len);
+	qty_copied = 0;
+	while (src[qty_copied] && (qty_copied < size - 1)
+		&& src[qty_copied] != '\n')
 	{
-		*dst++ = ' ';
-		size--;
+		dst[qty_copied] = src[qty_copied];
+		qty_copied++;
 	}
-	*dst = '\0';
-	return (len);
+	while (qty_copied < size - 1)
+	{
+		dst[qty_copied] = ' ';
+		qty_copied++;
+	}
+	dst[original_size - 1] = '\0';
+	return (src_len);
 }
 
 int	check_new_line_in_the_middle(t_list *h_list)
