@@ -40,6 +40,8 @@ t_coordinates	get_new_pos(t_cubd *cub3d, double move_step, double side_step)
 	return (coords);
 }
 
+#include <stdio.h>
+
 void	move_player(t_cubd *cub3d)
 
 {
@@ -60,7 +62,8 @@ void	move_player(t_cubd *cub3d)
 			* cub3d->player->walk_speed;
 		coords.x = get_new_pos(cub3d, move_step, side_step).x;
 		coords.y = get_new_pos(cub3d, move_step, side_step).y;
-		if (has_wall_at(cub3d->game->map, coords.x, coords.y, cub3d))
+		if (has_wall_at(cub3d->game->map, coords.x, coords.y, cub3d) ||
+			coords.x <= (double) TILE_SIZE)
 			return ;
 		cub3d->player->x = coords.x;
 		cub3d->player->y = coords.y;
