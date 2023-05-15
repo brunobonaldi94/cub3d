@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 19:52:18 by bbonaldi          #+#    #+#             */
-/*   Updated: 2023/05/10 23:15:44 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/15 20:08:48 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_ceil(t_cubd *cub3d, int wall_top_pixel, int x)
 		if (x < (cub3d->game->window.width) * MINIMAP_SCALE
 			&& y > (cub3d->game->window.height) * MINIMAP_SCALE)
 			img_pix_put(&cub3d->img_game, x, y, color);
-		else if (x > (cub3d->game->window.width) * MINIMAP_SCALE)
+		else if (x > (cub3d->game->window.width - 1) * MINIMAP_SCALE)
 			img_pix_put(&cub3d->img_game, x, y, color);
 	}
 }

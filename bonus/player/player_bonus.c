@@ -6,7 +6,7 @@
 /*   By: bbonaldi <bbonaldi@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:58:12 by sjhony-x          #+#    #+#             */
-/*   Updated: 2023/05/10 23:15:44 by bbonaldi         ###   ########.fr       */
+/*   Updated: 2023/05/15 19:42:02 by bbonaldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	move_player(t_cubd *cub3d)
 			* cub3d->player->walk_speed;
 		coords.x = get_new_pos(cub3d, move_step, side_step).x;
 		coords.y = get_new_pos(cub3d, move_step, side_step).y;
-		if (has_wall_at(cub3d->game->map, coords.x, coords.y, cub3d) ||
-			coords.x <= (double) TILE_SIZE)
+		if (has_wall_at(cub3d->game->map, coords.x, coords.y, cub3d)
+			|| coords.x <= (double) TILE_SIZE)
 			return ;
 		cub3d->player->x = coords.x;
 		cub3d->player->y = coords.y;
